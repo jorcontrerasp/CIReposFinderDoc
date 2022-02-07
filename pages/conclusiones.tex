@@ -2,7 +2,14 @@ En este capítulo se detallan las conclusiones derivadas del TFG y la propuesta 
 
 Las citas del texto Autor \cite{giaquinta}, Autor \cite{fortune}, Autor \cite{fortuneB}, Autor \cite{mitchell} y Autor \cite{morrey} deben ir referenciadas en la bibliografia.
 
+La realización de este estudio me ha permitido, en primer lugar, ampliar mis conocimientos sobre las diferentes herramientas de integración continua existente y conocer cuáles son las predominantes en entornos de alojamiento de proyectos software como GitHub y GitLab.
+También he ampliado conocimientos en "research" mediante la minería de repositorios utilizando las APIs de GitHub y GitLab implementando un programa escrito en Python, que es uno de los lenguajes que más está creciendo actualmente. 
+Con 11.3 millones de usuarios, en el año 2021, Python ha sido la estrella en crecimiento en los recientes entre los lenguajes de programación, consiguiendo precisamente ocupar este vacío como favorito en desarrollo DS/ML, pero además siendo una opción para desarrollo de aplicaciones de IoT (internet de las cosas).
 
-\section{Texto de relleno}
+-FOTO DE LENGUAJES-
 
-\lipsum[1-18]
+En primer lugar se estudiaron diversas herramientas de integración continua, tanto su funcionamiento como la estructura de los ficheros de configuración con el objetivo de implementar un heurístico que fuese capaz de encontrar repositorios que usasen herramientas de este tipo.
+A continuación se realizaron varios experimentos aplicando el heurístico, de los que se obtuvieron resultados suficientes como para poder tomar conclusiones al respecto.
+Tras la realización de estos experimentos se puede destacar como cada vez es más habitual que los programadores que integran sus proyectos de forma continua utilicen herramientas propias de la plataforma en donde alojan sus proyectos, en este caso GitHub Actions si el repositorio está en GitHub o GitLab CI en el caso de que se almacenen en GitLab, probablemente debido a la facil integración que puedan tener con sus proyectos al estar almacenados en su propia plataforma.
+No obstante, también se siguen usando otros medios para poder emplear integración continua como puedan ser Travis o incluso Jenkins que en un principio parecía que iban a ser más habituales en proyectos de código abierto GitHub o GitLab.
+En cuanto a los trabajos futuros, se intentarán ejecutar de algún modo los trabajos definidos en cada fichero YML o YAML de configuración y replicar los tests para comprobar su efectividad. Además, se pondrán los resultados a disposición de investigadores interesados en estudiar otros aspectos sobre integración continua.
