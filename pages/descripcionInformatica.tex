@@ -24,7 +24,42 @@ En este trabajo se va a utilizar tanto para la implementación del programa en p
 \section{Implementación Python}
 
 \subsection{Ficheros Python}
+La implementación del programa buscador de repositorios que utilizan herramientas de integración continua cuenta con los siguientes ficheros:
+\begin{enumerate}
+    \item aux-functions.py: script de python que contiene funciones auxiliares en las que se apoyará el programa principal.
+    \item ci-tools.py: script en el que se definen todas las herramientas de integración que se van a buscar en el proceso junto con la forma en la que se van a encontrar dichas herramientas, es decir, contiene las instrucciones que conforman el heurístico de búsqueda.
+    \item ci-yml-parser.py: script que transforma las instrucciones de un fichero YML a objetos Python con el objetivo de que sean tratados  de forma más trivial al devolver la información que contengan.
+    \item config.yml: fichero en el que se definen todas las variables de configuración del proceso de búsqueda.
+    \item dataF-functions.py: script contenedor de todas las funciones relacionadas con la gestión de la estructura de datos utilizada "DataFrame" para generar la información de retorno.
+    \item github-queryMaker.py: script que permite construir consultas con el formato aceptado por la API de GitHub.
+    \item github-search.py: script en el que se realiza la búsqueda de repositorios GitHub.
+    \item github-tests.py: script utilizado para aplicar el heurístico sobre un repositorio GitHub concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitHub.
+    \item gitlab-search.py: script en el que se realiza la búsqueda de repositorios GitLab.
+    \item gitlab-tests.py: script utilizado para aplicar el heurístico sobre un repositorio GitLab concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitLab.
+    \item main.py: script que se llaman a todos las funciones necesarias para realizar el proceso de búqueda de repositorios. Conforma el programa principal.
+\end{enumerate}
 
 \subsection{Librerías utilizadas}
+Las librerías utilizadas para la implementación del programa son las siguientes:
+\begin{enumerate}
+    \item PyGithub: librería que facilita el uso de la API de GitHub v3. Permite la gestión de diferentes recursos de GitHub (repositorios, perfiles de usuario, organizaciones, etc.) desde scripts de Python.
+    \item PyGitlab:
+    \item Pandas: iniciada en 2008, es una librería que pretende ser el bloque de construcción fundamental de alto nivel para realizar análisis de datos prácticos del mundo real en Python. Además, tiene el objetivo más amplio de convertirse en la herramienta de análisis/manipulación de datos de código abierto más potente y flexible disponible en cualquier idioma. Nos va a permitir manejar DataFrames y convertir la información que queramos tanto en formato excel como en formato csv para su posterior estudio.
+    \item Pickle: importando esta librería en el proyecto vamos a poder almacenar la información que queramos en un fichero binario de Python. En este caso, una vez obtenidos los repositorios a analizar se almacenarán en un fichero de este tipo para poder reutilizar esos repositorios en posteriores ejecuciones.
+    \item Base64: este módulo proporciona funciones para codificar datos binarios en caracteres ASCII imprimibles y decodificar dichas codificaciones en datos binarios.
+\end{enumerate}
 
 \subsection{Ficheros resultantes}
+El proceso de búsqueda de herramientas de integración continua va a generar varios ficheros en local con información que va a permitir alimentar de contenido el estudio y análisis de estas herramientas. Estos ficheros son:
+\begin{enumerate}
+    \item resultados-github.xlsx: Fichero excel que va a componer una matriz repositorio de GitHub/herramienta de CI indicando en su intersección mediante una "X" si es o no positivo.
+    \item lenguajes-github.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitHub encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
+    \item repos-github.pickle: Fichero binario de Python en el que se van a almacenar los repositorios GitHub utilizados a la hora de aplicar el heurístico.
+    \item resultados-gitlab.xlsx: Fichero excel que va a componer una matriz repositorio de GitLab/herramienta de CI indicando en su intersección mediante una "X" si es o no positivo.
+    \item lenguajes-gitlab.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitLab encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
+    \item repos-gitlab.pickle: Fichero binario de Python en el que se van a almacenar los repositorios GitLab utilizados a la hora de aplicar el heurístico.
+    \item contadores.xlsx: Fichero excel con un conteo de los excel de resultados tanto en GitHub como en GitLab a modo de resumen.
+\end{enumerate}
+
+\section{Proceso de ejecución}
+Aquí se explicará en detalle el proceso de ejecución del programa.
