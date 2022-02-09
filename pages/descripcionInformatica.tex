@@ -62,4 +62,59 @@ El proceso de búsqueda de herramientas de integración continua va a generar va
 \end{enumerate}
 
 \section{Proceso de ejecución}
-Aquí se explicará en detalle el proceso de ejecución del programa.
+La implementación del programa está dividida en dos partes bien diferenciadas: una encargada de ejecutar el proceso sobre repositorios GitHub y la otra sobre repositorios GitLab. En cada parte se utilizará para su cometido la API correspondiente a los repositorios a los que se les está aplicando el proceso de búsqueda.
+En primer lugar se comprueba mediante la variable 'execute' si se desea ejecutar o no el proceso en su totalidad. En el caso de que dicha variable sea afirmativa se iniciará el proceso generando las estructuras de datos necesarias que se irán completando con datos obtenidos por la búsqueda. 
+Estas estructuras de datos necesarias serían el 'dataframe' de resultados, el de lenguajes y el de contadores, las cuales podrán ser generadas de cero o recuperadas a partir de ficheros excel ya generados con anterioridad en función de la variable de configuración 'useResultsExcelFile'.
+A continuación el programa prosigue ejecutando el proceso de búsqueda sobre GitHub y a continuación sobre GitLab, siempre y cuando las variables 'doGitHubSearch' y 'doGitLabSearch' respectivamente sean positivas.
+En cuanto a la parte de ejecución sobre repositorios de la plataforma GitHub, en primer lugar se cargará la lista de repositorios que va a ser utilizada para aplicar el heurístico. Esta podrá ser obtenida mediante la carga desde un fichero binario de Python con extensión '.pickle' o podrá ser obtenida desde cero mediante una llamada a la API de GitHub.
+Una vez obtenida la lista de repositorios se aplicará el heurístico sobre cada uno de los repositorios que la conforman y se irán rellenando los dataframes que serán devueltos finalmente en formato excel en aras de ser comprendido de forma trivial.
+En cuanto a la parte correspondiente a la ejecución sobre proyectos GitLab, al igual que en la parte de GitHub ya mencionada, se podrán obtener los repositorios cargados desde un fichero binario de python con extensión '.pickle' o se podrán generar mediante la llamada a la API de GitLab. En el caso de que se tenga que llamar a la API de GitLab para generar los repositorios, se diferencian dos formas de actuar en función de la variable de configuración 'search1By1': obteniendo los repositorios y aplicar el heurístico a la lista que se genere, o ir aplicando el heurístico uno a uno según se vaya cargando la lista de repositorios.
+Finalmente, se transformarán las variables del tipo DataFrame proporcionadas por la librería 'Pandas' en formato Excel o Csv.
+A modo de resumen, se expone a continuación el flujo de ejecución del programa:
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth,clip=true]{\flujoEjecucion}
+    \caption{Flujo de ejecución.}
+\end{figure}
+
+\alumno{¿Posición de la figura?}
+
+\section{Dificultades y problemas encontrados}
+En la realización de este trabajo se han ido encontrando diferentes errores que suponían un impedimento a la hora de continuar. Los más comunes han sido los siguientes:
+- Resulta que la API de GitHub nos permite crear llamadas para obtener información sobre los diferentes repositorios que contiene, y de esta manera poder integrar nuestra aplicación con GitHub, pero con una limitación de 60 peticiones a la hora, número insuficiente para realizar una búsqueda masiva que devuelva una cantidad aceptable de repositorios con la que poder llevar a cabo el estudio de manera objetiva. En el momento en el que se utilizan más de los que esta API puede tratar se lanza la siguiente excepción: 
+
+-EXCEPCIÓN-
+
+Generando un token de autenticación podemos incrementar el número de peticiones por hora DE 60 A 5000 [AÑADIR ANEXO DE GENERACIÓN DE TOKEN GITHUB]. Sin embargo, este número incrementado de peticiones sigue siendo insuficiente para poder ejecutar el proceso de forma masiva sobre una gran cantidad de repositorios.
+La solución empleada para corregir este problema es la siguiente: maediante la función 'get-rate-limit()' de la API de GitHub, antes de gastar una consulta se obtendrá el número de peticiones restantes y al llegar al límite se pausará el proceso hasta que pase el tiempo necesario para recuperar dichas peticiones. Una vez recuperadas las peticiones se proseguirá con la ejecución.
+
+'def getContents(repo, path):
+    contents = None
+    g = authenticate()
+    rl = g.get-rate-limit()
+    rl-core = rl.core
+    core-remaining = rl-core.remaining
+    rl-search = rl.search
+    search-remaining = rl-search.remaining
+    if core-remaining <= 0:
+        reset-timestamp = calendar.timegm(rl-core.reset.timetuple())
+        sleep-time = reset-timestamp - calendar.timegm(time.gmtime()) + 5
+        print("API rate limit exceded: " + str(sleep-time) + " sleep-time. Waiting...")
+        time.sleep(sleep-time)
+        g = authenticate()
+
+    contents = repo.get-contents(path)
+    return contents'
+
+\alumno{¿Formato de la función en Python?}\\
+\alumno{¿Cómo escapar guión bajo en LaTeX?}
+	
+- La API de GitLab: al igual que la API de GitHub, la API de GitLab cuenta con una limitaciones a la hora de realizar llamadas sobre la misma. En este caso no se limitan el número de peticiones sobre la API, sino que se limitan el número de proyectos que se pueden obtener.
+Cada consulta a la API de GitLab cuanta con un número de páginas y en cada página un número X de proyectos, siendo X de 20 a 100 proyectos en función de lo que se configure en la variable XXXXX de la consulta. Para tratar los repositorios devueltos por la consulta se tienen que recorrer dichas páginas y por cada página los repositorios devueltos. Sin embargo, al llegar al repositorio número 20.001 se lanza la excepción correspondiente a la limitación de GitLab.
+
+-EXCEPCIÓN-
+
+La solución empleada para corregir este problema es la siguiente: en lugar de realizar una única consulta e ir recorriendo las páginas y repositorios de esa única consulta, se irán generando varias consultas en serie, siempre recorriendo el número máximo de repositorios que se devuelven en la página 1. Una vez terminado de obtener los repositorios correspondientes a la página 1 de la consulta lanzada, se lanza la siguiente consulta partiendo del identificador del último repositorio tratado en la anterior consulta. De esta forma se podrá esquivar la limitación de 20.000 repositorios por consulta impuesta por la API de GitLab e ir obteniendo infinitos proyectos.
+
+- Otros problemas relacionados con la API de GitLab es la escasez de filtros que se pueden aplicar sobre cada consulta, a diferencia de la API de GitHub, la de GitLab no permite filtrar por lenguaje o número de estrellas dando lugar a que se tengan que ir comprobando uno a uno mediante los atributos 'language' y 'stars' de los objetos 'project'. Esto ha supuesto que el proceso de ejecución sobre proyectos GitLab tarde más en ejecutarse que la ejecución sobre repositorios GitHub.
