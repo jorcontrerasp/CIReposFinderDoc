@@ -121,7 +121,8 @@ En la realización de este trabajo se han ido encontrando diferentes errores que
 Generando un token de autenticación podemos incrementar el número de peticiones por hora DE 60 A 5000 [AÑADIR ANEXO DE GENERACIÓN DE TOKEN GITHUB]. Sin embargo, este número incrementado de peticiones sigue siendo insuficiente para poder ejecutar el proceso de forma masiva sobre una gran cantidad de repositorios.
 La solución empleada para corregir este problema es la siguiente: maediante la función 'get-rate-limit()' de la API de GitHub, antes de gastar una consulta se obtendrá el número de peticiones restantes y al llegar al límite se pausará el proceso hasta que pase el tiempo necesario para recuperar dichas peticiones. Una vez recuperadas las peticiones se proseguirá con la ejecución.
 
-'def getContents(repo, path):
+\begin{lstlisting}[language=Python, caption=Python example, label={lst:ejem1}]
+def getContents(repo, path):
     contents = None
     g = authenticate()
     rl = g.get-rate-limit()
@@ -130,18 +131,19 @@ La solución empleada para corregir este problema es la siguiente: maediante la 
     rl-search = rl.search
     search-remaining = rl-search.remaining
     if core-remaining <= 0:
-        reset-timestamp = calendar.timegm(rl-core.reset.timetuple())
-        sleep-time = reset-timestamp - calendar.timegm(time.gmtime()) + 5
-        print("API rate limit exceded: " + str(sleep-time) + " sleep-time. Waiting...")
+        reset-timestamp = 
+            calendar.timegm(rl-core.reset.timetuple())
+        sleep-time = 
+            reset-timestamp - calendar.timegm(time.gmtime()) + 5
+        print("API rate limit exceded ...")
         time.sleep(sleep-time)
         g = authenticate()
 
     contents = repo.get-contents(path)
-    return contents'
+    return contents
+\end{lstlisting}
+\cotutor{Si usas este fragmento de código, en lugar de decir 'A continuación ...' debes referenciar al 'listing' en este caso, usando Listing~\ref{lst:ejem1} (Ver código fuente)}
 
-\alumno{¿Formato de la función en Python?}\\
-\alumno{¿Cómo escapar guión bajo en LaTeX?}
-	
 - La API de GitLab: al igual que la API de GitHub, la API de GitLab cuenta con una limitaciones a la hora de realizar llamadas sobre la misma. En este caso no se limitan el número de peticiones sobre la API, sino que se limitan el número de proyectos que se pueden obtener.
 Cada consulta a la API de GitLab cuanta con un número de páginas y en cada página un número X de proyectos, siendo X de 20 a 100 proyectos en función de lo que se configure en la variable XXXXX de la consulta. Para tratar los repositorios devueltos por la consulta se tienen que recorrer dichas páginas y por cada página los repositorios devueltos. Sin embargo, al llegar al repositorio número 20.001 se lanza la excepción correspondiente a la limitación de GitLab.
 
