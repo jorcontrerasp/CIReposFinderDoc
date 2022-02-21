@@ -26,49 +26,50 @@ En este trabajo se va a utilizar tanto para la implementación del programa en p
 \subsection{Ficheros Python}
 La implementación del programa buscador de repositorios que utilizan herramientas de integración continua cuenta con los siguientes ficheros:
 \begin{compactitem}
-    \item aux-functions.py: script de python que contiene funciones auxiliares en las que se apoyará el programa principal.
-    \item ci-tools.py: script en el que se definen todas las herramientas de integración que se van a buscar en el proceso junto con la forma en la que se van a encontrar dichas herramientas, es decir, contiene las instrucciones que conforman el heurístico de búsqueda.
-    \item ci-yml-parser.py: script que transforma las instrucciones de un fichero YML a objetos Python con el objetivo de que sean tratados  de forma más trivial al devolver la información que contengan.
+    \item aux\_functions.py: script de python que contiene funciones auxiliares en las que se apoyará el programa principal.
+    \item ci\_tools.py: script en el que se definen todas las herramientas de integración que se van a buscar en el proceso junto con la forma en la que se van a encontrar dichas herramientas, es decir, contiene las instrucciones que conforman el heurístico de búsqueda.
+    \item ci\_yml\_parser.py: script que transforma las instrucciones de un fichero YML a objetos Python con el objetivo de que sean tratados  de forma más trivial al devolver la información que contengan.
     \item config.yml: fichero en el que se definen todas las variables de configuración del proceso de búsqueda.
-    \item dataF-functions.py: script contenedor de todas las funciones relacionadas con la gestión de la estructura de datos utilizada "DataFrame" para generar la información de retorno.
-    \item github-queryMaker.py: script que permite construir consultas con el formato aceptado por la API de GitHub.
-    \item github-search.py: script en el que se realiza la búsqueda de repositorios GitHub.
-    \item github-tests.py: script utilizado para aplicar el heurístico sobre un repositorio GitHub concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitHub.
-    \item gitlab-search.py: script en el que se realiza la búsqueda de repositorios GitLab.
-    \item gitlab-tests.py: script utilizado para aplicar el heurístico sobre un repositorio GitLab concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitLab.
+    \item dataF\_functions.py: script contenedor de todas las funciones relacionadas con la gestión de la estructura de datos utilizada ``DataFrame'' para generar la información de retorno.
+    \item github\_queryMaker.py: script que permite construir consultas con el formato aceptado por la API de GitHub.
+    \item github\_search.py: script en el que se realiza la búsqueda de repositorios GitHub.
+    \item github\_tests.py: script utilizado para aplicar el heurístico sobre un repositorio GitHub concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitHub.
+    \item gitlab\_search.py: script en el que se realiza la búsqueda de repositorios GitLab.
+    \item gitlab\_tests.py: script utilizado para aplicar el heurístico sobre un repositorio GitLab concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitLab.
     \item main.py: script que se llaman a todos las funciones necesarias para realizar el proceso de búqueda de repositorios. Conforma el programa principal.
 \end{compactitem}
 
-Este proceso encargado de aplicar el heurístico de búsqueda de repositorios con CI se ha programado de tal forma que sea configurable mediante el fichero 'config.yml'. Este fichero de configuración cuenta con tres partes bien diferenciadas:
-- 'process' con variables relacionadas con la configuración del proceso genérico.
+Este proceso encargado de aplicar el heurístico de búsqueda de repositorios con CI se ha programado de tal forma que sea configurable mediante el fichero ``config.yml''. Este fichero de configuración cuenta con tres partes bien diferenciadas:
+
+- ``process'' con variables relacionadas con la configuración del proceso genérico.
 \begin{compactitem}
-    \item 'execute': indica si se ejecuta o no el proceso en su totalidad.
-    \item 'doGithubSearch': indica si se ejecuta o no la búsqueda sobre repositorios GitHub.
-    \item 'doGitlabSearch': indica si se ejecuta o no la búsqueda sobre proyectos GitLab.
-    \item 'usePickleFile': indica si se utiliza o no un fichero binario de Python con extensión '.pickle' para obtener los repositorios, que fueron recuperados previamente en una búsqueda anterior, a los que se les aplicará el heurístico.
-    \item 'useResultsExcelFile': indica si se continúa rellenando un fichero de resultados excel ya existente.
-    \item 'tmpDirectory': variable que almacena el directorio de ficheros temporales.
-    \item 'tmpFile': variable que almacena el nombre d eun fichero temporal.
+    \item ``execute'': indica si se ejecuta o no el proceso en su totalidad.
+    \item ``doGithubSearch'': indica si se ejecuta o no la búsqueda sobre repositorios GitHub.
+    \item ``doGitlabSearch'': indica si se ejecuta o no la búsqueda sobre proyectos GitLab.
+    \item ``usePickleFile'': indica si se utiliza o no un fichero binario de Python con extensión ``.pickle'' para obtener los repositorios, que fueron recuperados previamente en una búsqueda anterior, a los que se les aplicará el heurístico.
+    \item ``useResultsExcelFile'': indica si se continúa rellenando un fichero de resultados excel ya existente.
+    \item ``tmpDirectory'': variable que almacena el directorio de ficheros temporales.
+    \item ``tmpFile'': variable que almacena el nombre d eun fichero temporal.
 \end{compactitem}
-- 'github' con variables relacionadas con la configuración de la búsqueda GitHub.
+- ``github'' con variables relacionadas con la configuración de la búsqueda GitHub.
 \begin{compactitem}
-    \item 'queryFile': indica qué consulta es la que se va a utilizar en la búsqueda sobre repositorios GitHub.
-    \item 'filterCommits': indica si se filtra o no por los commits.
-    \item 'MAX-COMMITS': en el caso de filtrar por cómmits, indica el número máximo de commits que tendrán los repositorios.
-    \item 'MIN-COMMITS': en el caso de filtrar por cómmits, indica el número mínimo de commits que tendrán los repositorios.
-    \item 'randomizeRepos': indica si se obtienen 'n' repositorios aleatorios de la lista inicial de repositorios obtenida para aplicar el heurístico.
-    \item 'N-RANDOM': indica, en el caso de que se marque la opción 'randomizeRepos', el número de repositorios aleatorios que se obtendrán.
-    \item 'onlyPositives': indica si se devuelven única y exclusivamente repositorios positivos en los ficheros de resultados.
+    \item ``queryFile'': indica qué consulta es la que se va a utilizar en la búsqueda sobre repositorios GitHub.
+    \item ``filterCommits'': indica si se filtra o no por los commits.
+    \item ``MAX\_COMMITS'': en el caso de filtrar por cómmits, indica el número máximo de commits que tendrán los repositorios.
+    \item ``MIN\_COMMITS'': en el caso de filtrar por cómmits, indica el número mínimo de commits que tendrán los repositorios.
+    \item ``randomizeRepos'': indica si se obtienen ``n'' repositorios aleatorios de la lista inicial de repositorios obtenida para aplicar el heurístico.
+    \item ``N\_RANDOM'': indica, en el caso de que se marque la opción ``randomizeRepos'', el número de repositorios aleatorios que se obtendrán.
+    \item ``onlyPositives'': indica si se devuelven única y exclusivamente repositorios positivos en los ficheros de resultados.
 \end{compactitem}
-- 'gitlab' con variables relacionadas con la configuración de la búsqueda GitLab.
+- ``gitlab'' con variables relacionadas con la configuración de la búsqueda GitLab.
 \begin{compactitem}
-    \item 'search1By1': indica si se aplicará el heurístico a cada proyecto según se vayan encontrando o si, por el contrario, se obtienen todos los proyectos y a continuación, una vez obtenidos, se recorren para aplicarles el heurístico. Si buscamos solo positivos, search1By1 será True sí o sí (se controla por programa), da igual lo que venga en el fichero de configuración.
-    \item 'N-ERROR-PAGE-ATTEMPTS': indica el número máximo de intentos en caso de que la llamada a la API de GitLab falle.
-    \item 'LANGUAGE': indica el lenguaje en el que tendrán que estar implementados los proyectos GitLab analizados.
-    \item 'N-MAX-SEARCHES': indica el número máximo de búsquedas que se van a realizar.
-    \item 'N-MIN-STARS': indica el número mínimo de estrellas que tendrán que tener los proyectos GitLab analizados.
-    \item 'onlyPositives': indica si se devuelven única y exclusivamente proyectos positivos en los ficheros de resultados.
-    \item 'N-MAX-PROJECTS': si solo buscamos positivos, N-MAX-PROJECTS será el nº máximo de positivos a encontrar. Si buscamos tanto positivos como negativos, N-MAX-PROJECTS será el número máximo de projectos que tratará (sean o no positivos en CI).
+    \item ``search1By1'': indica si se aplicará el heurístico a cada proyecto según se vayan encontrando o si, por el contrario, se obtienen todos los proyectos y a continuación, una vez obtenidos, se recorren para aplicarles el heurístico. Si buscamos solo positivos, search1By1 será True sí o sí (se controla por programa), da igual lo que venga en el fichero de configuración.
+    \item ``N\_ERROR\_PAGE\_ATTEMPTS'': indica el número máximo de intentos en caso de que la llamada a la API de GitLab falle.
+    \item ``LANGUAGE'': indica el lenguaje en el que tendrán que estar implementados los proyectos GitLab analizados.
+    \item ``N\_MAX\_SEARCHES'': indica el número máximo de búsquedas que se van a realizar.
+    \item ``N\_MIN\_STARS'': indica el número mínimo de estrellas que tendrán que tener los proyectos GitLab analizados.
+    \item ``onlyPositives'': indica si se devuelven única y exclusivamente proyectos positivos en los ficheros de resultados.
+    \item ``N\_MAX\_PROJECTS'': si solo buscamos positivos, N\_MAX\_PROJECTS será el nº máximo de positivos a encontrar. Si buscamos tanto positivos como negativos, N\_MAX\_PROJECTS será el número máximo de projectos que tratará (sean o no positivos en CI).
 \end{compactitem}
 
 \subsection{Librerías utilizadas}
@@ -84,24 +85,24 @@ Las librerías utilizadas para la implementación del programa son las siguiente
 \subsection{Ficheros resultantes}
 El proceso de búsqueda de herramientas de integración continua va a generar varios ficheros en local con información que va a permitir alimentar de contenido el estudio y análisis de estas herramientas. Estos ficheros son:
 \begin{compactitem}
-    \item resultados\_github.xlsx: Fichero excel que va a componer una matriz repositorio de GitHub/herramienta de CI indicando en su intersección mediante una "X" si es o no positivo.
-    \item lenguajes-github.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitHub encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
-    \item repos-github.pickle: Fichero binario de Python en el que se van a almacenar los repositorios GitHub utilizados a la hora de aplicar el heurístico.
-    \item resultados-gitlab.xlsx: Fichero excel que va a componer una matriz repositorio de GitLab/herramienta de CI indicando en su intersección mediante una "X" si es o no positivo.
-    \item lenguajes-gitlab.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitLab encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
-    \item repos-gitlab.pickle: Fichero binario de Python en el que se van a almacenar los repositorios GitLab utilizados a la hora de aplicar el heurístico.
+    \item resultados\_github.xlsx: Fichero excel que va a componer una matriz repositorio de GitHub/herramienta de CI indicando en su intersección mediante una ``X'' si es o no positivo.
+    \item lenguajes\_github.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitHub encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
+    \item repos\_github.pickle: Fichero binario de Python en el que se van a almacenar los repositorios GitHub utilizados a la hora de aplicar el heurístico.
+    \item resultados\_gitlab.xlsx: Fichero excel que va a componer una matriz repositorio de GitLab/herramienta de CI indicando en su intersección mediante una ``X'' si es o no positivo.
+    \item lenguajes\_gitlab.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitLab encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
+    \item repos\_gitlab.pickle: Fichero binario de Python en el que se van a almacenar los repositorios GitLab utilizados a la hora de aplicar el heurístico.
     \item contadores.xlsx: Fichero excel con un conteo de los excel de resultados tanto en GitHub como en GitLab a modo de resumen.
 \end{compactitem}
 
 \section{Proceso de ejecución}
 La implementación del programa está dividida en dos partes bien diferenciadas: una encargada de ejecutar el proceso sobre repositorios GitHub y la otra sobre repositorios GitLab. En cada parte se utilizará para su cometido la API correspondiente a los repositorios a los que se les está aplicando el proceso de búsqueda.
-En primer lugar se comprueba mediante la variable 'execute' si se desea ejecutar o no el proceso en su totalidad. En el caso de que dicha variable sea afirmativa se iniciará el proceso generando las estructuras de datos necesarias que se irán completando con datos obtenidos por la búsqueda. 
-Estas estructuras de datos necesarias serían el 'dataframe' de resultados, el de lenguajes y el de contadores, las cuales podrán ser generadas de cero o recuperadas a partir de ficheros excel ya generados con anterioridad en función de la variable de configuración 'useResultsExcelFile'.
-A continuación el programa prosigue ejecutando el proceso de búsqueda sobre GitHub y a continuación sobre GitLab, siempre y cuando las variables 'doGitHubSearch' y 'doGitLabSearch' respectivamente sean positivas.
-En cuanto a la parte de ejecución sobre repositorios de la plataforma GitHub, en primer lugar se cargará la lista de repositorios que va a ser utilizada para aplicar el heurístico. Esta podrá ser obtenida mediante la carga desde un fichero binario de Python con extensión '.pickle' o podrá ser obtenida desde cero mediante una llamada a la API de GitHub.
+En primer lugar se comprueba mediante la variable ``execute'' si se desea ejecutar o no el proceso en su totalidad. En el caso de que dicha variable sea afirmativa se iniciará el proceso generando las estructuras de datos necesarias que se irán completando con datos obtenidos por la búsqueda. 
+Estas estructuras de datos necesarias serían el ``dataframe'' de resultados, el de lenguajes y el de contadores, las cuales podrán ser generadas de cero o recuperadas a partir de ficheros excel ya generados con anterioridad en función de la variable de configuración ``useResultsExcelFile''.
+A continuación el programa prosigue ejecutando el proceso de búsqueda sobre GitHub y a continuación sobre GitLab, siempre y cuando las variables ``doGitHubSearch'' y ``doGitLabSearch'' respectivamente sean positivas.
+En cuanto a la parte de ejecución sobre repositorios de la plataforma GitHub, en primer lugar se cargará la lista de repositorios que va a ser utilizada para aplicar el heurístico. Esta podrá ser obtenida mediante la carga desde un fichero binario de Python con extensión ``.pickle'' o podrá ser obtenida desde cero mediante una llamada a la API de GitHub.
 Una vez obtenida la lista de repositorios se aplicará el heurístico sobre cada uno de los repositorios que la conforman y se irán rellenando los dataframes que serán devueltos finalmente en formato excel en aras de ser comprendido de forma trivial.
-En cuanto a la parte correspondiente a la ejecución sobre proyectos GitLab, al igual que en la parte de GitHub ya mencionada, se podrán obtener los repositorios cargados desde un fichero binario de python con extensión '.pickle' o se podrán generar mediante la llamada a la API de GitLab. En el caso de que se tenga que llamar a la API de GitLab para generar los repositorios, se diferencian dos formas de actuar en función de la variable de configuración 'search1By1': obteniendo los repositorios y aplicar el heurístico a la lista que se genere, o ir aplicando el heurístico uno a uno según se vaya cargando la lista de repositorios.
-Finalmente, se transformarán las variables del tipo DataFrame proporcionadas por la librería 'Pandas' en formato Excel o Csv.
+En cuanto a la parte correspondiente a la ejecución sobre proyectos GitLab, al igual que en la parte de GitHub ya mencionada, se podrán obtener los repositorios cargados desde un fichero binario de python con extensión ``.pickle'' o se podrán generar mediante la llamada a la API de GitLab. En el caso de que se tenga que llamar a la API de GitLab para generar los repositorios, se diferencian dos formas de actuar en función de la variable de configuración ``search1By1'': obteniendo los repositorios y aplicar el heurístico a la lista que se genere, o ir aplicando el heurístico uno a uno según se vaya cargando la lista de repositorios.
+Finalmente, se transformarán las variables del tipo DataFrame proporcionadas por la librería ``Pandas'' en formato Excel o Csv.
 A modo de resumen, se expone a continuación el flujo de ejecución del programa:
 
 \begin{figure}[h]
@@ -117,27 +118,27 @@ En la realización de este trabajo se han ido encontrando diferentes errores que
 -EXCEPCIÓN-
 
 Generando un token de autenticación podemos incrementar el número de peticiones por hora DE 60 A 5000 [AÑADIR ANEXO DE GENERACIÓN DE TOKEN GITHUB]. Sin embargo, este número incrementado de peticiones sigue siendo insuficiente para poder ejecutar el proceso de forma masiva sobre una gran cantidad de repositorios.
-La solución empleada para corregir este problema es la siguiente: maediante la función 'get-rate-limit()' de la API de GitHub, antes de gastar una consulta se obtendrá el número de peticiones restantes y al llegar al límite se pausará el proceso hasta que pase el tiempo necesario para recuperar dichas peticiones. Una vez recuperadas las peticiones se proseguirá con la ejecución.
+La solución empleada para corregir este problema es la siguiente: maediante la función ``get-rate-limit()'' de la API de GitHub, antes de gastar una consulta se obtendrá el número de peticiones restantes y al llegar al límite se pausará el proceso hasta que pase el tiempo necesario para recuperar dichas peticiones. Una vez recuperadas las peticiones se proseguirá con la ejecución.
 
 \begin{lstlisting}[language=Python, caption=Python example, label={lst:ejem1}]
 def getContents(repo, path):
     contents = None
     g = authenticate()
-    rl = g.get-rate-limit()
-    rl-core = rl.core
-    core-remaining = rl-core.remaining
-    rl-search = rl.search
-    search-remaining = rl-search.remaining
-    if core-remaining <= 0:
-        reset-timestamp = 
-            calendar.timegm(rl-core.reset.timetuple())
-        sleep-time = 
-            reset-timestamp - calendar.timegm(time.gmtime()) + 5
+    rl = g.get\_rate\_limit()
+    rl\_core = rl.core
+    core\_remaining = rl\_core.remaining
+    rl\_search = rl.search
+    search\_remaining = rl\_search.remaining
+    if core\_remaining <= 0:
+        reset\_timestamp = 
+            calendar.timegm(rl\_core.reset.timetuple())
+        sleep\_time = 
+            reset\_timestamp - calendar.timegm(time.gmtime()) + 5
         print("API rate limit exceded ...")
-        time.sleep(sleep-time)
+        time.sleep(sleep\_time)
         g = authenticate()
 
-    contents = repo.get-contents(path)
+    contents = repo.get\_contents(path)
     return contents
 \end{lstlisting}
 \cotutor{Si usas este fragmento de código, en lugar de decir 'A continuación ...' debes referenciar al 'listing' en este caso, usando Listing~\ref{lst:ejem1} (Ver código fuente)}

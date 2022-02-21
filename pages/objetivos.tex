@@ -4,7 +4,7 @@ Las plataformas de alojamiento de código que se van a utilizar para realizar es
 
 GitHub es una compañía sin fines de lucro que ofrece un servicio de hosting de repositorios almacenados en la nube utilizando el sistema de control de versiones Git. 
 Además, cuenta con una API REST disponible para cualquier desarrollador que quiera implementar alguna aplicación relacionada con el servicio que ofrece. 
-En este caso, la aplicación programada para buscar proyectos que puedan tener pruebas end-toend utiliza el lenguaje de programación Python y, concretamente, la librería “PyGithub” que permite utilizar la versión 3 de la API ya mencionada.
+En este caso, la aplicación programada para buscar proyectos que puedan tener sistemas de integración continua utiliza el lenguaje de programación Python y, concretamente, la librería “PyGithub” que permite utilizar la versión 3 de la API ya mencionada.
 
 Gitlab Inc. es una compañía de núcleo abierto y es la principal proveedora del software GitLab, un servicio web de control de versiones, DevOps y desarrollo de software colaborativo basado en Git. Además de un gestor de repositorios, el servicio ofrece también alojamiento de wikis y un sistema de seguimiento de errores, todo ello publicado bajo una licencia de código abierto, principalmente.
 Fue escrito por los programadores ucranianos Dmitriy Zaporozhets y Valery Sizov en el lenguaje de programación Ruby con algunas partes reescritas posteriormente en Go, inicialmente como una solución de gestión de código fuente para colaborar con su equipo en el desarrollo de software. Luego evolucionó a una solución integrada que cubre el ciclo de vida del desarrollo de software, y luego a todo el ciclo de vida de DevOps. La arquitectura tecnológica actual incluye Go, Ruby on Rails y Vue.js.
@@ -88,7 +88,7 @@ Los sistemas de CI identificados son los siguientes:
     \item GitLab CI: búsqueda del fichero '.gitlab-ci.yml' en la raíz del proyecto.
     \item Codeship: búsqueda, en la raíz del proyecto, de alguno de estos ficheros 'codeship-services.yml', 'codeship-steps.yml' o 'codeship-steps.json'.
     \item Team City: búsqueda del fichero 'settings.kts' en el directorio '.teamcity'
-    \item Bazel: búsqueda de alguno de los ficheros 'presubmit.yml' 'XXXXX-binaries.yml' en el directorio '.bazelci' o el fichero '.bazelrc' en la raíz del proyecto.
+    \item Bazel: búsqueda de alguno de los ficheros 'presubmit.yml' 'build\_bazel\_binaries.yml' en el directorio '.bazelci' o el fichero '.bazelrc' en la raíz del proyecto.
     \item Semaphore CI: búsqueda del fichero 'semaphore.yml' en los directorios '.semaphore' o '.semaphoreci'.
     \item AppVeyor: búsqueda del fichero 'Appveyor.yml' en la raíz del proyecto.
 \end{compactitem}
