@@ -85,13 +85,19 @@ Las librerías utilizadas para la implementación del programa son las siguiente
 \subsection{Ficheros resultantes}
 El proceso de búsqueda de herramientas de integración continua va a generar varios ficheros en local con información que va a permitir alimentar de contenido el estudio y análisis de estas herramientas. Estos ficheros son:
 \begin{compactitem}
-    \item resultados\_github.xlsx: Fichero excel que va a componer una matriz repositorio de GitHub/herramienta de CI indicando en su intersección mediante una ``X'' si es o no positivo.
-    \item lenguajes\_github.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitHub encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
+    \item github\_results.xlsx: Fichero excel que va a componer una matriz repositorio de GitHub/herramienta de CI indicando en su intersección mediante una ``X'' si es o no positivo.
+    \item github\_languages.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitHub encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
+    \item github\_ci\_statistics.xlsx: Fichero excel en el que se van a recoger, por cada sistema de ci, datos estadísticos como el mínimo, el máximo, la media y la mediana relativos a la búsqueda sobre repositorios GitHub.
+    \item github\_language\_statistics.xlsx: Fichero excel en el que se van a recoger, por cada lenguaje de programación encontrado, datos estadísticos como el mínimo, el máximo, la media y la mediana relativos a la búsqueda sobre repositorios GitHub.
+    \item github\_stage\_statistics.xlsx: Fichero excel en el que se van a ir almacenando los contadores de los ``stages'' encontrados en el proceso de búsqueda GitHub.
     \item repos\_github.pickle: Fichero binario de Python en el que se van a almacenar los repositorios GitHub utilizados a la hora de aplicar el heurístico.
-    \item resultados\_gitlab.xlsx: Fichero excel que va a componer una matriz repositorio de GitLab/herramienta de CI indicando en su intersección mediante una ``X'' si es o no positivo.
-    \item lenguajes\_gitlab.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitLab encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
+    \item gitlab\_results.xlsx: Fichero excel que va a componer una matriz repositorio de GitLab/herramienta de CI indicando en su intersección mediante una ``X'' si es o no positivo.
+    \item gitlab\_languages.xlsx: Fichero excel que va a componer una matriz lenguaje (de los repositorios GitLab encontrados)/herramienta de CI indicando el número de repositorios positivos en el lenguaje X y la herramienta de CI Y.
+    \item gitlab\_ci\_statistics.xlsx: Fichero excel en el que se van a recoger, por cada sistema de ci, datos estadísticos como el mínimo, el máximo, la media y la mediana relativos a la búsqueda sobre repositorios GitLab.
+    \item gitlab\_language\_statistics.xlsx: Fichero excel en el que se van a recoger, por cada lenguaje de programación encontrado, datos estadísticos como el mínimo, el máximo, la media y la mediana relativos a la búsqueda sobre repositorios GitLab.
+    \item gitlab\_stage\_statistics.xlsx: Fichero excel en el que se van a ir almacenando los contadores de los ``stages'' encontrados en el proceso de búsqueda GitLab.
     \item repos\_gitlab.pickle: Fichero binario de Python en el que se van a almacenar los repositorios GitLab utilizados a la hora de aplicar el heurístico.
-    \item contadores.xlsx: Fichero excel con un conteo de los excel de resultados tanto en GitHub como en GitLab a modo de resumen.
+    \item counting.xlsx: Fichero excel con un conteo de los excel de resultados tanto en GitHub como en GitLab a modo de resumen.
 \end{compactitem}
 
 \section{Proceso de ejecución}
