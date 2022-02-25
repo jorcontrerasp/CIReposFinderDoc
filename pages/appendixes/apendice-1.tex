@@ -1,3 +1,70 @@
-\section{Ejemplo de sección}
+\section{Librería PyGithub}
 
-Sección del apéndice
+Para poder llevar a cabo sobre la plataforma GitHub la técnica de research conocida como minería de repositorios, MSR por sus siglas en inglés (Mining Software Repositories), se utiliza la biblioteca ``PyGithub'', la cual nos va a permitir manejar diferentes recursos de GitHub como repositorios, perfiles de usuario, organizaciones, etc. desde cualquier script Python.
+
+Para instalar la biblioteca bastaría con ejecutar el comando pip install pygithub o clonarlo directamente desde el propio GitHub.
+
+Una vez instalado ya se podría importar desde cualquier script Python mediante la siguiente instrucción:
+
+from github import Github
+
+Con la biblioteca ya importada en el script podemos generar un objeto ``GitHub'' y, partiendo de ese objeto, realizar consultas sencillas utilizando una serie de parámetros definidos por la librería.
+
+usuario = ``\<usuario\>'' 
+token = ``\<token\>''
+g = Github(usuario, token)
+
+Al ejecutar una consulta, no se realiza ninguna consulta o búsqueda como tal, sino que se obtiene un objeto generador y se comienza a ejecutar la consulta al iterar sobre dicho objeto generador.
+
+query=``\<query\>'' 
+generator=g.search\_repositories(query=query)
+
+Listando el objeto generador “generator” devuelto por la función ``search\_repositories'' de la API de GitHub, se obtienen todos los repositorios que satisfacen la query pasada como parámetro. Esta lista de repositorios va a ser una lista de objetos “Repository” de los que se van a poder obtener una infinidad de información relativa a cada uno de ellos.
+
+\section{Generación de token de autenticación GitHub}
+
+Generar un token de autenticación GitHub nos permite aumentar el número de peticiones por hora que disponemos, pasando de tener 60 a 1500.
+Este token de autenticación lo podemos generar accediendo a los ajustes de desarrollador de GitHub siguiendo los siguientes pasos:
+
+\begin{enumerate}
+    \item Desplegar ajustes de usuario pinchando en el icono redondo situado en la parte superior derecha de la pantalla y acceder a la opción ``Settings''.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth,clip=true]{\GitHubTokenA}
+        \caption{Generar token GitHub. Paso 1.}
+    \end{figure}
+
+    \item Una vez dentro de “Settings”, acceder a la opción de menú ``Developer settings''.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth,clip=true]{\GitHubTokenB}
+        \caption{Generar token GitHub. Paso 2.}
+    \end{figure}
+
+    \item Accediendo a la opción ``Personal Access tokens'' y pinchando el botón ``Generate new token'' nos permitirá rellenar los datos relacionados con el token que utilizaremos posteriormente para autenticarnos utilizando la API de GitHub.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth,clip=true]{\GitHubTokenC}
+        \caption{Generar token GitHub. Paso 3.}
+    \end{figure}
+
+    \item Rellenar un nombre y seleccionar los permisos del token a generar. Para este caso seleccionar la opción ``repo'' sería más que suficiente.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth,clip=true]{\GitHubTokenD}
+        \caption{Generar token GitHub. Paso 4.}
+    \end{figure}
+
+    \item Por último, pinchar en el botón de generar token.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth,clip=true]{\GitHubTokenE}
+        \caption{Generar token GitHub. Paso 5.}
+    \end{figure}
+
+\end{enumerate}
