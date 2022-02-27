@@ -1,6 +1,27 @@
-\section{Librería PyGilab}
+\section{Librería Python ``Gitlab''}
 
-AAA
+Minería de repositorios también se puede llevar a cabo sobre la plataforma de almacenamiento de software GitLab. Para ello es necesario utilizar la librería Python que ofrece la propia plataforma GitLab, conocida con el nombre de ``GitLab''.
+
+Una vez instalada la librería mediante el comando de instalación de paquetes desde un terminal (pip install gitlab), se puede importar en el proyecto de la siguiente manera:
+
+import gitlab
+
+Una vez importada la biblioteca, se puede generar un objeto de la clase ``GitLab'' que se utilizará para listar proyectos en base a un conjunto de criterios pasados como parámetros de búsqueda. Este objeto se construye de la siguiente forma:
+
+token = aux.readFile(``tokens/gitlab\_token.txt'')
+gl = gitlab.Gitlab('http://gitlab.com', private\_token=token)
+
+A partir de este objeto ya generado, se pueden listar proyectos:
+
+projects = gl.projects.list(visibility='public', 
+                                        last\_activity\_after='2016-01-01T00:00:00Z', 
+                                        pagination='keyset', 
+                                        id\_after=idAfter, 
+                                        page=1, 
+                                        order\_by='id', 
+                                        sort='asc')
+
+En este caso se buscarán proyectos de código abierto o públicos cuya última actividad es posterior al año 2016, partiendo desde el identificador de proyecto idAfter pasádo como parámetro y ordenados por identificador de forma ascendente.
 
 \section{Generación de token de autenticación GitLab}
 
