@@ -14,6 +14,12 @@ Actualmente existen una gran cantidad de herramientas de integración continua, 
 Jenkins es un servidor de automatización de código abierto autónomo que se puede utilizar para automatizar todo tipo de tareas relacionadas con la creación, prueba y entrega o implementación de software.\\
 Puede instalarse a través de paquetes del sistema nativo, Docker o incluso ejecutarse de forma independiente en cualquier máquina que tenga instalado Java Runtime Environment (JRE).
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoJenkins}
+    \caption{Logo de Jenkins.}
+\end{figure}
+
 \subsection{Travis CI}
 Travis CI, escrito en Ruby, es un servicio de integración continua que se utiliza para crear y probar proyectos de software alojados en GitHub, Bitbucket, GitLab y Assembla. Fue el primer servicio de CI que brindó servicios a proyectos de código abierto de forma gratuita y continúa haciéndolo.
 
@@ -26,6 +32,12 @@ Las principales funciones de Travis CI son:
     \item Limpieza de VM para cada compilación.
     \item Compatibilidad con Mac, Linux e iOS.
 \end{compactitem}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoTravis}
+    \caption{Logo de Travis.}
+\end{figure}
 
 \subsection{Circle CI}
 ¿Cómo funciona Circle CI?
@@ -49,12 +61,24 @@ Algunas de las principales características de Circle CI son las siguientes:
 \end{compactitem}
 Cuenta con dos opciones de hospedaje: en la nube o en servidor y con tres opciones de precios: “Free” 0 dólares al mes, “Performance” 30 dólares al mes y “Scale” con un precio a medida.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoCircleCI}
+    \caption{Logo de Circle CI.}
+\end{figure}
+
 \subsection{GitHub Actions}
 Las acciones de GitHub ayudan a automatizar tareas dentro del ciclo de vida de un desarrollo de software. Están controladas por eventos, lo que significa que pueden ejecutar una serie de comandos después de que se haya producido un evento específico. Por ejemplo, cada vez que alguien crea una solicitud de extracción para un repositorio, puede ejecutar automáticamente un comando que ejecuta un script de prueba de software.
 
 El siguiente diagrama muestra cómo se pueden usar las acciones de GitHub para ejecutar automáticamente scripts de prueba de software: un evento activa automáticamente un “flujo de trabajo”, que contiene un trabajo. Luego, el trabajo usa pasos para controlar el orden en el que se ejecutan las acciones. Estas acciones son los comandos que automatizan las pruebas de software. Además, hay múltiples componentes de GitHub Actions que trabajan juntos para ejecutar trabajos.
 
 -DIAGRAMA-
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoGitHubActions}
+    \caption{Logo de GitHub Actions.}
+\end{figure}
 
 \subsection{Azure Pipelines}
 Azure Pipelines compila y prueba automáticamente proyectos de código para que estén disponibles para otros usuarios. Funciona con prácticamente cualquier tipo de proyecto o lenguaje.
@@ -69,6 +93,12 @@ Sus principales características son:
     \item Características y flujos de trabajo avanzados: compatibilidad con YAML, integración de pruebas, validación de versiones, informes, etc.
 \end{compactitem}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoAzurePipelines}
+    \caption{Logo de Azure Pipelines.}
+\end{figure}
+
 \subsection{Bamboo}
 Atlassian Bamboo es un servidor de integración continua (CI) e implementación que ayuda a los equipos de desarrollo de software proporcionando:
 \begin{compactitem}
@@ -77,13 +107,31 @@ Atlassian Bamboo es un servidor de integración continua (CI) e implementación 
     \item herramientas de presentación de informes para el análisis estadístico.
 \end{compactitem}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoBamboo}
+    \caption{Logo de Bamboo.}
+\end{figure}
+
 \subsection{GitLab CI}
 GitLab CI/CD es la parte de GitLab que usa para todos los métodos continuos (Integración continua, Entrega e Implementación). Con GitLab CI/CD, puede probar, crear y publicar su software sin necesidad de una aplicación o integración de terceros.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.2\textwidth,clip=true]{\logoGitLabCI}
+    \caption{Logo de GitLab CI.}
+\end{figure}
 
 \subsection{Codeship}
 CloudBees CodeShip es una solución de software como servicio (SaaS) que permite a los equipos de ingeniería implementar y optimizar CI y CD en la nube. Ayuda a los equipos pequeños y en crecimiento a desarrollar todo, desde aplicaciones web simples hasta arquitecturas de microservicios modernas para lograr una entrega de código rápida, segura y frecuente.
 
 Codeship es una plataforma alojada de integración y entrega continua. Se encuentra entre tu repositorio de código fuente (por ejemplo, GitHub, GitLab o Bitbucket) y el entorno de alojamiento (por ejemplo, Amazon Web Services) y prueba e implementa automáticamente cada cambio en tu plataforma. Tu equipo de ingeniería puede enfocarse en desarrollar mejores aplicaciones en lugar de perder tiempo en mantener un servidor de CI engorroso. Codeship escala según tus necesidades, te permite acelerar las suites de prueba y les permite a tus desarrolladores.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoCodeship}
+    \caption{Logo de Codeship.}
+\end{figure}
 
 \subsection{TeamCity}
 TeamCity es un servidor comercial de CI/CD que también está basado en Java (al igual que Jenkins). Es una herramienta de gestión y automatización de compilación creada por JetBrains.
@@ -100,6 +148,12 @@ Cuenta con tres planes:
     \item TeamCity Professional.
     \item TeamCity Enterprise.
 \end{compactitem}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoTeamCity}
+    \caption{Logo de TeamCity.}
+\end{figure}
 
 \subsection{Semaphore CI}
 Semaphore es un servicio de automatización basado en la nube para crear, probar e implementar software.
@@ -126,6 +180,12 @@ Cuenta con tres planes de pago:
     \item Enterpirise Cloud.
 \end{compactitem}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoSemaphore}
+    \caption{Logo de Semaphore CI.}
+\end{figure}
+
 \subsection{Bazel}
 Bazel es otra herramienta de integración continua que ofrece las siguientes ventajas:
 \begin{compactitem}
@@ -135,6 +195,12 @@ Bazel es otra herramienta de integración continua que ofrece las siguientes ven
     \item Escala. Bazel mantiene la agilidad mientras maneja compilaciones con más de 100 000 archivos fuente. Funciona con múltiples repositorios y bases de usuarios de decenas de miles.
     \item Extensible. Se admiten muchos idiomas y puede ampliar Bazel para admitir cualquier otro idioma o marco.
 \end{compactitem}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,clip=true]{\logoBazel}
+    \caption{Logo de Bazel CI.}
+\end{figure}
 
 Como se ha visto, a pesar de esistir una infinidad de herramientas de integración continua, todas ellas nos van a ofrecer en definitiva recursos muy parecidos para poder integrar nuestros proyectos.
 
