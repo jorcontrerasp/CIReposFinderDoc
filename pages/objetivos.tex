@@ -1,6 +1,16 @@
-En este trabajo se pretende realizar un estudio sobre este tipo de herramientas sobre proyectos software alojados en diferentes plataformas en aras de tener un conocimiento más amplio sobre las diferencias entre los repositorios que las conforman.
+En este trabajo se pretende realizar un estudio sobre herramientas de integración continua empleadas en proyectos software alojados en diferentes plataformas con el objetivo de tener un conocimiento más amplio y, de esta forma, poder responder a la gran variedad de preguntas que surjen sobre el uso de dichos sistemas de CI.
 
-Las plataformas de alojamiento de código que se van a utilizar para realizar este estudio son GitHub y GitLab.
+Algunas de estas cuestiones a intentar resolver con este estudio serían las siguientes:
+\begin{compactitem}
+    \item ¿Cuáles son los sistemas de CI más utilizados en cada plataforma?
+    \item ¿Se suelen combinar más de un sistema de CI en un mismo repositorio?
+    \item ¿Con qué lenguajes se suelen utilizar más sistemas de CI?
+    \item ¿Cuántos trabajos suelen haber en repositorios ``open source''?
+    \item ¿Cuántas tareas suelen ejecutar dichos trabajos?
+    \item ¿Cuáles son los principales escenarios o ``stages'' en los que se suelen ejecutar trabajos automatizados?
+\end{compactitem}
+
+GitHub y GitLab van a ser las plataformas de alojamiento de código que se van a utilizar para realizar este estudio.
 
 GitHub es una compañía sin fines de lucro que ofrece un servicio de hosting de repositorios almacenados en la nube utilizando el sistema de control de versiones Git. 
 Además, cuenta con una API REST disponible para cualquier desarrollador que quiera implementar alguna aplicación relacionada con el servicio que ofrece. 
@@ -10,26 +20,26 @@ Gitlab Inc. es una compañía de núcleo abierto y es la principal proveedora de
 Fue escrito por los programadores ucranianos Dmitriy Zaporozhets y Valery Sizov en el lenguaje de programación Ruby con algunas partes reescritas posteriormente en Go, inicialmente como una solución de gestión de código fuente para colaborar con su equipo en el desarrollo de software. Luego evolucionó a una solución integrada que cubre el ciclo de vida del desarrollo de software, y luego a todo el ciclo de vida de DevOps. La arquitectura tecnológica actual incluye Go, Ruby on Rails y Vue.js.
 
 Los principales objetivos del trabajo son los siguientes:
-\begin{compactitem}
+\begin{enumerate}
     \item Contruir un conjunto de datos con información sobre la integración continua.
     \item Aprender el funcionamiento de la integración continua en proyectos software.
-    \item Estudiar la forma en la que se utilizan esas herramientas de integración continua en los repositorios.
+    \item Estudiar la forma en la que se utilizan esas herramientas de integración continua en repositorios ``open source''.
     \item Expandir conocimientos en programación Python.
     \item Afianzar conocimientos sobre técnicas de research en GitHub.
-    \item Aprendizaje en research en la plataforma GitLab.
-\end{compactitem}
+    \item Aprendizaje sobre técnicas de research en la plataforma GitLab.
+\end{enumerate}
 
 \section{Metodología}
 
-Para la construcción de este conjunto de datos ya mencionado se va a utilizar una técnica conocida con el nombre de minería de repositorios.
-Un repositorio software contiene una gran cantidad de información histórica y valiosa sobre el desarrollo general del sistema software que trata (estado, progreso y evolución del proyecto) y esta técnica de “research” se va a centrar en la extracción y análisis los datos heterogéneos disponibles en estos repositorio de software para descubrir información interesante, útil y procesable sobre el sistema.
+Para la construcción de este conjunto de datos se va a utilizar una técnica de ``research'' conocida con el nombre de minería de repositorios.
+Un repositorio software contiene una gran cantidad de información histórica y valiosa sobre el desarrollo general del sistema software que trata (estado, progreso y evolución del proyecto) y esta técnica de ``research'' se va a centrar en la extracción y análisis los datos heterogéneos disponibles en estos repositorio de software para descubrir información interesante, útil y procesable sobre el sistema.
 
 En primer lugar, para obtener este conjunto de datos que nos permita analizar el funcionamiento de la integración continua en GitHub y GitLab, se van a enumerar diferentes herramientas de integración continua encontradas en repositorios seleccionados. 
-Estos repositorios se elegiran en función de su repercusión en las plataformas, es decir, por su elevado número de estrellas o las bifurcaciones "forks" que tengan, ya que al tratarse de repositorios muy conocidos serán considerados como prometedores y que podrían utilizar herramientas de integración continuas para diferentes aspectos, objetivo de este estudio, como por ejemplo la automatización de tests.
+Estos repositorios se elegiran en función de su repercusión en las plataformas, es decir, por su elevado número de estrellas o las bifurcaciones ``froks'' que tengan, ya que al tratarse de repositorios muy conocidos serán considerados como prometedores y que podrían utilizar herramientas de integración continua, objetivo de este estudio, para diferentes aspectos como por ejemplo la automatización de tests.
 
 Tras seleccionar los repositorios, se analizan manualmente en busca de herramientas de integración continua para ir enumerándolas.
 
-Una vez rellena la lista de sistemas de integración continua a explorar tanto en GitHub como en GitLab, se va a estudiar el funcionamiento de cada una y la forma en la que se construyen los ficheros de configuración que utilizan para realizar la automatización de trabajos. De esta forma, por cada herramienta, se establece un criterio único de localización de repositorios contenedores de estos sistemas de automatización.
+Una vez rellena la lista de sistemas de integración continua a explorar, tanto en GitHub como en GitLab, se va a estudiar el funcionamiento de cada una de ellas y la forma en la que se construyen los ficheros de configuración que utilizan para realizar la automatización de trabajos. De esta forma, por cada herramienta, se establece un criterio único de localización de repositorios que emplean herramientas de integración continua y se conforma el heurístico que se va a utilizar para ello.
 
 Con el heurístico de localización de repositorios prometedores ya construido, se realiza un conteo de estas herramientas sobre una búsqueda de 500 repositorios GitHub y 500 repositorios GitLab, haciendo un total de 1000 repositorios en este experimiento inicial.
 
@@ -47,16 +57,18 @@ Con este primer experimento realizado, se establecen cuáles son las herramienta
 
 A continuación se realiza un segundo experimento sobre un número mayor de repositorio, obteniendo única y exclusivamente hasta 500 repositorios GitHub y 500 repositorios GitLab que hayan dado positivo en algun sistema de CI, descartando por completo aquellos en los que no se ha encontrado nada.
 
-Sobre este segundo experimento, por cada proyecto se estudian diferentes aspectos:
+En este segundo experimento, por cada proyecto, se estudian diferentes aspectos que no se tuvieron en cuenta en el experimento inicial:
 \begin{compactitem}
     \item Número de trabajos.
     \item Número de tareas.
     \item Número medio de tareas por trabajo.
     \item Momento en el que se ejecutan los trabajos: push en master, pull request, en ramas, schedule...
 \end{compactitem}
+
+Finalmente, una vez analizados todos los datos obtenidos, se pueden sacar conclusiones y contestar a todas las preguntas que se formularon inicialmente.
 	
-Por lo tanto, los pasos seguidos son los siguientes:
-\begin{compactitem}
+Por lo tanto, en cuanto a la metodología del trabajo, los pasos seguidos son los siguientes:
+\begin{enumerate}
     \item Identificación de sistemas de CI que se van a estudiar.
     \item Análisis de los sistemas de CI identificados.
     \item Implementación de un heurístico localizador de repositorios GitHub y GitLab contenedores de herramientas de CI.
@@ -65,36 +77,36 @@ Por lo tanto, los pasos seguidos son los siguientes:
     \item Selección de las herramientas de integración continua más populares en la plataforma.
     \item Aplicación del heurístico de tal forma que se obtengan 500 repositorios GitHub y 500 repositorios GitLab positivos.
     \item Análisis de los resultados.
-\end{compactitem}
+\end{enumerate}
 
 \section{Identificación de sistemas de CI}
 En primer lugar localizamos los sistemas de CI que se van a estudiar. Para ello, se obtienen repositorios que sean conocidos en las plataformas GitHub y GitLab, filtrando por su número de estrellas y bifurcaciones realizadas por otros programadores de la comunidad sobre los mismos. Además, se añaden otras herramientas de integración continua que sean bastante conocidas en el mundo de la informática y la automatización de trabajos en proyectos software con el objetivo de realizar un análisis de herramientas de CI más amplio.
 Por cada una de estas herramientas identificadas se realizan las siguientes tareas:
-\begin{compactitem}
+\begin{enumerate}
     \item Se estudia su funcionamiento.
     \item Se estudia la construcción del fichero de configuración utilizado para implementar la automatización.
     \item Se buscan ejemplos de uso.
-\end{compactitem}
+\end{enumerate}
 
 Los sistemas de CI identificados son los siguientes:
 \begin{compactitem}
-    \item Jenkins: búsqueda del fichero 'Jenkinsfile' ubicado en la raíz del proyecto.
-    \item Travis: búsqueda de los ficheros '.travis-ci.yml' o '.travis.yml' ubicados en la raíz del proyecto.
-    \item Circle CI: búsqueda del fichero '.circle-ci' situado en el directorio 'circleci'.
-    \item GitHub Actions: búsqueda de ficheros YML o YAML situados en el directorio '.github/workflows'.
-    \item Azure Pipelines: búsqueda del fichero 'azure-pipelines.yml' en la raíz del proyecto o el directorio '.azure-pipelines'.
-    \item Bamboo: búsqueda del fichero YML o YAML 'bamboo' en el directorio 'bamboo-specs'.
-    \item Concourse: búsqueda de ficheros 'ci/pipeline.yml' en algun directorio 'concourse'.
-    \item GitLab CI: búsqueda del fichero '.gitlab-ci.yml' en la raíz del proyecto.
-    \item Codeship: búsqueda, en la raíz del proyecto, de alguno de estos ficheros 'codeship-services.yml', 'codeship-steps.yml' o 'codeship-steps.json'.
-    \item Team City: búsqueda del fichero 'settings.kts' en el directorio '.teamcity'
-    \item Bazel: búsqueda de alguno de los ficheros 'presubmit.yml' 'build\_bazel\_binaries.yml' en el directorio '.bazelci' o el fichero '.bazelrc' en la raíz del proyecto.
-    \item Semaphore CI: búsqueda del fichero 'semaphore.yml' en los directorios '.semaphore' o '.semaphoreci'.
-    \item AppVeyor: búsqueda del fichero 'Appveyor.yml' en la raíz del proyecto.
+    \item \underline{Jenkins}: búsqueda del fichero 'Jenkinsfile' ubicado en la raíz del proyecto.
+    \item \underline{Travis}: búsqueda de los ficheros '.travis-ci.yml' o '.travis.yml' ubicados en la raíz del proyecto.
+    \item \underline{Circle CI}: búsqueda del fichero '.circle-ci' situado en el directorio 'circleci'.
+    \item \underline{GitHub Actions}: búsqueda de ficheros YML o YAML situados en el directorio '.github/workflows'.
+    \item \underline{Azure Pipelines}: búsqueda del fichero 'azure-pipelines.yml' en la raíz del proyecto o el directorio '.azure-pipelines'.
+    \item \underline{Bamboo}: búsqueda del fichero YML o YAML 'bamboo' en el directorio 'bamboo-specs'.
+    \item \underline{Concourse}: búsqueda de ficheros 'ci/pipeline.yml' en algun directorio 'concourse'.
+    \item \underline{GitLab CI}: búsqueda del fichero '.gitlab-ci.yml' en la raíz del proyecto.
+    \item \underline{Codeship}: búsqueda, en la raíz del proyecto, de alguno de estos ficheros 'codeship-services.yml', 'codeship-steps.yml' o 'codeship-steps.json'.
+    \item \underline{TeamCity}: búsqueda del fichero 'settings.kts' en el directorio '.teamcity'
+    \item \underline{Bazel}: búsqueda de alguno de los ficheros 'presubmit.yml' 'build\_bazel\_binaries.yml' en el directorio '.bazelci' o el fichero '.bazelrc' en la raíz del proyecto.
+    \item \underline{Semaphore CI}: búsqueda del fichero 'semaphore.yml' en los directorios '.semaphore' o '.semaphoreci'.
+    \item \underline{AppVeyor}: búsqueda del fichero 'Appveyor.yml' en la raíz del proyecto.
 \end{compactitem}
 
 A continuación se enumeran algunos ejemplos de repositorios en los que se han ido encontrando estos sistemas de integración continua identificados:
 -TABLA CON EJEMPLOS-
 	
-De esta forma, mediante un el lenguaje de programación Python, se implementa un programa encargado de ejecutar el heurístico localizador de repositorios con sistemas de CI.
+De esta forma, mediante el lenguaje de programación Python, se implementa un programa encargado de ejecutar el heurístico localizador de repositorios con sistemas de CI.
 
