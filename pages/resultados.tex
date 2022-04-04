@@ -1,1 +1,103 @@
-En esta sección se describe los resultados obtenidos en el TFG, en caso de realizar propuestas para su resolución. Puede sustituirse por ejemplos u omitirse.
+\section{Experimento preliminar}
+Se realiza un primer experimento ejecutando el programa implementado sobre 500 repositorios de la plataforma GitHub y 500 repositorios de la plataforma GitLab, todos ellos repositorios "open source" o de código abierto, sin discriminar entre positivos o negativos, es decir, entre esos 1000 repositorios algunos habrán dado positivo en alguna de las herramientas de integración continua contempladas y otros no.
+
+El objetivo de este experimento es conocer cuáles son los sistemas de integración continua más utilizados en repositorios de este tipo para posteriormente analizarlas más en profundidad en un segundo experimento.
+
+Los parámetros con los que se ejecuta el programa son los siguientes:
+\begin{compactitem}
+    \item Para \textbf{\underline{GitHub}}:
+    \begin{compactitem}
+        \item created: \textgreater2016-01-01
+        \item pushed: \textgreater2021-01-01
+        \item stars: \textgreater=9500
+        \item forks: \textgreater=800
+        \item archived: false
+        \item is: public
+        \item onlyPositives: false
+    \end{compactitem}
+    \item Para \textbf{\underline{GitLab}}:
+    \begin{compactitem}
+        \item visibility: public
+        \item last\_activity\_after: 2016-01-01T00:00:00Z
+        \item stars: \textgreater25
+        \item onlyPositives: false
+    \end{compactitem}
+\end{compactitem}
+
+Tras lanzar el programa se obtienen los siguientes resultados:
+
+\section{Experimento final}
+Con las conclusiones obtenidas tras la ejecución del primer experimento de este trabajo, se realiza un segundo experimento estudiando más en profundidad los siguientes sistemas de CI: Travis CI, GitHub Actions y GitLab CI.
+
+Para ello se modifica el programa de tal forma que se pueda analizar la forma en la que están construidos los ficheros de configuración YML o YAML de las herramientas seleccionadas.
+
+La principal mejora añadida para poder analizar dichos ficheros de configuración es la implementación de un script "parseador" encargado de transformar cada fichero de configuración CI en un objeto Python con el objetivo de poder obtener los datos deseados sobre dichas herramientas y poder contruir los ficheros excel de resultados de forma más sencilla.
+
+Este script "parseador" va a permitir añadir las siguientes columnas al excel principal de resultados:
+\begin{compactitem}
+    \item STAGES
+    \item NUM\_JOBS
+    \item TOTAL\_TASKS
+    \item TASK\_AVERAGE\_PER\_JOB
+\end{compactitem}
+
+Con las que, posteriormente y de forma automática, se generarán otros ficheros excel con estadísticas relacionadas con estos ficheros de configuración de trabajos.
+
+Este segundo experimento consistirá en ejecutar el programa tres veces para repositorios GitHub y una vez para repositorios GitLab, encontrando en cada una de esas ejecuciones exclusivamente repositorios positivos en algun sistema de CI:
+\begin{compactitem}
+    \item Para \textbf{\underline{GitHub}}:
+    \begin{compactitem}
+        \item \textbf{Ejecución nº 1}: se buscan repositorios GitHub públicos que sean relativamente recientes.
+        \begin{compactitem}
+            \item created: \textgreater2016-01-01
+            \item pushed: \textgreater2021-01-01
+            \item stars: \textgreater=9500
+            \item forks: \textgreater=800
+            \item archived: false
+            \item is: public
+            \item onlyPositives: true
+        \end{compactitem}
+        \item \textbf{Ejecución nº 2}: se buscan repositorios GitHub públicos que hayan sido creados antes de la creación y auge del sistema de CI GitHub Actions, pero que se hayan seguido modificando recientemente. De esta forma se obtendrán repositorios que podrían haber migrado de algun sistema de CI distinto de las acciones de GitHub a el sistema proporcionado por GitHub, por ejemplo de Jenkins o Travis CI a GitHub Actions.
+        \begin{compactitem}
+            \item created: 2010-01-01..2016-01-01
+            \item pushed: \textgreater2018-01-01
+            \item stars: \textgreater=10500
+            \item forks: \textgreater=1500
+            \item archived: false
+            \item is: public
+            \item onlyPositives: true
+        \end{compactitem}
+        \item \textbf{Ejecución nº 3}: se buscan repositorios GitHub públicos que hayan sido creados antes de la creación y auge del sistema de CI GitHub Actions y que se hayan dejado de modificar recientemente.
+        \begin{compactitem}
+            \item created: 2010-01-01..2016-01-01
+            \item pushed: $<$2018-01-01
+            \item stars: \textgreater=500
+            \item forks: \textgreater=250
+            \item archived: false
+            \item is: public
+            \item onlyPositives: true
+        \end{compactitem}
+    \end{compactitem}
+    \item Para \textbf{\underline{GitLab}}: se buscan repositorios GitLab de forma genérica.
+    \begin{compactitem}
+        \item visibility: public
+        \item last\_activity\_after: 2016-01-01T00:00:00Z
+        \item stars: \textgreater25
+        \item onlyPositives: true
+    \end{compactitem}
+\end{compactitem}
+
+Los resultados obtenidos para cada una de las ejecuciones son los siguientes:
+\begin{compactitem}
+    \item \textbf{Ejecución nº 1 GitHub y GitLab}: 
+    
+    A simple vista se puede observar el predominio de sistemas de CI propios de la plataforma en la que se ha ejecutado el programa, es decir, el predominio de GitHub Actions en repositorios almacenados en GitHub y de GitLab CI en repositorios almacenados en GitLab, debido probablemente por la correcta integración y la facilidad de uso de dichos sistemas sobre repositorios almacenados en sus propias plataformas, así como la utilidad de tener tanto el proyecto como la configuración de trabajos automatizados en un mismo sitio.
+    
+    No obstante, también se encuentran otras herramientas de CI como Travis CI, Bazel, etc.
+    \item \textbf{Ejecución nº 2 GitHub}:
+    
+    En esta segunda ejecución sobre repositorios de la plataforma GitHub, a pesar de haber intentado localizar repositorios distintos de GitHub Actions debido a que fueron creados antes de la existencia de dicho sistema de CI, sigue predominando el uso de las acciones de la propia plataforma de GitHub, probablemente debido a que en algún momento de tiempo utilizaban otros sistemas de CI y se migraron recientemente para utilizar GitHub Actions. En trabajos futuros se podrían comprobar commits antiguos de estos repositorios para comprobar si esta suposición podría ser correcta o no.
+    \item \textbf{Ejecución nº 3 GitHub}:
+    
+    Se puede observar en los resultados como no aparecen repositorios que usen GitHub Actions, a causa de que los repositorios que se han intentado buscar en esta ejecución son repositorios cuya fecha de creación es anterior a la aparición de GitHub Actions, y que además, han sido dejados de modificar.
+\end{compactitem}
