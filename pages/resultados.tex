@@ -41,7 +41,7 @@ Este script "parseador" va a permitir añadir las siguientes columnas al excel p
     \item TASK\_AVERAGE\_PER\_JOB
 \end{compactitem}
 
-Con las que, posteriormente y de forma automática, se generarán otros ficheros excel con estadísticas relacionadas con estos ficheros de configuración de trabajos.
+Con las que, posteriormente y de forma automática, se generarán otros ficheros excel con estadísticas relacionadas con estos ficheros de configuración de trabajos. Van a ir rellenas con información en formato JSON y a modo de diccionario con la intención de diferenciar los datos obtenidos en de cada sistema de CI particular en el caso de que algún repositorio en concreto haya dado positivo en más de una herramienta de integración continua, que, como se verá en los resultados obtenidos, es algo más común de lo que se puede esperar.
 
 Este segundo experimento consistirá en ejecutar el programa tres veces para repositorios GitHub y una vez para repositorios GitLab, encontrando en cada una de esas ejecuciones exclusivamente repositorios positivos en algun sistema de CI:
 \begin{compactitem}
