@@ -4,22 +4,28 @@ Minería de repositorios también se puede llevar a cabo sobre la plataforma de 
 
 Una vez instalada la librería mediante el comando de instalación de paquetes desde un terminal (pip install gitlab), se puede importar en el proyecto de la siguiente manera:
 
-import gitlab
+\begin{lstlisting}[language=Python]
+    import gitlab
+\end{lstlisting}
 
 Una vez importada la biblioteca, se puede generar un objeto de la clase ``GitLab'' que se utilizará para listar proyectos en base a un conjunto de criterios pasados como parámetros de búsqueda. Este objeto se construye de la siguiente forma:
 
-token = aux.readFile(``tokens/gitlab\_token.txt'')
-gl = gitlab.Gitlab('http://gitlab.com', private\_token=token)
+\begin{lstlisting}[language=Python]
+    token = aux.readFile("tokens/gitlab_token.txt")
+    gl = gitlab.Gitlab('http://gitlab.com', private_token=token)
+\end{lstlisting}
 
 A partir de este objeto ya generado, se pueden listar proyectos:
 
-projects = gl.projects.list(visibility='public', 
-                                        last\_activity\_after='2016-01-01T00:00:00Z', 
-                                        pagination='keyset', 
-                                        id\_after=idAfter, 
-                                        page=1, 
-                                        order\_by='id', 
-                                        sort='asc')
+\begin{lstlisting}[language=Python]
+    projects = gl.projects.list(visibility='public', 
+                                last_activity_after='2016-01-01T00:00:00Z', 
+                                pagination='keyset', 
+                                id_after=idAfter, 
+                                page=1, 
+                                order_by='id', 
+                                sort='asc')
+\end{lstlisting}
 
 En este caso se buscarán proyectos de código abierto o públicos cuya última actividad es posterior al año 2016, partiendo desde el identificador de proyecto idAfter pasádo como parámetro y ordenados por identificador de forma ascendente.
 

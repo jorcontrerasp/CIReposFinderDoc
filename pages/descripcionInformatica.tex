@@ -62,6 +62,7 @@ La implementación del programa buscador de repositorios que utilizan herramient
     \item \textbf{gitlab\_tests.py}: script utilizado para aplicar el heurístico sobre un repositorio GitLab concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitLab.
     \item \textbf{main.py}: script que se llaman a todos las funciones necesarias para realizar el proceso de búqueda de repositorios. Conforma el programa principal.
     \item \textbf{project\_cleaner.py}: script que va a permitir limpiar el proyectos de ficheros que ya no sirvan (fiocheros de xlsx de resultados, ficheros pickle y ficheros de log).
+    \item \textbf{convertExcel2LaTeXr.py}: script que va a permitir convertir las tablas de los ficheros excel de resultados en código fuente LaTeX con el objetivo de facilitar la escritura de las mismas en la memoria del trabajo.
 \end{compactitem}
 
 Este proceso encargado de aplicar el heurístico de búsqueda de repositorios con CI se ha programado de tal forma que sea configurable mediante el fichero ``config.yml''. Este fichero de configuración cuenta con tres partes bien diferenciadas:

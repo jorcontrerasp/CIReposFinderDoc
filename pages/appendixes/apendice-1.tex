@@ -6,18 +6,26 @@ Para instalar la biblioteca bastaría con ejecutar el comando pip install pygith
 
 Una vez instalado ya se podría importar desde cualquier script Python mediante la siguiente instrucción:
 
-from github import Github
+\begin{lstlisting}[language=Python]
+    from github import Github
+\end{lstlisting}
 
 Con la biblioteca ya importada en el script podemos generar un objeto ``GitHub'' y, partiendo de ese objeto, realizar consultas sencillas utilizando una serie de parámetros definidos por la librería.
 
-usuario = ``\<usuario\>'' 
-token = ``\<token\>''
-g = Github(usuario, token)
+\begin{lstlisting}[language=Python]
+    usuario = "<usuario>" 
+    token = "<token>"
+    g = Github(usuario, token)
+\end{lstlisting}
 
 Al ejecutar una consulta, no se realiza ninguna consulta o búsqueda como tal, sino que se obtiene un objeto generador y se comienza a ejecutar la consulta al iterar sobre dicho objeto generador.
 
-query=``\<query\>'' 
-generator=g.search\_repositories(query=query)
+\begin{lstlisting}[language=Python]
+    query= "<query>" 
+    generator=g.search_repositories(query=query)
+\end{lstlisting}
+
+
 
 Listando el objeto generador “generator” devuelto por la función ``search\_repositories'' de la API de GitHub, se obtienen todos los repositorios que satisfacen la query pasada como parámetro. Esta lista de repositorios va a ser una lista de objetos “Repository” de los que se van a poder obtener una infinidad de información relativa a cada uno de ellos.
 
