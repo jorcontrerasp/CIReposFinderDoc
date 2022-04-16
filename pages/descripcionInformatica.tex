@@ -1,4 +1,5 @@
 Para llevar a cabo este estudio se implementa una programa encargado de aplicar el heurístico desarrollado sobre los repositorios alojados tanto en GitHub como en GitLab.
+Dicho programa se puede encontrar jusnto con su licencia Apache 2.0 en la siguiente url: https://github.com/jorcontrerasp/CIReposFinder.
 
 \section{Herramientas utilizadas}
 Las herramientas que se han utilizado para elaborar el programa son las siguientes:
@@ -62,41 +63,41 @@ La implementación del programa buscador de repositorios que utilizan herramient
     \item \textbf{gitlab\_tests.py}: script utilizado para aplicar el heurístico sobre un repositorio GitLab concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitLab.
     \item \textbf{main.py}: script que se llaman a todos las funciones necesarias para realizar el proceso de búqueda de repositorios. Conforma el programa principal.
     \item \textbf{project\_cleaner.py}: script que va a permitir limpiar el proyectos de ficheros que ya no sirvan (fiocheros de xlsx de resultados, ficheros pickle y ficheros de log).
-    \item \textbf{convertExcel2LaTeXr.py}: script que va a permitir convertir las tablas de los ficheros excel de resultados en código fuente LaTeX con el objetivo de facilitar la escritura de las mismas en la memoria del trabajo.
+    \item \textbf{convertExcel2LaTeX.py}: script que va a permitir convertir las tablas de los ficheros excel de resultados en código fuente LaTeX con el objetivo de facilitar la escritura de las mismas en la memoria del trabajo.
 \end{compactitem}
 
 Este proceso encargado de aplicar el heurístico de búsqueda de repositorios con CI se ha programado de tal forma que sea configurable mediante el fichero ``config.yml''. Este fichero de configuración cuenta con tres partes bien diferenciadas:
 
 \begin{enumerate}
-    \item \textbf{``process''} con variables relacionadas con la configuración del proceso genérico.
+    \item \textbf{process}, con variables relacionadas con la configuración del proceso genérico.
     \begin{compactitem}
-        \item \textbf{``execute''}: indica si se ejecuta o no el proceso en su totalidad.
-        \item \textbf{``doGithubSearch''}: indica si se ejecuta o no la búsqueda sobre repositorios GitHub.
-        \item \textbf{``doGitlabSearch''}: indica si se ejecuta o no la búsqueda sobre proyectos GitLab.
-        \item \textbf{``usePickleFile''}: indica si se utiliza o no un fichero binario de Python con extensión ``.pickle'' para obtener los repositorios, que fueron recuperados previamente en una búsqueda anterior, a los que se les aplicará el heurístico.
-        \item \textbf{``useResultsExcelFile''}: indica si se continúa rellenando un fichero de resultados excel ya existente.
-        \item \textbf{``tmpDirectory''}: variable que almacena el directorio de ficheros temporales.
-        \item \textbf{``tmpFile''}: variable que almacena el nombre d eun fichero temporal.
+        \item \textbf{execute}: indica si se ejecuta o no el proceso en su totalidad.
+        \item \textbf{doGithubSearch}: indica si se ejecuta o no la búsqueda sobre repositorios GitHub.
+        \item \textbf{doGitlabSearch}: indica si se ejecuta o no la búsqueda sobre proyectos GitLab.
+        \item \textbf{usePickleFile}: indica si se utiliza o no un fichero binario de Python con extensión ``.pickle'' para obtener los repositorios, que fueron recuperados previamente en una búsqueda anterior, a los que se les aplicará el heurístico.
+        \item \textbf{useResultsExcelFile}: indica si se continúa rellenando un fichero de resultados excel ya existente.
+        \item \textbf{tmpDirectory}: variable que almacena el directorio de ficheros temporales.
+        \item \textbf{tmpFile}: variable que almacena el nombre d eun fichero temporal.
     \end{compactitem}
-    \item \textbf{``github''} con variables relacionadas con la configuración de la búsqueda GitHub.
+    \item \textbf{github}, con variables relacionadas con la configuración de la búsqueda GitHub.
     \begin{compactitem}
-        \item \textbf{``queryFile''}: indica qué consulta es la que se va a utilizar en la búsqueda sobre repositorios GitHub.
-        \item \textbf{``filterCommits''}: indica si se filtra o no por los commits.
-        \item \textbf{``MAX\_COMMITS''}: en el caso de filtrar por cómmits, indica el número máximo de commits que tendrán los repositorios.
-        \item \textbf{``MIN\_COMMITS''}: en el caso de filtrar por cómmits, indica el número mínimo de commits que tendrán los repositorios.
-        \item \textbf{``randomizeRepos''}: indica si se obtienen ``n'' repositorios aleatorios de la lista inicial de repositorios obtenida para aplicar el heurístico.
-        \item \textbf{``N\_RANDOM''}: indica, en el caso de que se marque la opción ``randomizeRepos'', el número de repositorios aleatorios que se obtendrán.
-        \item \textbf{``onlyPositives''}: indica si se devuelven única y exclusivamente repositorios positivos en los ficheros de resultados.
+        \item \textbf{queryFile}: indica qué consulta es la que se va a utilizar en la búsqueda sobre repositorios GitHub.
+        \item \textbf{filterCommits}: indica si se filtra o no por los commits.
+        \item \textbf{MAX\_COMMITS}: en el caso de filtrar por cómmits, indica el número máximo de commits que tendrán los repositorios.
+        \item \textbf{MIN\_COMMITS}: en el caso de filtrar por cómmits, indica el número mínimo de commits que tendrán los repositorios.
+        \item \textbf{randomizeRepos}: indica si se obtienen ``n'' repositorios aleatorios de la lista inicial de repositorios obtenida para aplicar el heurístico.
+        \item \textbf{N\_RANDOM}: indica, en el caso de que se marque la opción ``randomizeRepos'', el número de repositorios aleatorios que se obtendrán.
+        \item \textbf{onlyPositives}: indica si se devuelven única y exclusivamente repositorios positivos en los ficheros de resultados.
     \end{compactitem}
-    \item \textbf{``gitlab''} con variables relacionadas con la configuración de la búsqueda GitLab.
+    \item \textbf{gitlab}, con variables relacionadas con la configuración de la búsqueda GitLab.
     \begin{compactitem}
-        \item \textbf{``search1By1''}: indica si se aplicará el heurístico a cada proyecto según se vayan encontrando o si, por el contrario, se obtienen todos los proyectos y a continuación, una vez obtenidos, se recorren para aplicarles el heurístico. Si buscamos solo positivos, search1By1 será True sí o sí (se controla por programa), da igual lo que venga en el fichero de configuración.
-        \item \textbf{``N\_ERROR\_PAGE\_ATTEMPTS''}: indica el número máximo de intentos en caso de que la llamada a la API de GitLab falle.
-        \item \textbf{``LANGUAGE''}: indica el lenguaje en el que tendrán que estar implementados los proyectos GitLab analizados.
-        \item \textbf{``N\_MAX\_SEARCHES''}: indica el número máximo de búsquedas que se van a realizar.
-        \item \textbf{``N\_MIN\_STARS''}: indica el número mínimo de estrellas que tendrán que tener los proyectos GitLab analizados.
-        \item \textbf{``onlyPositives''}: indica si se devuelven única y exclusivamente proyectos positivos en los ficheros de resultados.
-        \item \textbf{``N\_MAX\_PROJECTS''}: si solo buscamos positivos, N\_MAX\_PROJECTS será el nº máximo de positivos a encontrar. Si buscamos tanto positivos como negativos, N\_MAX\_PROJECTS será el número máximo de projectos que tratará (sean o no positivos en CI).
+        \item \textbf{search1By1}: indica si se aplicará el heurístico a cada proyecto según se vayan encontrando o si, por el contrario, se obtienen todos los proyectos y a continuación, una vez obtenidos, se recorren para aplicarles el heurístico. Si buscamos solo positivos, search1By1 será True sí o sí (se controla por programa), da igual lo que venga en el fichero de configuración.
+        \item \textbf{N\_ERROR\_PAGE\_ATTEMPTS}: indica el número máximo de intentos en caso de que la llamada a la API de GitLab falle.
+        \item \textbf{LANGUAGE}: indica el lenguaje en el que tendrán que estar implementados los proyectos GitLab analizados.
+        \item \textbf{N\_MAX\_SEARCHES}: indica el número máximo de búsquedas que se van a realizar.
+        \item \textbf{N\_MIN\_STARS}: indica el número mínimo de estrellas que tendrán que tener los proyectos GitLab analizados.
+        \item \textbf{onlyPositives}: indica si se devuelven única y exclusivamente proyectos positivos en los ficheros de resultados.
+        \item \textbf{N\_MAX\_PROJECTS}: si solo buscamos positivos, N\_MAX\_PROJECTS será el nº máximo de positivos a encontrar. Si buscamos tanto positivos como negativos, N\_MAX\_PROJECTS será el número máximo de projectos que tratará (sean o no positivos en CI).
     \end{compactitem}
 \end{enumerate}
 

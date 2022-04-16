@@ -24,10 +24,20 @@ Los parámetros con los que se ejecuta el programa son los siguientes:
     \end{compactitem}
 \end{compactitem}
 
-Tras lanzar el programa se obtienen los siguientes resultados:
+Tras lanzar el programa se obtienen los siguientes resultados reflejados en la tabla \ref{tab:tabla_p_1}.
+
+A simple vista se puede observar que predomina el uso de los sistemas de integración continua propios de cada plataforma, siendo GitHub Actions para repositorios almacenados en GitHub y GitLab CI para repositorios almacenados en GitLab.
+
+A parte de estos dos sistemas de CI ya mencionados encontramos resultados positivos en el sistema de integración continua proporcionado por Travis CI, obteniendo 68 positivos en repositorios almacenados en GitHub y 25 positivos en repositorios almacenados en GitLab, que dan un total de 93 repositorios positivos en ambas plataformas, es decir, en 9'3\% del total de repositorios.
+
+También encontramos repositorios positivos en herramientas como Jenkins, que, a priori, se consideró como uno de los sistemas que iban a tener un mayor número de positivos junto con GitHub Actions.
+
+Otros sistemas a tener en cuenta son Circle CI, Azure Pipelines y Bazel, obteniendo un total de 42, 6 y 8 repositorios positivos, resultados considerados insuficientes como para profundizar en ellos en el experimento final a realizar.
+
+Finalmente, mencionar también los 2 repositorios positivos encontrados para la herramienta de integración continua Concourse, uno para GitHub y otro para GitLab, siendo estos falsos positivos ya que el criterio establecido para la búsqueda de este sistema de CI, "tasks", directorio propuesto por la documetación de Concourse para almacenar los ficheros de configuración de trabajos, es demasiado genérico como para encontrar los resultados deseados.
 
 \section{Experimento final}
-Con las conclusiones obtenidas tras la ejecución del primer experimento de este trabajo, se realiza un segundo experimento estudiando más en profundidad los siguientes sistemas de CI: Travis CI, GitHub Actions y GitLab CI.
+Con las conclusiones obtenidas tras la ejecución del primer experimento de este trabajo, se realiza un segundo experimento estudiando más en profundidad los siguientes sistemas de CI: Travis CI, GitHub Actions y GitLab CI, ya que son los sistemas de los que se han obtenido resultados más prometedores.
 
 Para ello se modifica el programa de tal forma que se pueda analizar la forma en la que están construidos los ficheros de configuración YML o YAML de las herramientas seleccionadas.
 
@@ -35,10 +45,10 @@ La principal mejora añadida para poder analizar dichos ficheros de configuraci�
 
 Este script "parseador" va a permitir añadir las siguientes columnas al excel principal de resultados:
 \begin{compactitem}
-    \item STAGES
-    \item NUM\_JOBS
-    \item TOTAL\_TASKS
-    \item TASK\_AVERAGE\_PER\_JOB
+    \item STAGES: columna en la que se almacenan los escenarios en los que se ejecutan los puntos considerados como trabajos.
+    \item NUM\_JOBS: columna en la que se almacena el número de trabajos que se ejecutan en el repositorio en cuestión.
+    \item TOTAL\_TASKS: columna en la que se almacena el número total de tareas de todos los trabajos automatizados.
+    \item TASK\_AVERAGE\_PER\_JOB: columna en la que se almacena la media de tareas por trabajo.
 \end{compactitem}
 
 Con las que, posteriormente y de forma automática, se generarán otros ficheros excel con estadísticas relacionadas con estos ficheros de configuración de trabajos. Van a ir rellenas con información en formato JSON y a modo de diccionario con la intención de diferenciar los datos obtenidos en de cada sistema de CI particular en el caso de que algún repositorio en concreto haya dado positivo en más de una herramienta de integración continua, que, como se verá en los resultados obtenidos, es algo más común de lo que se puede esperar.
@@ -91,13 +101,26 @@ Los resultados obtenidos para cada una de las ejecuciones son los siguientes:
 \begin{compactitem}
     \item \textbf{Ejecución nº 1 GitHub y GitLab}: 
     
-    A simple vista se puede observar el predominio de sistemas de CI propios de la plataforma en la que se ha ejecutado el programa, es decir, el predominio de GitHub Actions en repositorios almacenados en GitHub y de GitLab CI en repositorios almacenados en GitLab, debido probablemente por la correcta integración y la facilidad de uso de dichos sistemas sobre repositorios almacenados en sus propias plataformas, así como la utilidad de tener tanto el proyecto como la configuración de trabajos automatizados en un mismo sitio.
-    
-    No obstante, también se encuentran otras herramientas de CI como Travis CI, Bazel, etc.
+    A simple vista se puede observar en la tabla \ref{tab:tabla_f_1_1}, al igual que en el experimento preliminar, el predominio de sistemas de CI propios de la plataforma en la que se ha ejecutado el programa, es decir, el predominio de GitHub Actions en repositorios almacenados en GitHub y de GitLab CI en repositorios almacenados en GitLab, debido probablemente por la correcta integración y la facilidad de uso de dichos sistemas sobre repositorios almacenados en sus propias plataformas, así como la utilidad de tener tanto el proyecto como la configuración de trabajos automatizados en un mismo sitio.
+
+    No obstante, también se encuentran otras herramientas de CI como Travis CI, Circle CI, Azure Pipelines, Bazel, etc.
+
+    Sobre el número de trabajos encontrados y la media de tareas por trabajo calculada en los sistemas de CI GitHub Actions, GitLab CI y Travis CI, datos reflejados en las tablas \ref{tab:tabla_f_1_2} y \ref{tab:tabla_f_1_5}, se sacan conclusiones similares a las ya obtenidas en el experimento preliminar. Sobre repositorios almacenados en GitHub se obtiene un número alto de trabajos en GitHub Actions con una media de 9'36 tareas por trabajo y sobre repositorios almacenados en GitLab, de forma inversamente proporcional a los trabajos encontrados en repositorios GitHub, se obtiene un número elevado de trabajos en GitLab CI, con una media de 9'15 tareas por trabajo. En cuanto a Travis CI se mantiene se observa que se mantiene estable el número de trabajos, ya sea ejecutando el proceso sobre repositorios GitHub como sobre repositorios GitLab, con una media de entre 2 y 3 tareas por trabajo.
+
+    En cuanto a los lenguajes de programación utilizados para implementar los diferentes repositorios a los que se les ha aplicado el proceso, aparecen varios en común situados en la cúspide de lenguajes más utilizados, a tener en cuenta javascript, python, c++, go o java, ordenados de mayor a menor uso. Estos datos se pueden consultar en la tablas \ref{tab:tabla_f_1_3} y \ref{tab:tabla_f_1_6}.
+
+    Otro aspecto a tener en cuenta sobre los datos obtenidos en el proceso ejecutado son los escenarios en los que se ejecutan los diferentes trabajos automatizados por estos sistemas de CI. En este caso, tal y como se expone en la tabla \ref{tab:tabla_f_1_4} y \ref{tab:tabla_f_1_7}, encontramos diferencias notables, ya que en repositorios almacenados en GitHub predominan escenarios como push, pull\_request o schedule y en GitLab predominan otros como build, test, deploy o release.
     \item \textbf{Ejecución nº 2 GitHub}:
     
-    En esta segunda ejecución sobre repositorios de la plataforma GitHub, a pesar de haber intentado localizar repositorios distintos de GitHub Actions debido a que fueron creados antes de la existencia de dicho sistema de CI, sigue predominando el uso de las acciones de la propia plataforma de GitHub, probablemente debido a que en algún momento de tiempo utilizaban otros sistemas de CI y se migraron recientemente para utilizar GitHub Actions. En trabajos futuros se podrían comprobar commits antiguos de estos repositorios para comprobar si esta suposición podría ser correcta o no.
+    En esta segunda ejecución sobre repositorios de la plataforma GitHub, a pesar de haber intentado localizar repositorios distintos de GitHub Actions debido a que fueron creados antes de la existencia de dicho sistema de CI, consultando los datos de la tabla \ref{tab:tabla_f_2_1} se puede ver como sigue predominando el uso de las acciones de la propia plataforma de GitHub, probablemente debido a que en algún momento de tiempo utilizaban otros sistemas de CI y se migraron recientemente para utilizar GitHub Actions. En trabajos futuros se podrían comprobar commits antiguos de estos repositorios para comprobar si esta suposición podría ser correcta o no.
+    
+    En cuanto a los datos que se obtienen relativos a los lenguajes de programación empleados en cada repositorio, trabajos automatizados, tareas y escenarios en los que son ejecutados dichos trabajos son muy similares a los obtenidos en la primera ejecución de este experimento final.
+    
     \item \textbf{Ejecución nº 3 GitHub}:
     
     Se puede observar en los resultados como no aparecen repositorios que usen GitHub Actions, a causa de que los repositorios que se han intentado buscar en esta ejecución son repositorios cuya fecha de creación es anterior a la aparición de GitHub Actions, y que además, han sido dejados de modificar.
+
+    En la tabla de contadores \ref{tab:tabla_f_3_1} queda reflejada la exclusividad de uso de Travis CI para la imiplementación de la itegración continua en proyectos GitHub de código abierto, con un total de 110 trabajos y una media de 1'34 tareas por trabajo.
+
+    Javascript y java son los dos lenguajes más utilizados como se ve en la tabla \ref{tab:tabla_f_3_3} y en cuanto a los escenarios de ejecución se observa que el programa solamente ha encontrado trabajos sin escenarios definidos en etiquetas dedicadas exclusivamente para ello. Al no encontrar escenarios propiamente dichos, la tabla \ref{tab:tabla_f_3_4} se ha rellenado con etiquetas del tipo ``script'', ``before\_install'', ``before\_script'' e ``install''.
 \end{compactitem}
