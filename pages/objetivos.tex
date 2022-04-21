@@ -90,19 +90,19 @@ Por cada una de estas herramientas identificadas se realizan las siguientes tare
 
 Los sistemas de CI identificados son los siguientes:
 \begin{compactitem}
-    \item \underline{Jenkins}: búsqueda del fichero 'Jenkinsfile' ubicado en la raíz del proyecto.
-    \item \underline{Travis}: búsqueda de los ficheros '.travis-ci.yml' o '.travis.yml' ubicados en la raíz del proyecto.
-    \item \underline{Circle CI}: búsqueda del fichero '.circle-ci' situado en el directorio 'circleci'.
-    \item \underline{GitHub Actions}: búsqueda de ficheros YML o YAML situados en el directorio '.github/workflows'.
-    \item \underline{Azure Pipelines}: búsqueda del fichero 'azure-pipelines.yml' en la raíz del proyecto o el directorio '.azure-pipelines'.
-    \item \underline{Bamboo}: búsqueda del fichero YML o YAML 'bamboo' en el directorio 'bamboo-specs'.
-    \item \underline{Concourse}: búsqueda de ficheros 'ci/pipeline.yml' en algun directorio 'concourse'.
-    \item \underline{GitLab CI}: búsqueda del fichero '.gitlab-ci.yml' en la raíz del proyecto.
-    \item \underline{Codeship}: búsqueda, en la raíz del proyecto, de alguno de estos ficheros 'codeship-services.yml', 'codeship-steps.yml' o 'codeship-steps.json'.
-    \item \underline{TeamCity}: búsqueda del fichero 'settings.kts' en el directorio '.teamcity'
-    \item \underline{Bazel}: búsqueda de alguno de los ficheros 'presubmit.yml' 'build\_bazel\_binaries.yml' en el directorio '.bazelci' o el fichero '.bazelrc' en la raíz del proyecto.
-    \item \underline{Semaphore CI}: búsqueda del fichero 'semaphore.yml' en los directorios '.semaphore' o '.semaphoreci'.
-    \item \underline{AppVeyor}: búsqueda del fichero 'Appveyor.yml' en la raíz del proyecto.
+    \item \underline{Jenkins}: búsqueda del fichero ``Jenkinsfile'' ubicado en la raíz del proyecto \cite{jenkins}.
+    \item \underline{Travis}: búsqueda de los ficheros ``.travis-ci.yml'' o ``.travis.yml'' ubicados en la raíz del proyecto \cite{travisCI}.
+    \item \underline{Circle CI}: búsqueda del fichero ``.circle-ci'' situado en el directorio ``circleci'' \cite{circleCI}.
+    \item \underline{GitHub Actions}: búsqueda de ficheros YML o YAML situados en el directorio ``.github/workflows'' \cite{githubActions}.
+    \item \underline{Azure Pipelines}: búsqueda del fichero ``azure-pipelines.yml'' en la raíz del proyecto o el directorio ``.azure-pipelines'' \cite{azurePipelines}.
+    \item \underline{Bamboo}: búsqueda del fichero YML o YAML ``bamboo'' en el directorio ``bamboo-specs'' \cite{bamboo}.
+    \item \underline{Concourse}: búsqueda de la carpeta ``tasks'' o de algún fichero YML en algun directorio ``concourse'' \cite{concourse}.
+    \item \underline{GitLab CI}: búsqueda del fichero ``.gitlab-ci.yml'' en la raíz del proyecto \cite{gitlabCI}.
+    \item \underline{Codeship}: búsqueda, en la raíz del proyecto, de alguno de estos ficheros ``codeship-services.yml'', ``codeship-steps.yml'' o ``codeship-steps.json'' \cite{codeship}.
+    \item \underline{TeamCity}: búsqueda del fichero ``settings.kts'' en el directorio ``.teamcity'' \cite{teamcity}.
+    \item \underline{Bazel}: búsqueda de alguno de los ficheros ``presubmit.yml'' ``build\_bazel\_binaries.yml'' en el directorio ``.bazelci'' o el fichero ``.bazelrc'' en la raíz del proyecto \cite{bazel}.
+    \item \underline{Semaphore CI}: búsqueda del fichero ``semaphore.yml'' en los directorios ``.semaphore'' o ``.semaphoreci'' \cite{semaphoreCI}.
+    \item \underline{AppVeyor}: búsqueda del fichero ``Appveyor.yml'' en la raíz del proyecto.
 \end{compactitem}
 	
 De esta forma, mediante el lenguaje de programación Python, se implementa un programa encargado de ejecutar el heurístico localizador de repositorios con sistemas de CI.
