@@ -4,7 +4,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. preliminar. Contadores.}
-  \label{tab:tabla_p_1}
+  \label{tab:tabla_p1}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -35,7 +35,7 @@
 
 \alumno{No se colocan correctamente las tablas en cada sección}
 
-\alumno{Error al poner la tabla de Lenguajes por CI. Igual es que tiene demasiadas columnas y no cabe bien el en documento.}
+\alumno{Error al poner la tabla de Lenguajes por CI. Igual es que tiene demasiadas columnas y no cabe bien el en documento. La he dividido en 2 partes}
 
 \subsection{Ejecución nº 1 (GitHub y GitLab)}
 
@@ -43,7 +43,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 1. Contadores.}
-  \label{tab:tabla_f_1_1}
+  \label{tab:tabla_f1_1}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -72,8 +72,58 @@
 %TABLA
 \begin{table}[h]
   \centering
+  \caption{Exp. final, ejecución 1. Lenguajes.}
+  \label{tab:tabla_f1_2a}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Jenkins &  Travis &  Circle CI &  GitHub Actions &  Azure Pipelines &  Bamboo \\
+  \hline
+  javascript       &        1 &      32 &          9 &              75 &                3 &       0 \\
+  typescript       &        1 &       7 &         17 &              74 &                1 &       0 \\
+  python           &        3 &      19 &         10 &              65 &                0 &       0 \\
+  go               &        0 &      14 &          4 &              53 &                0 &       1 \\
+  java             &        0 &      19 &          4 &              31 &                0 &       0 \\
+  c++              &        1 &       6 &          4 &              27 &                5 &       0 \\
+  ...              &      ... &     ... &        ... &             ... &              ... &     ... \\
+  TOTALES          &        7 &     129 &         62 &             450 &               10 &       1 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}[h]
+  \centering
+  \caption{Exp. final, ejecución 1. Lenguajes (continuación).}
+  \label{tab:tabla_f1_2b}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  GitLab CI &  Codeship &  TeamCity &  Bazel &  Semaphore CI &  AppVeyor &  TOTALES \\
+  \hline
+  javascript       &        0 &         0 &         0 &      0 &             0 &         0 &    120.0 \\
+  typescript       &        0 &         0 &         1 &      2 &             0 &         0 &    103.0 \\
+  python           &        1 &         0 &         0 &      2 &             0 &         0 &    100.0 \\
+  go               &        0 &         0 &         0 &      2 &             0 &         0 &     74.0 \\
+  java             &        1 &         0 &         0 &      0 &             0 &         0 &     55.0 \\
+  c++              &        2 &         0 &         0 &      5 &             0 &         0 &     50.0 \\
+  ...              &      ... &       ... &       ... &    ... &           ... &       ... &      ... \\
+  TOTALES          &        4 &         0 &         1 &     11 &             0 &         0 &        - \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}[h]
+  \centering
   \caption{Exp. final, ejecución 1. Estadísticas de CI GitHub.}
-  \label{tab:tabla_f_1_2}
+  \label{tab:tabla_f1_3}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -93,7 +143,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 1. Estadísticas por lenguaje GitHub.}
-  \label{tab:tabla_f_1_3}
+  \label{tab:tabla_f1_4}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -144,7 +194,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 1. Estadísticas de escenarios CI GitHub.}
-  \label{tab:tabla_f_1_4}
+  \label{tab:tabla_f1_5}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -200,8 +250,62 @@
 %TABLA
 \begin{table}[h]
   \centering
+  \caption{Exp. final, ejecución 1. Lenguajes.}
+  \label{tab:tabla_f1_6a}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Jenkins &  Travis &  Circle CI &  GitHub Actions &  Azure Pipelines &  Bamboo \\
+  \hline
+  python           &        0 &       6 &          0 &               1 &                0 &       0 \\
+  c                &        0 &       7 &          0 &               7 &                0 &       0 \\
+  javascript       &        0 &       5 &          0 &               0 &                0 &       0 \\
+  c++              &        0 &       3 &          1 &               5 &                1 &       0 \\
+  ruby             &        0 &       2 &          0 &               0 &                0 &       0 \\
+  rust             &        0 &       3 &          0 &               1 &                0 &       0 \\
+  go               &        0 &       0 &          0 &               0 &                0 &       0 \\
+  java             &        0 &       1 &          0 &               0 &                0 &       0 \\
+  ...              &      ... &     ... &        ... &             ... &              ... &     ... \\
+  TOTALES          &        1 &      37 &          4 &              19 &                1 &       0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}[h]
+  \centering
+  \caption{Exp. final, ejecución 1. Lenguajes (continuación).}
+  \label{tab:tabla_f1_6b}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  GitLab CI &  Codeship &  TeamCity &  Bazel &  Semaphore CI &  AppVeyor &  TOTALES \\
+  \hline
+  python           &        83 &         0 &         0 &      0 &             0 &         0 &     90.0 \\
+  c                &        49 &         0 &         0 &      0 &             0 &         0 &     63.0 \\
+  javascript       &        50 &         0 &         0 &      0 &             0 &         0 &     55.0 \\
+  c++              &        41 &         0 &         0 &      0 &             0 &         0 &     51.0 \\
+  ruby             &        33 &         0 &         0 &      0 &             0 &         0 &     35.0 \\
+  rust             &        28 &         0 &         0 &      0 &             0 &         0 &     32.0 \\
+  go               &        29 &         0 &         0 &      0 &             0 &         0 &     29.0 \\
+  java             &        25 &         0 &         0 &      0 &             0 &         0 &     26.0 \\
+  ...              &       ... &       ... &       ... &    ... &           ... &       ... &      ... \\
+  TOTALES          &       488 &         0 &         0 &      1 &             0 &         0 &        - \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}[h]
+  \centering
   \caption{Exp. final, ejecución 1. Estadísticas de CI GitLab.}
-  \label{tab:tabla_f_1_5}
+  \label{tab:tabla_f1_7}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -221,7 +325,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 1. Estadísticas por lenguaje GitLab.}
-  \label{tab:tabla_f_1_6}
+  \label{tab:tabla_f1_8}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -290,7 +394,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 1. Estadísticas de escenarios CI GitLab.}
-  \label{tab:tabla_f_1_7}
+  \label{tab:tabla_f1_9}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -581,7 +685,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 2. Contadores.}
-  \label{tab:tabla_f_2_1}
+  \label{tab:tabla_f2_1}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -610,8 +714,60 @@
 %TABLA
 \begin{table}[h]
   \centering
+  \caption{Exp. final, ejecución 1. Lenguajes.}
+  \label{tab:tabla_f2_2a}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Jenkins &  Travis &  Circle CI &  GitHub Actions &  Azure Pipelines &  Bamboo \\
+  \hline
+  javascript    &        0 &      63 &         20 &             114 &                1 &       0 \\
+  python        &        0 &      18 &          9 &              55 &                5 &       0 \\
+  java          &        5 &      25 &          3 &              51 &                1 &       0 \\
+  go            &        3 &       6 &         13 &              51 &                1 &       0 \\
+  typescript    &        2 &       6 &         10 &              46 &                1 &       0 \\
+  c++           &        1 &      15 &          5 &              38 &                1 &       0 \\
+  c             &        0 &      12 &          3 &              19 &                1 &       0 \\
+  ...           &      ... &     ... &        ... &             ... &              ... &     ... \\
+  TOTALES       &       14 &     212 &         78 &             499 &               14 &       0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}[h]
+  \centering
+  \caption{Exp. final, ejecución 1. Lenguajes (continuación).}
+  \label{tab:tabla_f2_2b}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  GitLab CI &  Codeship &  TeamCity &  Bazel &  Semaphore CI &  AppVeyor &  TOTALES \\
+  \hline
+  javascript    &        2 &         0 &         1 &      0 &             0 &         0 &    201.0 \\
+  python        &        1 &         0 &         0 &      1 &             0 &         0 &     89.0 \\
+  java          &        1 &         0 &         0 &      2 &             0 &         0 &     88.0 \\
+  go            &        1 &         0 &         1 &      2 &             0 &         0 &     78.0 \\
+  typescript    &        0 &         0 &         0 &      3 &             0 &         0 &     68.0 \\
+  c++           &        0 &         0 &         0 &      4 &             0 &         0 &     64.0 \\
+  c             &        0 &         0 &         0 &      0 &             0 &         0 &     35.0 \\
+  ...           &      ... &       ... &       ... &    ... &           ... &       ... &      ... \\
+  TOTALES       &        9 &         0 &         2 &     12 &             0 &         0 &        - \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}[h]
+  \centering
   \caption{Exp. final, ejecución 2. Estadísticas de CI GitHub.}
-  \label{tab:tabla_f_2_2}
+  \label{tab:tabla_f2_3}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -631,7 +787,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 2. Estadísticas por lenguaje GitHub.}
-  \label{tab:tabla_f_2_3}
+  \label{tab:tabla_f2_4}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -690,7 +846,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 2. Estadísticas de escenarios CI GitHub.}
-  \label{tab:tabla_f_2_4}
+  \label{tab:tabla_f2_5}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -757,7 +913,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 3. Contadores.}
-  \label{tab:tabla_f_3_1}
+  \label{tab:tabla_f3_1}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -786,8 +942,54 @@
 %TABLA
 \begin{table}[h]
   \centering
+  \caption{Exp. final, ejecución 1. Lenguajes.}
+  \label{tab:tabla_f3_2a}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Jenkins &  Travis &  Circle CI &  GitHub Actions &  Azure Pipelines &  Bamboo \\
+  \hline
+  javascript   &        0 &      34 &          0 &               0 &                0 &       0 \\
+  java         &        0 &      13 &          0 &               0 &                0 &       0 \\
+  objective-c  &        0 &       9 &          0 &               0 &                0 &       0 \\
+  ruby         &        0 &       6 &          0 &               0 &                0 &       0 \\
+  ...          &      ... &     ... &        ... &             ... &              ... &     ... \\
+  TOTALES      &        0 &      82 &          0 &               0 &                0 &       0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}[h]
+  \centering
+  \caption{Exp. final, ejecución 1. Lenguajes (continuación).}
+  \label{tab:tabla_f3_2b}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  GitLab CI &  Codeship &  TeamCity &  Bazel &  Semaphore CI &  AppVeyor &  TOTALES \\
+  \hline
+  javascript   &        0 &         0 &         0 &      0 &             0 &         0 &     34.0 \\
+  java         &        0 &         0 &         0 &      0 &             0 &         0 &     13.0 \\
+  objective-c  &        0 &         0 &         0 &      0 &             0 &         0 &      9.0 \\
+  ruby         &        0 &         0 &         0 &      0 &             0 &         0 &      6.0 \\
+  ...          &      ... &       ... &       ... &    ... &           ... &        ...&      ... \\
+  TOTALES      &        0 &         0 &         0 &      0 &             0 &         0 &        - \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}[h]
+  \centering
   \caption{Exp. final, ejecución 3. Estadísticas de CI GitHub.}
-  \label{tab:tabla_f_3_2}
+  \label{tab:tabla_f3_3}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -807,7 +1009,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 3. Estadísticas por lenguaje GitHub.}
-  \label{tab:tabla_f_3_3}
+  \label{tab:tabla_f3_4}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
@@ -840,7 +1042,7 @@
 \begin{table}[h]
   \centering
   \caption{Exp. final, ejecución 3. Estadísticas de escenarios CI GitHub.}
-  \label{tab:tabla_f_3_4}
+  \label{tab:tabla_f3_5}
 
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
