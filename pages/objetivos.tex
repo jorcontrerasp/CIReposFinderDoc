@@ -1,6 +1,6 @@
-En este trabajo se pretende realizar un estudio sobre herramientas de integración continua empleadas en proyectos software alojados en diferentes plataformas con el objetivo de tener un conocimiento más amplio y, de esta forma, poder responder a la gran variedad de preguntas que surjen sobre el uso de dichos sistemas de CI.
+En este trabajo se pretende realizar un estudio sobre herramientas de integración continua empleadas en proyectos software alojados en las plataformas GitHub y GitLab con el objetivo de ampliar conocimientos al respecto y, de esta forma, poder responder a la gran variedad de preguntas que surjen sobre el uso de dichos sistemas de CI.
 
-Algunas de estas cuestiones a intentar resolver con este estudio serían las siguientes:
+Algunas de estas cuestiones a intentar resolver con este estudio son las siguientes:
 \begin{compactitem}
     \item ¿Cuáles son los sistemas de CI más utilizados en cada plataforma?
     \item ¿Se suelen combinar más de un sistema de CI en un mismo repositorio?
@@ -10,20 +10,22 @@ Algunas de estas cuestiones a intentar resolver con este estudio serían las sig
     \item ¿Cuáles son los principales escenarios o ``stages'' en los que se suelen ejecutar trabajos automatizados?
 \end{compactitem}
 
-GitHub y GitLab van a ser las plataformas de alojamiento de código que se van a utilizar para realizar este estudio.
-
 GitHub es una compañía sin fines de lucro que ofrece un servicio de hosting de repositorios almacenados en la nube utilizando el sistema de control de versiones Git. 
 Además, cuenta con una API REST disponible para cualquier desarrollador que quiera implementar alguna aplicación relacionada con el servicio que ofrece. 
-En este caso, la aplicación programada para buscar proyectos que puedan tener sistemas de integración continua utiliza el lenguaje de programación Python y, concretamente, la librería “PyGithub” que permite utilizar la versión 3 de la API ya mencionada.
+
+En este caso, para poder llevar a cabo el estudio, se implementa una aplicación encargada de buscar proyectos que puedan tener sistemas de integración continua utilizando el lenguaje de programación Python y, concretamente, la librería “PyGithub” que permite utilizar la versión 3 de la API ya mencionada.
 
 Gitlab Inc. es una compañía de núcleo abierto y es la principal proveedora del software GitLab, un servicio web de control de versiones, DevOps y desarrollo de software colaborativo basado en Git. Además de un gestor de repositorios, el servicio ofrece también alojamiento de wikis y un sistema de seguimiento de errores, todo ello publicado bajo una licencia de código abierto, principalmente.
-Fue escrito por los programadores ucranianos Dmitriy Zaporozhets y Valery Sizov en el lenguaje de programación Ruby con algunas partes reescritas posteriormente en Go, inicialmente como una solución de gestión de código fuente para colaborar con su equipo en el desarrollo de software. Luego evolucionó a una solución integrada que cubre el ciclo de vida del desarrollo de software, y luego a todo el ciclo de vida de DevOps. La arquitectura tecnológica actual incluye Go, Ruby on Rails y Vue.js.
 
-Los principales objetivos del trabajo son los siguientes:
+Fue escrito por los programadores ucranianos Dmitriy Zaporozhets y Valery Sizov en el lenguaje de programación Ruby con algunas partes reescritas posteriormente en Go, inicialmente como una solución de gestión de código fuente para colaborar con su equipo en el desarrollo de software. Luego evolucionó a una solución integrada que cubre el ciclo de vida del desarrollo de software, y más tarde a todo el ciclo de vida de DevOps. 
+
+La arquitectura tecnológica actual incluye Go, Ruby on Rails y Vue.js.
+
+En cuanto a los principales objetivos a cumplir en la realización de este trabajo, se definen los siguientes:
 \begin{enumerate}
-    \item Contruir un conjunto de datos con información sobre la integración continua.
     \item Aprender el funcionamiento de la integración continua en proyectos software.
-    \item Estudiar la forma en la que se utilizan esas herramientas de integración continua en repositorios ``open source''.
+    \item Contruir un conjunto de datos con información sobre herramientas de integración continua.
+    \item Estudiar la forma en la que se utilizan esas herramientas de integración continua en proyectos ``open source''.
     \item Expandir conocimientos en programación Python.
     \item Afianzar conocimientos sobre técnicas de research en GitHub.
     \item Aprendizaje sobre técnicas de research en la plataforma GitLab.
@@ -32,14 +34,14 @@ Los principales objetivos del trabajo son los siguientes:
 \section{Metodología}
 
 Para la construcción de este conjunto de datos se va a utilizar una técnica de ``research'' conocida con el nombre de minería de repositorios.
-Un repositorio software contiene una gran cantidad de información histórica y valiosa sobre el desarrollo general del sistema software que trata (estado, progreso y evolución del proyecto) y esta técnica de ``research'' se va a centrar en la extracción y análisis los datos heterogéneos disponibles en estos repositorio de software para descubrir información interesante, útil y procesable sobre el sistema.
+Un repositorio software contiene una gran cantidad de información histórica y valiosa sobre el desarrollo general del sistema que trata (estado, progreso y evolución del proyecto) y esta técnica de ``research'' se va a centrar en la extracción y análisis de los datos heterogéneos disponibles en estos repositorios para descubrir información interesante, útil y procesable sobre el sistema.
 
 En primer lugar, para obtener este conjunto de datos que nos permita analizar el funcionamiento de la integración continua en GitHub y GitLab, se van a enumerar diferentes herramientas de integración continua encontradas en repositorios seleccionados. 
-Estos repositorios se elegiran en función de su repercusión en las plataformas, es decir, por su elevado número de estrellas o las bifurcaciones ``froks'' que tengan, ya que al tratarse de repositorios muy conocidos serán considerados como prometedores y que podrían utilizar herramientas de integración continua, objetivo de este estudio, para diferentes aspectos como por ejemplo la automatización de tests.
+Estos repositorios se elegiran en función de su repercusión en las plataformas, es decir, por su elevado número de estrellas o las bifurcaciones ``forks'' que tengan, ya que al tratarse de repositorios muy conocidos serán considerados como prometedores en cuanto a la utilización de herramientas de este tipo, objetivo de este estudio, para diferentes aspectos como por ejemplo la automatización de tests.
 
 Tras seleccionar los repositorios, se analizan manualmente en busca de herramientas de integración continua para ir enumerándolas.
 
-Una vez rellena la lista de sistemas de integración continua a explorar, tanto en GitHub como en GitLab, se va a estudiar el funcionamiento de cada una de ellas y la forma en la que se construyen los ficheros de configuración que utilizan para realizar la automatización de trabajos. De esta forma, por cada herramienta, se establece un criterio único de localización de repositorios que emplean herramientas de integración continua y se conforma el heurístico que se va a utilizar para ello.
+Una vez rellena la lista de sistemas de integración continua a explorar, tanto en GitHub como en GitLab, se va a estudiar el funcionamiento de cada una de ellas y la forma en la que se construyen los ficheros de configuración que utilizan para realizar la automatización de trabajos. De esta forma, por cada uno de estos sistemas de CI, se establece un criterio único de localización de repositorios que emplean herramientas de integración continua y se conforma el heurístico que se va a utilizar para realizar el estudio.
 
 Con el heurístico de localización de repositorios prometedores ya construido, se realiza un conteo de estas herramientas sobre una búsqueda de 500 repositorios GitHub y 500 repositorios GitLab, haciendo un total de 1000 repositorios en este experimiento inicial.
 
@@ -47,22 +49,23 @@ A continuación, se analizan los resultados manualmente para verificar la efecti
 
 Con cada proyecto Github y GitLab se realiza lo siguiente:
 \begin{compactitem}
-    \item Buscar el sistema de CI que tiene el proyecto, buscando en su árbol de directorios los ficheros especificados en las carpetas que corresponda.
-    \item Se buscan todos los ficheros en cada repositorio ya que un mismo proyecto podría tener más de un sistema de CI configurado.
+    \item Localizar el sistema de CI que tiene el proyecto, buscando en su árbol de directorios los ficheros especificados en las carpetas que corresponda (se buscan todos los ficheros en cada repositorio ya que un mismo proyecto podría tener más de un sistema de CI configurado).
     \item Anotar en qué sistemas de CI el proyecto ha dado positivo.
     \item Presentación en una tabla de los resultados: nº de proyectos que usan cada sistema de CI.
 \end{compactitem}
 	
-Con este primer experimento realizado, se establecen cuáles son las herramientas de integración continua más populares con el objetivo de realizar un análisis más exhaustivo sobre dichas herramientas.
+Con este primer experimento realizado, se establecen cuáles son las herramientas de integración continua más populares con el objetivo de realizar un análisis más exhaustivo sobre ellas.
 
-A continuación se realiza un segundo experimento sobre un número mayor de repositorio, obteniendo única y exclusivamente hasta 500 repositorios GitHub y 500 repositorios GitLab que hayan dado positivo en algun sistema de CI, descartando por completo aquellos en los que no se ha encontrado nada.
+A continuación se realiza un segundo experimento sobre un número mayor de repositorio, obteniendo exclusivamente más de 500 repositorios en cada plataforma GitHub y  GitLab que hayan dado positivo en algun sistema de CI, descartando por completo aquellos en los que no se ha encontrado nada. Es decir, este conjunto final de datos va a quedar conformado por proyectos que utilizan herramientas de integración continua.
 
 En este segundo experimento, por cada proyecto, se estudian diferentes aspectos que no se tuvieron en cuenta en el experimento inicial:
 \begin{compactitem}
     \item Número de trabajos.
     \item Número de tareas.
     \item Número medio de tareas por trabajo.
-    \item Momento en el que se ejecutan los trabajos: push en master, pull request, en ramas, schedule...
+    \item Momento en el que se ejecutan los trabajos: push, pull request, en ramas, schedule...
+    \item Lenguajes de programación predominantes en cada sistema de CI.
+    \item Etc.
 \end{compactitem}
 
 Finalmente, una vez analizados todos los datos obtenidos, se pueden sacar conclusiones y contestar a todas las preguntas que se formularon inicialmente.
@@ -71,11 +74,11 @@ Por lo tanto, en cuanto a la metodología del trabajo, los pasos seguidos son lo
 \begin{enumerate}
     \item Identificación de sistemas de CI que se van a estudiar.
     \item Análisis de los sistemas de CI identificados.
-    \item Implementación de un heurístico localizador de repositorios GitHub y GitLab contenedores de herramientas de CI.
+    \item Implementación de un heurístico localizador de repositorios GitHub y GitLab que utilicen herramientas de integración continua.
     \item Conteo de repositorios tanto positivos como negativos a los que se les ha aplicado el heurístico.
     \item Análisis manual de estos repositorios para verificar el heurístico.
-    \item Selección de las herramientas de integración continua más populares en la plataforma.
-    \item Aplicación del heurístico de tal forma que se obtengan 500 repositorios GitHub y 500 repositorios GitLab positivos.
+    \item Selección de las herramientas de integración continua más populares en cada plataforma.
+    \item Aplicación del heurístico de tal forma que se obtengan más de 500 repositorios GitHub y más de 500 repositorios GitLab positivos.
     \item Análisis de los resultados.
 \end{enumerate}
 
@@ -84,7 +87,7 @@ En primer lugar localizamos los sistemas de CI que se van a estudiar. Para ello,
 Por cada una de estas herramientas identificadas se realizan las siguientes tareas:
 \begin{enumerate}
     \item Se estudia su funcionamiento.
-    \item Se estudia la construcción del fichero de configuración utilizado para implementar la automatización.
+    \item Se estudia la construcción del fichero de configuración utilizado para implementar la automatización de trabajos.
     \item Se buscan ejemplos de uso.
 \end{enumerate}
 
@@ -100,10 +103,10 @@ Los sistemas de CI identificados son los siguientes:
     \item \underline{GitLab CI}: búsqueda del fichero ``.gitlab-ci.yml'' en la raíz del proyecto \cite{gitlabCI}.
     \item \underline{Codeship}: búsqueda, en la raíz del proyecto, de alguno de estos ficheros ``codeship-services.yml'', ``codeship-steps.yml'' o ``codeship-steps.json'' \cite{codeship}.
     \item \underline{TeamCity}: búsqueda del fichero ``settings.kts'' en el directorio ``.teamcity'' \cite{teamcity}.
-    \item \underline{Bazel}: búsqueda de alguno de los ficheros ``presubmit.yml'' ``build\_bazel\_binaries.yml'' en el directorio ``.bazelci'' o el fichero ``.bazelrc'' en la raíz del proyecto \cite{bazel}.
+    \item \underline{Bazel}: búsqueda de alguno de los ficheros ``presubmit.yml'' o ``build\_bazel\_binaries.yml'' en el directorio ``.bazelci'' o el fichero ``.bazelrc'' en la raíz del proyecto \cite{bazel}.
     \item \underline{Semaphore CI}: búsqueda del fichero ``semaphore.yml'' en los directorios ``.semaphore'' o ``.semaphoreci'' \cite{semaphoreCI}.
     \item \underline{AppVeyor}: búsqueda del fichero ``Appveyor.yml'' en la raíz del proyecto.
 \end{compactitem}
 	
-De esta forma, mediante el lenguaje de programación Python, se implementa un programa encargado de ejecutar el heurístico localizador de repositorios con sistemas de CI.
+De esta forma, mediante el lenguaje de programación Python, se implementa un programa encargado de ejecutar el heurístico localizador de repositorios que emplean sistemas de CI.
 
