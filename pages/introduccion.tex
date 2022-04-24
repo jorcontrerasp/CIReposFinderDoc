@@ -18,7 +18,7 @@ Los pasos en un escenario de CI típicamente serán más o menos de la siguiente
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.75\textwidth,clip=true]{\ciDiagram}
-    \caption{Diagrama CI.}
+    \caption{Diagrama CI \cite{CI_Paul_Duvall}}
 \end{figure}
 
 Anteriormente, era común que los desarrolladores de un equipo trabajasen aislados durante un largo periodo de tiempo y solo intentasen combinar los cambios en la versión final una vez completado el trabajo. Como consecuencia, la combinación de los cambios en el código resultaba ser una ardua tarea, dando lugar a que fuese más difícil proporcionar las actualizaciones a los clientes con rapidez.
@@ -127,16 +127,10 @@ Actualmente existen una gran cantidad de herramientas de integración continua, 
     Puede instalarse a través de paquetes del sistema nativo, Docker o incluso ejecutarse de forma independiente en cualquier máquina que tenga instalado Java Runtime Environment (JRE).
     \begin{figure}[h]
         \centering
-        \includegraphics[width=0.3\textwidth,clip=true]{\logoJenkins}
+        \includegraphics[width=0.325\textwidth,clip=true]{\logoJenkins}
         \caption{Logo de Jenkins.}
     \end{figure}
     \item \textbf{\underline{Travis}}: escrito en Ruby, es un servicio de integración continua que se utiliza para crear y probar proyectos de software alojados en GitHub, Bitbucket, GitLab y Assembla. Fue el primer servicio de CI que permitió realizar el proceso de integración continua a proyectos de código abierto de forma gratuita.
-    
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.3\textwidth,clip=true]{\logoTravis}
-        \caption{Logo de Travis.}
-    \end{figure}
     
     Las principales funciones de Travis CI son:
     \begin{compactitem}
@@ -144,10 +138,17 @@ Actualmente existen una gran cantidad de herramientas de integración continua, 
         \item Vistas de construcción en vivo.
         \item Servicios de base de datos preinstalados.
         \item Implementaciones automáticas en compilaciones pasadas.
-        \item Limpieza de VM para cada compilación.
+        \item Limpieza de máquinas virtuales para cada compilación.
         \item Compatibilidad con Mac, Linux e iOS.
     \end{compactitem}
-    \item \textbf{\underline{Circle CI}}: servicio de integración continua cuyas principales características son las siguientes:
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.3\textwidth,clip=true]{\logoTravis}
+        \caption{Logo de Travis.}
+    \end{figure}
+
+    \item \textbf{\underline{Circle CI}}: es un servicio de integración caracterizado por los aspectos comentados a continuación:
     \begin{compactitem}
         \item Flujos de trabajo para la orquestación de tareas.
         \item Soporte con Docker.
@@ -164,7 +165,8 @@ Actualmente existen una gran cantidad de herramientas de integración continua, 
         \includegraphics[width=0.3\textwidth,clip=true]{\logoCircleCI}
         \caption{Logo de Circle CI.}
     \end{figure}
-    \item \textbf{\underline{GitHub Actions}}: las acciones de GitHub ayudan a automatizar tareas dentro del ciclo de vida de un desarrollo de software. Están controladas por eventos, lo que significa que pueden ejecutar una serie de comandos después de que se haya producido un evento específico. Por ejemplo, cada vez que alguien crea una solicitud de extracción para un repositorio, puede ejecutar automáticamente un comando que ejecuta un script de prueba de software.
+    \item \textbf{\underline{GitHub Actions}}: las acciones de GitHub ayudan a automatizar tareas dentro del ciclo de vida de un desarrollo de software. Están controladas por eventos, lo que significa que pueden ejecutar una serie de comandos después de que se haya producido un evento específico.
+    
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.45\textwidth,clip=true]{\logoGitHubActions}
@@ -178,6 +180,7 @@ Actualmente existen una gran cantidad de herramientas de integración continua, 
         \caption{Diagrama GitHub Actions.}
     \end{figure}
     \item \textbf{\underline{Azure pipelines}}: compila y prueba automáticamente proyectos de código para que estén disponibles para otros usuarios. Funciona con prácticamente cualquier tipo de proyecto o lenguaje.
+    
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.4\textwidth,clip=true]{\logoAzurePipelines}
@@ -186,16 +189,16 @@ Actualmente existen una gran cantidad de herramientas de integración continua, 
     
     Sus principales características son:
     \begin{compactitem}
-        \item Cualquier lenguaje, cualquier plataforma: permite compilar, probar e implementar aplicaciones de Node.js, Python, Java, PHP, Ruby, C/C++, .NET, iOS y Android. Además, permite ejecutar archivos en paralelo en Linux, macOS y Windows.
-        \item Contenedores y Kubernetes: permite compilar e insertar fácilmente imágenes en registros de contenedor, como Docker Hub y Azure Container Registry. Además, permite implementar contenedores en hosts individuales o en Kubernetes.
-        \item Extensible: ya que deja explorar e implementar una gran variedad de tareas de compilación, pruebas e implementación creadas por la comunidad, junto con cientos de extensiones, desde Slack hasta SonarCloud.
+        \item Multilenguaje y multiplataforma: permite compilar, probar e implementar aplicaciones de Node.js, Python, Java, PHP, Ruby, C/C++, .NET, iOS y Android. Además, permite ejecutar archivos en paralelo en Linux, macOS y Windows.
+        \item Compatible con contenedores y Kubernetes: permite compilar e insertar fácilmente imágenes en registros de contenedor, como Docker Hub y Azure Container Registry. Además, permite implementar contenedores en hosts individuales o en Kubernetes.
+        \item Extensible: permite explorar e implementar una gran variedad de tareas de compilación, pruebas e implementación creadas por la comunidad, junto con cientos de extensiones, desde Slack hasta SonarCloud.
         \item Soluciones en cualquier nube: disponible la entrega continua (CD) del software en cualquier nube como Azure, AWS y GCP.
         \item Gratis para código abierto: asegura canalizaciones rápidas de integración y entrega continuas (CI/CD) para proyectos de código abierto.
         \item Características y flujos de trabajo avanzados: compatibilidad con YAML, integración de pruebas, validación de versiones, informes, etc.
     \end{compactitem}
     \item \textbf{\underline{Bamboo}}: Atlassian Bamboo es un servidor de integración continua (CI) e implementación que ayuda a los equipos de desarrollo de software proporcionando:
     \begin{compactitem}
-        \item creación y prueba automatizadas del estado del código fuente del software.
+        \item creación y pruebas automatizadas del estado del código fuente del software.
         \item actualizaciones en compilaciones correctas y fallidas.
         \item herramientas de presentación de informes para el análisis estadístico.
     \end{compactitem}
@@ -205,41 +208,43 @@ Actualmente existen una gran cantidad de herramientas de integración continua, 
         \includegraphics[width=0.3\textwidth,clip=true]{\logoBamboo}
         \caption{Logo de Bamboo.}
     \end{figure}
-    \item \textbf{\underline{GitLab CI}}: es la parte de GitLab que usa para todos los métodos continuos (Integración continua, Entrega e Implementación). Con GitLab CI/CD, puede probar, crear y publicar su software sin necesidad de una aplicación o integración de terceros.
+    \item \textbf{\underline{GitLab CI}}: es la parte de GitLab que secusa para todos los métodos continuos (integración continua, entrega e implementación). Con GitLab CI/CD se puede probar, crear y publicar software sin necesidad de una aplicación o integración de terceros.
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.15\textwidth,clip=true]{\logoGitLabCI}
         \caption{Logo de GitLab CI.}
     \end{figure}
-    \item \textbf{\underline{Codeship}}: CloudBees CodeShip es una solución de software como servicio (SaaS) que permite a los equipos de ingeniería implementar y optimizar CI y CD en la nube. Ayuda a los equipos pequeños y en crecimiento a desarrollar todo, desde aplicaciones web simples hasta arquitecturas de microservicios modernas para lograr una entrega de código rápida, segura y frecuente.
+    \item \textbf{\underline{Codeship}}: CloudBees CodeShip es una solución de software como servicio (SaaS) que permite a los equipos de ingeniería implementar y optimizar CI y CD en la nube. Ayuda a los equipos pequeños y en crecimiento a desarrollar cualquier tipo de software, desde aplicaciones web simples hasta arquitecturas de microservicios modernas para lograr una entrega de código rápida, segura y frecuente.
+    
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.3\textwidth,clip=true]{\logoCodeship}
         \caption{Logo de Codeship.}
     \end{figure}
-    \item \textbf{\underline{TeamCity}}: es un servidor comercial de CI/CD que también está basado en Java (al igual que Jenkins). Es una herramienta de gestión y automatización de compilación creada por JetBrains.
-    Es compatible con .NET framework y puede integrar fácilmente con varios IDEs como Eclipse o Visual Studio.
-    Cuenta con tres planes:
+
+    \item \textbf{\underline{TeamCity}}: es un servidor comercial de CI/CD que también está basado en Java (al igual que Jenkins \cite{jenkins_teamcity}). Es una herramienta de gestión y automatización de compilación creada por JetBrains.
+    Es compatible con .NET framework y se puede integrar fácilmente con varios IDEs como Eclipse o Visual Studio.
+    
+    Además, cuenta con tres planes de pago:
     \begin{compactitem}
         \item TeamCity Cloud.
         \item TeamCity Professional.
         \item TeamCity Enterprise.
     \end{compactitem}
 
-    Una comparativa entre Jenkins y TeamCity en el siguiente enlace \cite{jenkins_teamcity}.
-
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.4\textwidth,clip=true]{\logoTeamCity}
         \caption{Logo de TeamCity.}
     \end{figure}
+
     \item \textbf{\underline{Semaphore CI}}: es un servicio de automatización basado en la nube para crear, probar e implementar software. Diseñado para la productividad del desarrollador y guiado por tres principios:
     \begin{compactitem}
         \item Velocidad: los desarrolladores deben trabajar en un ciclo de retroalimentación rápido, por lo que los flujos de trabajo de CI/CD deben ser rápidos.
         \item Potencia: la herramienta de CI/CD debe poder ejecutar cualquier flujo de trabajo de software automatizado, a cualquier escala.
         \item Facilidad de uso: CI/CD debe ser lo suficientemente fácil de usar para que todos los desarrolladores estén en estrecho contacto con el funcionamiento de su software y su impacto en los usuarios.
     \end{compactitem}
-    Cuenta con tres planes de pago:
+    Además, cuenta con tres planes de pago:
     \begin{compactitem}
         \item Free.
         \item Startup.
@@ -251,13 +256,11 @@ Actualmente existen una gran cantidad de herramientas de integración continua, 
         \includegraphics[width=0.4\textwidth,clip=true]{\logoSemaphore}
         \caption{Logo de Semaphore CI.}
     \end{figure}
-    \item \textbf{\underline{Bazel}}: es otra herramienta de integración continua que ofrece las siguientes ventajas:
+    \item \textbf{\underline{Bazel}}: se trata de otra herramienta de integración continua que ofrece diversas ventajas, a destacar las que se describen a continuación:
     \begin{compactitem}
-        \item Lenguaje de construcción de alto nivel. Bazel utiliza un lenguaje abstracto y legible por humanos para describir las propiedades de construcción de su proyecto en un alto nivel semántico. A diferencia de otras herramientas, Bazel opera con los conceptos de bibliotecas, binarios, scripts y conjuntos de datos, protegiéndolo de la complejidad de escribir llamadas individuales a herramientas como compiladores y enlazadores.
-        \item Rápido y fiable. Bazel almacena en caché todo el trabajo realizado anteriormente y realiza un seguimiento de los cambios tanto en el contenido del archivo como en los comandos de compilación. De esta forma, Bazel sabe cuándo es necesario reconstruir algo y solo lo hace. Para acelerar aún más sus compilaciones, puede configurar su proyecto para que se construya de una manera altamente paralela e incremental.
-        \item Multiplataforma. Bazel se ejecuta en Linux, macOS y Windows. Bazel puede crear binarios y paquetes implementables para múltiples plataformas, incluidas computadoras de escritorio, servidores y dispositivos móviles, desde el mismo proyecto.
-        \item Escala. Bazel mantiene la agilidad mientras maneja compilaciones con más de 100 000 archivos fuente. Funciona con múltiples repositorios y bases de usuarios de decenas de miles.
-        \item Extensible. Se admiten muchos idiomas y puede ampliar Bazel para admitir cualquier otro idioma o marco.
+        \item Lenguaje de construcción de alto nivel. Bazel utiliza un lenguaje abstracto y legible por humanos para describir las propiedades de construcción de proyectos software en un alto nivel semántico. Opera con los conceptos de bibliotecas, binarios, scripts y conjuntos de datos, protegiéndolo de la complejidad de escribir llamadas individuales a herramientas como compiladores y enlazadores.
+        \item Rápido y fiable. Bazel almacena en caché todo el trabajo realizado anteriormente y realiza un seguimiento de los cambios tanto en el contenido del archivo como en los comandos de compilación. De esta forma, Bazel sabe cuándo es necesario reconstruir algo.
+        \item Multiplataforma. Permite su ejecución en Linux, macOS y Windows. Además, puede crear binarios y paquetes implementables para múltiples plataformas, incluidas computadoras de escritorio, servidores y dispositivos móviles, desde el mismo proyecto.
     \end{compactitem}
     \begin{figure}[h]
         \centering
@@ -270,5 +273,3 @@ Actualmente existen una gran cantidad de herramientas de integración continua, 
 Como se ha visto, a pesar de esistir una infinidad de herramientas de integración continua, todas ellas nos van a ofrecer en definitiva recursos muy parecidos para poder integrar nuestros proyectos.
 
 Otras herramientas a mencionar que nos ofrecen características similares de integración continua son: GoCD, Shippable, Buildkite, Codefresh, Buddy, Buildbot, Wercker, Integrity, WeaveFlux, NeverCode, AutoRABIT, Bitrise, Drone CI, UrbanCode, Strider CD y FinalBuilder.
-
-Se recomienda leer ``Continuous Integration. Improving Software Quality and Reducing Risk'' \cite{CI_Paul_Duvall} \alumno{¿hay forma de que aparezca el libro en la bibliografía sin tener que citarlo en otra parte del documento?}
