@@ -1,8 +1,8 @@
 \section{Librería Python ``Gitlab''}
 
-Minería de repositorios también se puede llevar a cabo sobre la plataforma de almacenamiento de software GitLab. Para ello es necesario utilizar la librería Python que ofrece la propia plataforma GitLab, conocida con el nombre de ``GitLab''.
+Minería de repositorios también se puede llevar a cabo sobre la plataforma de almacenamiento de software GitLab. Para ello es necesario utilizar la librería Python que ofrece la propia plataforma GitLab, conocida con el nombre de ``Python-GitLab''.
 
-Una vez instalada la librería mediante el comando de instalación de paquetes desde un terminal (pip install gitlab), se puede importar en el proyecto de la siguiente manera:
+Una vez instalada la librería mediante el comando de instalación de paquetes desde un terminal (pip install python-gitlab), se puede importar en el proyecto de la siguiente manera:
 
 \begin{lstlisting}[language=Python]
     import gitlab
@@ -27,7 +27,7 @@ A partir de este objeto ya generado, se pueden listar proyectos:
                                 sort='asc')
 \end{lstlisting}
 
-En este caso se buscarán proyectos de código abierto o públicos cuya última actividad es posterior al año 2016, partiendo desde el identificador de proyecto idAfter pasádo como parámetro y ordenados por identificador de forma ascendente.
+En este caso se buscarán proyectos de código abierto o públicos cuya última actividad es posterior al año 2016, partiendo desde el identificador de proyecto ``idAfter'' pasádo como parámetro y ordenados por identificador de forma ascendente.
 
 \section{Generación de token de autenticación GitLab}
 
