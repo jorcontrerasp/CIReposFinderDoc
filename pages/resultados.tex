@@ -1,5 +1,5 @@
 \section{Experimento preliminar}
-Se realiza un primer experimento ejecutando el programa implementado sobre 500 repositorios de la plataforma GitHub y 500 repositorios de la plataforma GitLab, todos ellos repositorios "open source" o de código abierto, sin discriminar entre positivos o negativos, es decir, entre esos 1000 repositorios algunos habrán dado positivo en alguna de las herramientas de integración continua contempladas y otros no.
+Se realiza un primer experimento ejecutando el programa implementado sobre 500 repositorios de la plataforma GitHub y 500 repositorios de la plataforma GitLab, todos ellos repositorios de código abierto u ``open source'', sin discriminar entre positivos o negativos, es decir, entre esos 1000 repositorios se pretende encontrar tanto repositorios que utilizan alguna de las herramientas de integración continua contempladas como repositorios que no las utilizan.
 
 El objetivo de este experimento es conocer cuáles son los sistemas de integración continua más utilizados en repositorios de este tipo para posteriormente analizarlas más en profundidad en un segundo experimento.
 
@@ -24,17 +24,17 @@ Los parámetros con los que se ejecuta el programa son los siguientes:
     \end{compactitem}
 \end{compactitem}
 
-Tras lanzar el programa se obtienen los siguientes resultados reflejados en la tabla \ref{tab:tabla_p1}.
+Tras lanzar el programa se obtienen los resultados reflejados en la tabla \ref{tab:tabla_p1}.
 
 A simple vista se puede observar que predomina el uso de los sistemas de integración continua propios de cada plataforma, siendo GitHub Actions para repositorios almacenados en GitHub y GitLab CI para repositorios almacenados en GitLab.
 
-A parte de estos dos sistemas de CI ya mencionados encontramos resultados positivos en el sistema de integración continua proporcionado por Travis CI, obteniendo 68 positivos en repositorios almacenados en GitHub y 25 positivos en repositorios almacenados en GitLab, que dan un total de 93 repositorios positivos en ambas plataformas, es decir, en 9'3\% del total de repositorios.
+A parte de estos dos sistemas de CI ya mencionados encontramos resultados positivos en el sistema de integración continua proporcionado por Travis CI, obteniendo 68 casos en repositorios almacenados en GitHub y otros 25 en repositorios almacenados en GitLab, dando un total de 93 repositorios positivos en ambas plataformas, es decir, en 9'3\% del total de repositorios.
 
 También encontramos repositorios positivos en herramientas como Jenkins, que, a priori, se consideró como uno de los sistemas que iban a tener un mayor número de positivos junto con GitHub Actions.
 
 Otros sistemas a tener en cuenta son Circle CI, Azure Pipelines y Bazel, obteniendo un total de 42, 6 y 8 repositorios positivos, resultados considerados insuficientes como para profundizar en ellos en el experimento final a realizar.
 
-Finalmente, mencionar también los 2 repositorios positivos encontrados para la herramienta de integración continua Concourse, uno para GitHub y otro para GitLab, siendo estos falsos positivos ya que el criterio establecido para la búsqueda de este sistema de CI, "tasks", directorio propuesto por la documetación de Concourse para almacenar los ficheros de configuración de trabajos, es demasiado genérico como para encontrar los resultados deseados.
+Finalmente, mencionar también los 2 repositorios positivos encontrados para la herramienta de integración continua Concourse, uno para GitHub y otro para GitLab, considerados como falsos positivos ya que a pesar de haber cumplido el criterio de búsqueda establecido no se utiliza esta herramienta de integración en ninguno de los dos casos. Esto se debe a que el criterio establecido para la búsqueda de este sistema de CI, ``tasks'', directorio propuesto por la documetación de Concourse para almacenar los ficheros de configuración de trabajos, es demasiado genérico como para encontrar repositorios que, teniendo ese directorio en su árbol de directorios, usen Concourse.
 
 \section{Experimento final}
 Con las conclusiones obtenidas tras la ejecución del primer experimento de este trabajo, se realiza un segundo experimento estudiando más en profundidad los siguientes sistemas de CI: Travis CI, GitHub Actions y GitLab CI, ya que son los sistemas de los que se han obtenido resultados más prometedores.
