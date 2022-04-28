@@ -12,7 +12,7 @@ Una vez instalado ya se podría importar desde cualquier script Python mediante 
 
 Con la biblioteca ya importada en el script podemos generar un objeto ``GitHub'' y, partiendo de ese objeto, realizar consultas sencillas utilizando una serie de parámetros definidos por la librería.
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption=Autenticación en API de GitHub]
     usuario = "<usuario>" 
     token = "<token>"
     g = Github(usuario, token)
@@ -45,11 +45,13 @@ Este token de autenticación lo podemos generar accediendo a los ajustes de desa
 
     \item Una vez dentro de “Settings”, acceder a la opción de menú ``Developer settings''.
 
-    \begin{figure}[h]
+    \begin{figure}
         \centering
         \includegraphics[width=0.4\textwidth,clip=true]{\GitHubTokenB}
         \caption{Generar token GitHub. Paso 2.}
     \end{figure}
+
+    \newpage
 
     \item Accediendo a la opción ``Personal Access tokens'' y pinchando el botón ``Generate new token'' nos permitirá rellenar los datos relacionados con el token que utilizaremos posteriormente para autenticarnos utilizando la API de GitHub.
     
@@ -71,7 +73,7 @@ Este token de autenticación lo podemos generar accediendo a los ajustes de desa
 
     \begin{figure}[h]
         \centering
-        \includegraphics[width=0.5\textwidth,clip=true]{\GitHubTokenE}
+        \includegraphics[width=0.35\textwidth,clip=true]{\GitHubTokenE}
         \caption{Generar token GitHub. Paso 5.}
     \end{figure}
 

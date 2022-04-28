@@ -10,7 +10,7 @@ Una vez instalada la librería mediante el comando de instalación de paquetes d
 
 Una vez importada la biblioteca, se puede generar un objeto de la clase ``GitLab'' que se utilizará para listar proyectos en base a un conjunto de criterios pasados como parámetros de búsqueda. Este objeto se construye de la siguiente forma:
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption=Autenticación en API de GitLab]
     token = aux.readFile("tokens/gitlab_token.txt")
     gl = gitlab.Gitlab('http://gitlab.com', private_token=token)
 \end{lstlisting}
@@ -42,6 +42,8 @@ Para poder acceder a la API que proporciona la plataforma GitLab y poder obtener
         \caption{Generar token GitHub. Paso 1.}
     \end{figure}
 
+    \newpage
+
     \item En el desplegable situado a la izquierda de la pantalla, acceder a la opción de menú ``Access Tokens''.
 
     \begin{figure}[h]
@@ -57,6 +59,8 @@ Para poder acceder a la API que proporciona la plataforma GitLab y poder obtener
         \includegraphics[width=1\textwidth,clip=true]{\GitLabTokenC}
         \caption{Generar token GitHub. Paso 3.}
     \end{figure}
+
+    \newpage
 
     \item Por último, una vez rellenos los campos de la pantalla con la información requerida, pinchar en el botón ``Create personal access token'' para generar el token de autenticación.
 
