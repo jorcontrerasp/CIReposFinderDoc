@@ -5,20 +5,17 @@ Algunas de estas cuestiones a intentar resolver con este estudio son las siguien
     \item ¿Cuáles son los sistemas de CI más utilizados en cada plataforma?
     \item ¿Se suelen combinar más de un sistema de CI en un mismo repositorio?
     \item ¿Con qué lenguajes se suelen utilizar más sistemas de CI?
-    \item ¿Cuántos trabajos suelen haber en repositorios ``open source''?
+    \item ¿Cuántos trabajos\cotutor{¿A qué te refieres con trabajos? Creo que sería mejor denominarlos flujos de trabajo/workflows} suelen haber en repositorios ``open source''?
     \item ¿Cuántas tareas suelen ejecutar dichos trabajos?
     \item ¿Cuáles son los principales escenarios o ``stages'' en los que se suelen ejecutar trabajos automatizados?
 \end{compactitem}
 
 GitHub es una compañía sin fines de lucro que ofrece un servicio de hosting de repositorios almacenados en la nube utilizando el sistema de control de versiones Git. 
 Además, cuenta con una API REST disponible para cualquier desarrollador que quiera implementar alguna aplicación relacionada con el servicio que ofrece. 
-
 En este caso, para poder llevar a cabo el estudio, se implementa una aplicación encargada de buscar proyectos que puedan tener sistemas de integración continua utilizando el lenguaje de programación Python y, concretamente, la librería “PyGithub” que permite utilizar la versión 3 de la API ya mencionada.
 
 Gitlab Inc. es una compañía de núcleo abierto y es la principal proveedora del software GitLab, un servicio web de control de versiones, DevOps y desarrollo de software colaborativo basado en Git. Además de un gestor de repositorios, el servicio ofrece también alojamiento de wikis y un sistema de seguimiento de errores, todo ello publicado bajo una licencia de código abierto, principalmente.
-
 Fue escrito por los programadores ucranianos Dmitriy Zaporozhets y Valery Sizov en el lenguaje de programación Ruby con algunas partes reescritas posteriormente en Go, inicialmente como una solución de gestión de código fuente para colaborar con su equipo en el desarrollo de software. Luego evolucionó a una solución integrada que cubre el ciclo de vida del desarrollo de software, y más tarde a todo el ciclo de vida de DevOps. 
-
 La arquitectura tecnológica actual incluye Go, Ruby on Rails y Vue.js.
 
 En cuanto a los principales objetivos a cumplir en la realización de este trabajo, se definen los siguientes:
@@ -41,13 +38,13 @@ Estos repositorios se elegiran en función de su repercusión en las plataformas
 
 Tras seleccionar los repositorios, se analizan manualmente en busca de herramientas de integración continua para ir enumerándolas.
 
-Una vez rellena la lista de sistemas de integración continua a explorar, tanto en GitHub como en GitLab, se va a estudiar el funcionamiento de cada una de ellas y la forma en la que se construyen los ficheros de configuración que utilizan para realizar la automatización de trabajos. De esta forma, por cada uno de estos sistemas de CI, se establece un criterio único de localización de repositorios que emplean herramientas de integración continua y se conforma el heurístico que se va a utilizar para realizar el estudio.
+Una vez \remove{rellena}\add{obtenida} la lista de sistemas de integración continua a explorar, tanto en GitHub como en GitLab, se va a estudiar el funcionamiento de cada una de ellas y la forma en la que se construyen los ficheros de configuración que utilizan para realizar la automatización de trabajos. De esta forma, por cada uno de estos sistemas de CI, se establece un criterio único de localización de repositorios que emplean herramientas de integración continua y se conforma el heurístico que se va a utilizar para realizar el estudio.
 
 Con el heurístico de localización de repositorios prometedores ya construido, se realiza un conteo de estas herramientas sobre una búsqueda de 500 repositorios GitHub y 500 repositorios GitLab, haciendo un total de 1000 repositorios en este experimiento inicial.
 
 A continuación, se analizan los resultados manualmente para verificar la efectividad del heurístico, es decir, comprobar que cuando el heurístico haya encontrado un repositorio que utilice una herramienta de integración continua concreta, efectivamente use esa herramienta de integración continua.
 
-Con cada proyecto Github y GitLab se realiza lo siguiente:
+Por cada proyecto de Github o GitLab se realiza lo siguiente:
 \begin{compactitem}
     \item Localizar el sistema de CI que tiene el proyecto, buscando en su árbol de directorios los ficheros especificados en las carpetas que corresponda (se buscan todos los ficheros en cada repositorio ya que un mismo proyecto podría tener más de un sistema de CI configurado).
     \item Anotar en qué sistemas de CI el proyecto ha dado positivo.
@@ -60,7 +57,7 @@ A continuación se realiza un segundo experimento sobre un número mayor de repo
 
 En este segundo experimento, por cada proyecto, se estudian diferentes aspectos que no se tuvieron en cuenta en el experimento inicial:
 \begin{compactitem}
-    \item Número de trabajos.
+    \item Número de trabajos.\cotutor{Igual, menor hablar de flujos de trabajo}
     \item Número de tareas.
     \item Número medio de tareas por trabajo.
     \item Momento en el que se ejecutan los trabajos: push, pull request, en ramas, schedule...
@@ -83,6 +80,8 @@ Por lo tanto, en cuanto a la metodología del trabajo, los pasos seguidos son lo
 \end{enumerate}
 
 \section{Identificación de sistemas de CI}
+\cotutor{Esta sección parece el primer paso seguido de la metodología, ¿no debería ser por lo tanto una subsección? Quizás la metología podría ir en su propia sección y sus subsecciones fueran cada uno de los puntos citados en el párrafo anterio}
+
 En primer lugar localizamos los sistemas de CI que se van a estudiar. Para ello, se obtienen repositorios que sean conocidos en las plataformas GitHub y GitLab, filtrando por su número de estrellas y bifurcaciones realizadas por otros programadores de la comunidad sobre los mismos. Además, se añaden otras herramientas de integración continua que sean bastante conocidas en el mundo de la informática y la automatización de trabajos en proyectos software con el objetivo de realizar un análisis de herramientas de CI más amplio.
 Por cada una de estas herramientas identificadas se realizan las siguientes tareas:
 \begin{enumerate}
@@ -91,7 +90,7 @@ Por cada una de estas herramientas identificadas se realizan las siguientes tare
     \item Se buscan ejemplos de uso.
 \end{enumerate}
 
-Los sistemas de CI identificados son los siguientes:
+Los sistemas de CI identificados son los siguientes:\cotutor{Estos son los sistemas de trabajo identificados por la herramienta o los que Patxi propuso en un primer momento? Si es lo segundo, hay que especificar que estos sistemas de CI se identificaron ANTES de comenzar el experimento}
 \begin{compactitem}
     \item \underline{Jenkins}: búsqueda del fichero ``Jenkinsfile'' ubicado en la raíz del proyecto \cite{jenkins}.
     \item \underline{Travis}: búsqueda de los ficheros ``.travis-ci.yml'' o ``.travis.yml'' ubicados en la raíz del proyecto \cite{travisCI}.
