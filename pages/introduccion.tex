@@ -21,7 +21,7 @@ En concreto, el proceso de integración y distribución continuas incorpora la a
     \caption{Diagrama de CI/CD}
 \end{figure}
 
-Esta trabajo pondrá más enfasis en la parte de CI y en an aras de comprender lo que engloba cabría definir también conceptos como ``build'' o escenario CI: un ``build'' es mucho más que una compilación, también engloba el proceso de pruebas, inspección de código y despliegue del mismo, a parte de otras cosas. Actúa como el proceso para juntar el código fuente y verificar que el software funcione como una unidad cohesiva. Un escenario de CI comienza cuando el desarrollador envía el código fuente al repositorio. En un proyecto típico, {personas} con diferentes roles pueden realizar cambios que desencadenan un ciclo de CI: los desarrolladores cambian el código fuente, los administradores de bases de datos (DBA) cambian las definiciones de las tablas, los equipos de desarrollo e implementación cambian los archivos de configuración, los equipos de interfaz cambian las especificaciones DTD/XSD y más.
+Esta trabajo pondrá más énfasis en la parte de CI y en an aras de comprender lo que engloba cabría definir también conceptos como ``build'' o escenario CI: un ``build'' es mucho más que una compilación, también engloba el proceso de pruebas, inspección de código y despliegue del mismo, a parte de otras cosas. Actúa como el proceso para juntar el código fuente y verificar que el software funcione como una unidad cohesiva. Un escenario de CI comienza cuando el desarrollador envía el código fuente al repositorio. En un proyecto típico, {personas} con diferentes roles pueden realizar cambios que desencadenan un ciclo de CI: los desarrolladores cambian el código fuente, los administradores de bases de datos (DBA) cambian las definiciones de las tablas, los equipos de desarrollo e implementación cambian los archivos de configuración, los equipos de interfaz cambian las especificaciones DTD/XSD y más.
 
 Los pasos en un escenario de CI típicamente serán más o menos de la siguiente forma \cite{CI_Paul_Duvall}:
 \begin{enumerate}
@@ -183,7 +183,7 @@ los procesos repetitivos pueden ocurrir en todas las actividades del proyecto, i
     \item La capacidad de superar la resistencia (de otros miembros) para implementar mejoras mediante el uso de mecanismos automatizados para procesos importantes como las pruebas.
 \end{compactitem}
 \subsection{Generar software desplegable}
-CI permite lanzar software desplegable en cualquier momento de tiempo, y desde una perspectiva externa, este es el beneficio más obvio de la integración continua. Se podría hablar interminablemente sobre la mejora de la calidad del software y la reducción de los riesgos, pero el software desplegable es el activo más tangible para aquellas personas que no estén tan habituadas a ver e interpretar código fuente, como clientes o usuarios.
+CI permite lanzar software desplegable en cualquier momento de tiempo, y desde una perspectiva externa, este es el beneficio más obvio de la integración continua. Se podría hablar indefinidamente sobre la mejora de la calidad del software y la reducción de los riesgos, pero el software desplegable es el activo más tangible para aquellas personas que no estén tan habituadas a ver e interpretar código fuente, como clientes o usuarios.
 \subsection{Habilitar una mejor visibilidad del proyecto}
 CI proporciona la capacidad de notar tendencias y tomar decisiones efectivas, ayudando a la hora de poder innovar en nuevas mejoras. Los proyectos software sufren cuando no hay datos reales o recientes para respaldar las decisiones que se toman, dando lugar a que todos ofrezcan sus mejores conjeturas. Por lo general, los miembros de un proyecto recopilan esta información manualmente, lo que supone mucho esfuerzo y que, a menudo, la información nunca se recopile. 
 
@@ -292,7 +292,7 @@ El siguiente diagrama muestra cómo se pueden usar las acciones de GitHub para e
     %\caption{Logo de Bamboo.}
 %\end{figure}
 
-    - \textbf{\underline{GitLab CI}}: es la parte de GitLab que secusa para todos los métodos continuos (integración continua, entrega e implementación). Con GitLab CI/CD se puede probar, crear y publicar software sin necesidad de una aplicación o integración de terceros.
+    - \textbf{\underline{GitLab CI}}: es la parte de GitLab que se utiliza para todos los métodos continuos (integración continua, entrega e implementación). Con GitLab CI/CD se puede probar, crear y publicar software sin necesidad de una aplicación o integración de terceros.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.15\textwidth,clip=true]{\logoGitLabCI}
@@ -354,6 +354,6 @@ El siguiente diagrama muestra cómo se pueden usar las acciones de GitHub para e
     %\caption{Logo de Bazel CI.}
 %\end{figure}
 
-Como se ha visto, a pesar de esistir una infinidad de herramientas de integración continua, todas ellas nos van a ofrecer en definitiva recursos muy parecidos para poder integrar nuestros proyectos.
+Como se ha visto, a pesar de existir una infinidad de herramientas de integración continua, todas ellas nos van a ofrecer en definitiva recursos muy parecidos para poder integrar nuestros proyectos.
 
 Otras herramientas a mencionar que nos ofrecen características similares de integración continua son: Azure Pipelines, Bamboo, Codeship, TeamCity, Semaphore CI, Bazel, GoCD, Shippable, Buildkite, Codefresh, Buddy, Buildbot, Wercker, Integrity, WeaveFlux, NeverCode, AutoRABIT, Bitrise, Drone CI, UrbanCode, Strider CD y FinalBuilder.

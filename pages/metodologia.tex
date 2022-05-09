@@ -2,13 +2,13 @@ Para la construcción de este conjunto de datos se va a utilizar una técnica de
 Un repositorio software contiene una gran cantidad de información histórica y valiosa sobre el desarrollo general del sistema que trata (estado, progreso y evolución del proyecto) y esta técnica de ``research'' se va a centrar en la extracción y análisis de los datos heterogéneos disponibles en estos repositorios para descubrir información interesante, útil y procesable sobre el sistema.
 
 En primer lugar, para obtener este conjunto de datos que nos permita analizar el funcionamiento de la integración continua en GitHub y GitLab, se van a enumerar diferentes herramientas de integración continua encontradas en repositorios seleccionados. 
-Estos repositorios se elegiran en función de su repercusión en las plataformas, es decir, por su elevado número de estrellas o las bifurcaciones ``forks'' que tengan, ya que al tratarse de repositorios muy conocidos serán considerados como prometedores en cuanto a la utilización de herramientas de este tipo, objetivo de este estudio, para diferentes aspectos como por ejemplo la automatización de tests.
+Estos repositorios se elegirán en función de su repercusión en las plataformas, es decir, por su elevado número de estrellas o las bifurcaciones ``forks'' que tengan, ya que al tratarse de repositorios muy conocidos serán considerados como prometedores en cuanto a la utilización de herramientas de este tipo, objetivo de este estudio, para diferentes aspectos como por ejemplo la automatización de tests.
 
 Tras seleccionar los repositorios, se analizan manualmente en busca de herramientas de integración continua para ir enumerándolas.
 
 Una vez obtenida la lista de sistemas de integración continua a explorar, tanto en GitHub como en GitLab, se va a estudiar el funcionamiento de cada una de ellas y la forma en la que se construyen los ficheros de configuración que utilizan para realizar la automatización de trabajos. De esta forma, por cada uno de estos sistemas de CI, se establece un criterio único de localización de repositorios que emplean herramientas de integración continua y se conforma el heurístico que se va a utilizar para realizar el estudio.
 
-Con el heurístico de localización de repositorios prometedores ya construido, se realiza un conteo de estas herramientas sobre una búsqueda de 500 repositorios GitHub y 500 repositorios GitLab, haciendo un total de 1000 repositorios en este experimiento inicial.
+Con el heurístico de localización de repositorios prometedores ya construido, se realiza un conteo de estas herramientas sobre una búsqueda de 500 repositorios GitHub y 500 repositorios GitLab, haciendo un total de 1000 repositorios en este experimento inicial.
 
 A continuación, se analizan los resultados manualmente para verificar la efectividad del heurístico, es decir, comprobar que cuando el heurístico haya encontrado un repositorio que utilice una herramienta de integración continua concreta, efectivamente use esa herramienta de integración continua.
 
@@ -21,7 +21,7 @@ Por cada proyecto de Github o GitLab se realiza lo siguiente:
 	
 Con este primer experimento realizado, se establecen cuáles son las herramientas de integración continua más populares con el objetivo de realizar un análisis más exhaustivo sobre ellas.
 
-A continuación se realiza un segundo experimento sobre un número mayor de repositorio, obteniendo exclusivamente más de 500 repositorios en cada plataforma GitHub y  GitLab que hayan dado positivo en algun sistema de CI, descartando por completo aquellos en los que no se ha encontrado nada. Es decir, este conjunto final de datos va a quedar conformado por proyectos que utilizan herramientas de integración continua.
+A continuación se realiza un segundo experimento sobre un número mayor de repositorio, obteniendo exclusivamente más de 500 repositorios en cada plataforma GitHub y  GitLab que hayan dado positivo en algún sistema de CI, descartando por completo aquellos en los que no se ha encontrado nada. Es decir, este conjunto final de datos va a quedar conformado por proyectos que utilizan herramientas de integración continua.
 
 En este segundo experimento, por cada proyecto, se estudian diferentes aspectos que no se tuvieron en cuenta en el experimento inicial:
 \begin{compactitem}
@@ -65,7 +65,7 @@ A continuación, se especifican los sistemas de CI identificados y que serán ut
     \item \underline{GitHub Actions}: búsqueda de ficheros YML o YAML situados en el directorio ``.github/workflows'' \cite{githubActions}.
     \item \underline{Azure Pipelines}: búsqueda del fichero ``azure-pipelines.yml'' en la raíz del proyecto o el directorio ``.azure-pipelines'' \cite{azurePipelines}.
     \item \underline{Bamboo}: búsqueda del fichero YML o YAML ``bamboo'' en el directorio ``bamboo-specs'' \cite{bamboo}.
-    \item \underline{Concourse}: búsqueda de la carpeta ``tasks'' o de algún fichero YML en algun directorio ``concourse'' \cite{concourse}.
+    \item \underline{Concourse}: búsqueda de la carpeta ``tasks'' o de algún fichero YML en algún directorio ``concourse'' \cite{concourse}.
     \item \underline{GitLab CI}: búsqueda del fichero ``.gitlab-ci.yml'' en la raíz del proyecto \cite{gitlabCI}.
     \item \underline{Codeship}: búsqueda, en la raíz del proyecto, de alguno de estos ficheros ``codeship-services.yml'', ``codeship-steps.yml'' o ``codeship-steps.json'' \cite{codeship}.
     \item \underline{TeamCity}: búsqueda del fichero ``settings.kts'' en el directorio ``.teamcity'' \cite{teamcity}.

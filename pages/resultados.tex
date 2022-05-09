@@ -34,14 +34,14 @@ También encontramos repositorios positivos en herramientas como Jenkins, que, a
 
 Otros sistemas a tener en cuenta son Circle CI, Azure Pipelines y Bazel, obteniendo un total de 42, 6 y 8 repositorios positivos, resultados considerados insuficientes como para profundizar en ellos en el experimento final a realizar.
 
-Finalmente, mencionar también los 2 repositorios positivos encontrados para la herramienta de integración continua Concourse, uno para GitHub y otro para GitLab, considerados como falsos positivos ya que a pesar de haber cumplido el criterio de búsqueda establecido no se utiliza esta herramienta de integración en ninguno de los dos casos. Esto se debe a que el criterio establecido para la búsqueda de este sistema de CI, ``tasks'', directorio propuesto por la documetación de Concourse para almacenar los ficheros de configuración de trabajos, es demasiado genérico como para encontrar repositorios que, teniendo ese directorio en su árbol de directorios, usen Concourse.
+Finalmente, mencionar también los 2 repositorios positivos encontrados para la herramienta de integración continua Concourse, uno para GitHub y otro para GitLab, considerados como falsos positivos ya que a pesar de haber cumplido el criterio de búsqueda establecido no se utiliza esta herramienta de integración en ninguno de los dos casos. Esto se debe a que el criterio establecido para la búsqueda de este sistema de CI, ``tasks'', directorio propuesto por la documentación de Concourse para almacenar los ficheros de configuración de trabajos, es demasiado genérico como para encontrar repositorios que, teniendo ese directorio en su árbol de directorios, usen Concourse.
 
 \section{Experimento final}
 Con las conclusiones obtenidas tras la ejecución del primer experimento de este trabajo, se realiza un segundo experimento estudiando más en profundidad los sistemas de CI ofrecidos por Travis CI, GitHub Actions y GitLab CI, ya que son los sistemas de los que se han obtenido más información.
 
 Para ello se modifica el programa de tal forma que se pueda analizar la forma en la que están construidos los ficheros YML o YAML de configuración de trabajos de las herramientas seleccionadas.
 
-La principal mejora añadida para poder analizar dichos ficheros de configuración es la implementación de un script encargado de transformar cada fichero de configuración CI en objetos Python (ci\_yml\_parser.py) con el objetivo de poder manejar la información obtenida y contruir los ficheros excel de resultados fácilmente.
+La principal mejora añadida para poder analizar dichos ficheros de configuración es la implementación de un script encargado de transformar cada fichero de configuración CI en objetos Python (ci\_yml\_parser.py) con el objetivo de poder manejar la información obtenida y construir los ficheros excel de resultados fácilmente.
 
 Este script va a permitir añadir las siguientes columnas al excel principal de resultados:
 \begin{compactitem}
@@ -53,7 +53,7 @@ Este script va a permitir añadir las siguientes columnas al excel principal de 
 
 Con las que, posteriormente y de forma automática, se generan otros ficheros excel de estadísticas relacionadas con estos ficheros de configuración de trabajos. Estas columnas van contener información en formato json y a modo de diccionario con la intención de diferenciar los datos obtenidos en de cada sistema de CI en particular, ya que puede darse el caso de que algún repositorio en concreto haya dado positivo en más de una herramienta de integración continua, que, como se puede ver en los resultados obtenidos, es algo más común de lo que en un principio se podía esperar.
 
-Este segundo experimento consiste en ejecutar el programa tres veces para repositorios GitHub y una vez para repositorios GitLab, encontrando en cada una de estas ejecuciones exclusivamente repositorios positivos en algun sistema de CI. 
+Este segundo experimento consiste en ejecutar el programa tres veces para repositorios GitHub y una vez para repositorios GitLab, encontrando en cada una de estas ejecuciones exclusivamente repositorios positivos en algún sistema de CI. 
 
 Para ello se emplean las siguientes consultas de búsqueda:
 \begin{compactitem}
@@ -69,7 +69,7 @@ Para ello se emplean las siguientes consultas de búsqueda:
             \item is: public
             \item onlyPositives: true
         \end{compactitem}
-        \item \textbf{Ejecución nº 2}: se buscan repositorios GitHub públicos que hayan sido creados antes de la aparición y auge del sistema de CI GitHub Actions, pero que se hayan seguido modificando recientemente. De esta forma se obtendrán repositorios que podrían haber migrado de algun sistema de CI distinto de las acciones de GitHub a el sistema proporcionado por GitHub, por ejemplo de Jenkins o Travis CI a GitHub Actions.
+        \item \textbf{Ejecución nº 2}: se buscan repositorios GitHub públicos que hayan sido creados antes de la aparición y auge del sistema de CI GitHub Actions, pero que se hayan seguido modificando recientemente. De esta forma se obtendrán repositorios que podrían haber migrado de algún sistema de CI distinto de las acciones de GitHub a el sistema proporcionado por GitHub, por ejemplo de Jenkins o Travis CI a GitHub Actions.
         \begin{compactitem}
             \item created: 2010-01-01..2016-01-01
             \item pushed: \textgreater2018-01-01
@@ -123,6 +123,6 @@ En cuanto a los datos que se obtienen relativos a los lenguajes de programación
 
 Se puede observar en los resultados como no aparecen repositorios que usen GitHub Actions, a causa de que los repositorios que se han intentado buscar en esta ejecución son repositorios cuya fecha de creación es anterior al origen de GitHub Actions, y que además, han sido dejados de modificar tras su aparición, es decir, a diferencia de la segunda ejecución de este experimento final sobre proyectos GitHub, no podría darse el caso de que hubiesen migrado de otra herramienta a GitHub Actions.
 
-En la tabla de contadores \ref{tab:tabla_f3_1} queda reflejada la exclusividad de uso de Travis CI para la imiplementación de la itegración continua en proyectos GitHub de código abierto anteriores a la aparición de GitHub Actions, con un total de 110 trabajos y una media de 1'34 tareas por trabajo.
+En la tabla de contadores \ref{tab:tabla_f3_1} queda reflejada la exclusividad de uso de Travis CI para la implementación de la integración continua en proyectos GitHub de código abierto anteriores a la aparición de GitHub Actions, con un total de 110 trabajos y una media de 1'34 tareas por trabajo.
 
 Como se ve reflejado en la tabla \ref{tab:tabla_f3_4}, javascript y java son los dos lenguajes más utilizados. En cuanto a los escenarios de ejecución se observa que el programa solamente ha encontrado trabajos sin escenarios definidos en etiquetas dedicadas exclusivamente para ello, como por ejemplo las etiquetas ``stage'', ``stages'' o la etiqueta ``on'' en el caso de GitHub Actions. Al no encontrar escenarios propiamente dichos, la tabla \ref{tab:tabla_f3_5} se ha rellenado con etiquetas del tipo ``script'', ``before\_install'', ``before\_script'' e ``install''.

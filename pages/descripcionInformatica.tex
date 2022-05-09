@@ -62,7 +62,7 @@ En este trabajo se va a utilizar tanto para la implementación del programa en P
     %\item \textbf{github\_tests.py}: script utilizado para aplicar el heurístico sobre un repositorio GitHub concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitHub.
     %\item \textbf{gitlab\_search.py}: script en el que se realiza la búsqueda de repositorios GitLab.
     %\item \textbf{gitlab\_tests.py}: script utilizado para aplicar el heurístico sobre un repositorio GitLab concreto, es decir, permite realizar pruebas unitarias sobre repositorios GitLab.
-    %\item \textbf{main.py}: script que se llaman a todos las funciones necesarias para realizar el proceso de búqueda de repositorios. Conforma el programa principal.
+    %\item \textbf{main.py}: script que se llaman a todos las funciones necesarias para realizar el proceso de búsqueda de repositorios. Conforma el programa principal.
     %\item \textbf{project\_cleaner.py}: script que va a permitir limpiar el proyectos de ficheros que ya no sirvan o temporales (ficheros excel de resultados, ficheros pickle y ficheros de log).
     %\item \textbf{convertExcel2LaTeX.py}: script que va a permitir convertir las tablas de los ficheros excel de resultados en código fuente LaTeX con el objetivo de facilitar la escritura de las mismas en la memoria del trabajo.
 %\end{compactitem}
@@ -90,15 +90,15 @@ En este trabajo se va a utilizar tanto para la implementación del programa en P
         %\item \textbf{N\_RANDOM}: indica, en el caso de que se marque la opción ``randomizeRepos'', el número de repositorios aleatorios que se obtendrán.
         %\item \textbf{onlyPositives}: indica si se devuelven única y exclusivamente repositorios positivos en los ficheros de resultados.
     %\end{compactitem}
-    %\item etiquerta \textbf{gitlab}, con variables relacionadas con la configuración de la búsqueda GitLab.
+    %\item etiqueta \textbf{gitlab}, con variables relacionadas con la configuración de la búsqueda GitLab.
     %\begin{compactitem}
-        %\item \textbf{search1By1}: indica si se aplicará el heurístico a cada proyecto según se vayan encontrando o si, por el contrario, se obtienen todos los proyectos y a continuación, una vez obtenidos, se recorren para aplicarles el heurístico. Si buscamos solo positivos, ``search1By1'' será verdadero en cualquier caso (aspectopor programa), sin tener en cuenta el valor que venga en el fichero de configuración.
+        %\item \textbf{search1By1}: indica si se aplicará el heurístico a cada proyecto según se vayan encontrando o si, por el contrario, se obtienen todos los proyectos y a continuación, una vez obtenidos, se recorren para aplicarles el heurístico. Si buscamos solo positivos, ``search1By1'' será verdadero en cualquier caso (aspecto controlado por programa), sin tener en cuenta el valor que venga en el fichero de configuración.
         %\item \textbf{N\_ERROR\_PAGE\_ATTEMPTS}: indica el número máximo de intentos a ejecutar en caso de que la llamada a la API de GitLab falle.
         %\item \textbf{LANGUAGE}: indica el lenguaje en el que tendrán que estar implementados los proyectos GitLab analizados.
         %\item \textbf{N\_MAX\_SEARCHES}: indica el número máximo de búsquedas que se van a realizar.
         %\item \textbf{N\_MIN\_STARS}: indica el número mínimo de estrellas que tendrán que tener los proyectos GitLab analizados.
         %\item \textbf{onlyPositives}: indica si se devuelven única y exclusivamente proyectos positivos en los ficheros de resultados.
-        %\item \textbf{N\_MAX\_PROJECTS}: si solo buscamos positivos, N\_MAX\_PROJECTS será el nº máximo de positivos a encontrar. Si buscamos tanto positivos como negativos, N\_MAX\_PROJECTS será el número máximo de projectos que tratará (sean o no positivos en CI).
+        %\item \textbf{N\_MAX\_PROJECTS}: si solo buscamos positivos, N\_MAX\_PROJECTS será el nº máximo de positivos a encontrar. Si buscamos tanto positivos como negativos, N\_MAX\_PROJECTS será el número máximo de proyectos que tratará (sean o no positivos en CI).
     %\end{compactitem}
 %\end{enumerate}
 
@@ -134,7 +134,7 @@ El proceso que lleva a cabo esta aplicación está programado de tal forma que s
 Al finalizar el proceso, se generan en local una serie de ficheros de resultados con información relevante sobre diferentes sistemas de CI para su posterior análisis:
 
 \begin{compactitem}
-    \item \textbf{Ficheros de resultados}: Ficheros excel que van a componer matrices repositorio de GitHub o GitLab/herramienta de CI indicando en su intersección mediante una ``***'' si el repositorio X utiliza o no laherramienta de integración continua Y.
+    \item \textbf{Ficheros de resultados}: Ficheros excel que van a componer matrices repositorio de GitHub o GitLab/herramienta de CI indicando en su intersección mediante una ``***'' si el repositorio X utiliza o no la herramienta de integración continua Y.
     \item \textbf{Ficheros de lenguajes de programación}: Ficheros excel que van a componer matrices lenguaje (de los repositorios GitHub o GitLab encontrados)/herramienta de CI indicando el número de repositorios implementados en el lenguaje de programación X que utilizan la herramienta de integración continua Y.
     \item \textbf{Ficheros de estadísticas de CI}: Ficheros excel en los que se van a recoger, por cada sistema de CI, datos estadísticos como el mínimo, el máximo, la media y la mediana relativos a los ``jobs'' encontrados en la búsqueda que se haya realizado.
     \item \textbf{Ficheros de estadísticas de CI por lenguaje de programación}: Ficheros excel en los que se van a recoger, por cada lenguaje de programación encontrado, datos estadísticos como el mínimo, el máximo, la media y la mediana relativos a los ``jobs'' encontrados en la búsqueda que se haya realizado.
@@ -226,7 +226,7 @@ La solución empleada para corregir este problema es la siguiente: en lugar de r
 
 \textit{while scanning a quoted scalar in ``tmp/ftmp\_0.yml'', line 21, column 27 found unexpected end of stream in ``tmp/ftmp\_0.yml'', line 22, column 1}
 
-Por ejemplo, el repositorio ``leapsight/bondy'' (\url{https://gitlab.com/leapsight/bondy}), a pesar de haber sido encontrado almacenado en la plataforma GitLab, utiliza la herramienta de integración continua proporcionada por de GitHub Actions en el directorio .github/workflows/docker\_image\_build.yaml. A siple vista, parece que están bien configuradas las instrucciones de dicho fichero YAML, sin embargo, en la línea 48 del fichero, se observa que hay un guión con un nivel de tabulación distinto al de los demás debido a que tiene un caracter espacio (' ') de más [\ref{sec:errorPyYaml}]. Esto provoca que la librería PyYaml utilizada no sea capaz de transformar el fichero YML a un objeto diccionario de Python. 
+Por ejemplo, el repositorio ``leapsight/bondy'' (\url{https://gitlab.com/leapsight/bondy}), a pesar de haber sido encontrado almacenado en la plataforma GitLab, utiliza la herramienta de integración continua proporcionada por de GitHub Actions en el directorio .github/workflows/docker\_image\_build.yaml. A simple vista, parece que están bien configuradas las instrucciones de dicho fichero YAML, sin embargo, en la línea 48 del fichero, se observa que hay un guion con un nivel de tabulación distinto al de los demás debido a que tiene un caracter espacio (' ') de más [\ref{sec:errorPyYaml}]. Esto provoca que la librería PyYaml utilizada no sea capaz de transformar el fichero YML a un objeto diccionario de Python. 
 
 No obstante, habría que comprobar si, a pesar de tener ese espacio de más, el fichero de configuración funciona correctamente a la hora de que ejecutar los trabajos que tiene automatizados mediante GitHub Actions en este caso.
 
