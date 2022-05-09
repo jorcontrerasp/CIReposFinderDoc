@@ -116,12 +116,14 @@ Para ello, se utilizan una serie de librerías, todas ellas enumeradas en el fic
     \item \textbf{PyGithub}: librería que facilita el uso de la API de GitHub v3. Permite la gestión de diferentes recursos de GitHub (repositorios, perfiles de usuario, organizaciones, etc.) desde scripts Python.
     \item \textbf{Python-Gitlab}: librería que facilita el uso de la API v4 de GitLab y proporciona una herramienta CLI (Command Line Interface). Permite la gestión de diferentes recursos sobre proyectos almacenados en GitLab desde scripts Python.
     \item \textbf{Pandas}: iniciada en 2008, es una librería que pretende ser el bloque de construcción fundamental de alto nivel para realizar análisis de datos prácticos del mundo real en Python. Además, tiene el objetivo más amplio de convertirse en la herramienta de análisis/manipulación de datos de código abierto más potente y flexible disponible en cualquier idioma. Nos va a permitir manejar DataFrames y convertir la información que queramos tanto en formato excel como en formato csv para su posterior estudio.
-    \item \textbf{Pickle}: importando esta librería en el proyecto vamos a poder almacenar la información que queramos en un fichero binario de Python. En este caso, una vez obtenidos los repositorios a analizar se almacenarán en un fichero de este tipo para poder reutilizar esos repositorios en posteriores ejecuciones.
-    \item \textbf{Base64}: este módulo proporciona funciones para codificar datos binarios en caracteres ASCII imprimibles y decodificar dichas codificaciones en datos binarios.
+    %\item \textbf{Pickle}: importando esta librería en el proyecto vamos a poder almacenar la información que queramos en un fichero binario de Python. En este caso, una vez obtenidos los repositorios a analizar se almacenarán en un fichero de este tipo para poder reutilizar esos repositorios en posteriores ejecuciones.
+    %\item \textbf{Base64}: este módulo proporciona funciones para codificar datos binarios en caracteres ASCII imprimibles y decodificar dichas codificaciones en datos binarios.
     \item \textbf{PyYaml}: PyYAML es un marco YAML con todas las funciones para el lenguaje de programación Python. Nos va a permitir transformar ficheros con extensión YAML o YML en diccionarios Python en formato json.
-    \item \textbf{Shutil}: librería que, mediante la instrucción ``rmtree'' va a permitir borrar carpetas de ficheros temporales utilizados para analizar cada repositorio GitHub/GitLab.
-    \item \textbf{Json}: librería que va a permitir transformar textos en formato json en un objeto diccionario de Python.
+    %\item \textbf{Shutil}: librería que, mediante la instrucción ``rmtree'' va a permitir borrar carpetas de ficheros temporales utilizados para analizar cada repositorio GitHub/GitLab.
+    %\item \textbf{Json}: librería que va a permitir transformar textos en formato json en un objeto diccionario de Python.
 \end{compactitem}
+
+Además se utilizan otras librerías propias del lenguaje de programación Python como por ejemplo ``Pickle'', ``Base64'', ``Shutil'' o ``Json''.
 
 El proceso que lleva a cabo esta aplicación está programado de tal forma que sea configurable mediante el fichero ``config.yml''. Este fichero de configuración cuenta con tres partes bien diferenciadas:
 
@@ -226,7 +228,7 @@ La solución empleada para corregir este problema es la siguiente: en lugar de r
 
 \textit{while scanning a quoted scalar in ``tmp/ftmp\_0.yml'', line 21, column 27 found unexpected end of stream in ``tmp/ftmp\_0.yml'', line 22, column 1}
 
-Por ejemplo, el repositorio ``leapsight/bondy'' (\url{https://gitlab.com/leapsight/bondy}), a pesar de haber sido encontrado almacenado en la plataforma GitLab, utiliza la herramienta de integración continua proporcionada por de GitHub Actions en el directorio .github/workflows/docker\_image\_build.yaml. A simple vista, parece que están bien configuradas las instrucciones de dicho fichero YAML, sin embargo, en la línea 48 del fichero, se observa que hay un guion con un nivel de tabulación distinto al de los demás debido a que tiene un caracter espacio (' ') de más [\ref{sec:errorPyYaml}]. Esto provoca que la librería PyYaml utilizada no sea capaz de transformar el fichero YML a un objeto diccionario de Python. 
+Por ejemplo, el repositorio ``leapsight/bondy'' (\url{https://gitlab.com/leapsight/bondy}), a pesar de haber sido encontrado almacenado en la plataforma GitLab, utiliza la herramienta de integración continua proporcionada por de GitHub Actions en el directorio .github/workflows/docker\_image\_build.yaml. A simple vista, parece que están bien configuradas las instrucciones de dicho fichero YAML, sin embargo, en la línea 48 del fichero, se observa que hay un guion con un nivel de tabulación distinto al de los demás debido a que tiene un caracter espacio (' ') de más. Esto provoca que la librería PyYaml utilizada no sea capaz de transformar el fichero YML a un objeto diccionario de Python. 
 
 No obstante, habría que comprobar si, a pesar de tener ese espacio de más, el fichero de configuración funciona correctamente a la hora de que ejecutar los trabajos que tiene automatizados mediante GitHub Actions en este caso.
 

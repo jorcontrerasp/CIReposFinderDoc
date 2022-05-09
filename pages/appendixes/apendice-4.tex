@@ -1,89 +1,1101 @@
-\section{Error PyYaml: ejemplo de fichero CI}
-\label{sec:errorPyYaml}
+\section{Experimento preliminar}
 
-\begin{lstlisting}[caption=Fichero YAML CI del proyecto GitLab ``leapsight/bondy'']
-name: CI
-on:
-  push:
-    branches : [develop, master]
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
-      - '[0-9]+.[0-9]+.[0-9]+\+[0-9]+'
-      - '[0-9]+.[0-9]+.[0-9]+(-[a-zA-Z0-9]+)*([\+.][0-9]+)*'
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. preliminar. Contadores.}
+  \label{tab:tabla_p1}
 
-jobs:
-  docker:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v2
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ github.token }}
-      -
-        name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: ${{ github.repository }}/bondy
-          tags: |
-            type=semver,pattern={{version}}
-          flavor: |
-            latest=false
-            prefix=
-            suffix=
-       - 
-        name: Build and push standard image
-        uses: docker/build-push-action@v2
-        with:
-          context: /deployment
-          file: /deployment/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: docker.io/${{ steps.meta.outputs.tags }}
-      -
-        name: Build and push alpine image
-        uses: docker/build-push-action@v2
-        with:
-          context: /deployment
-          file: /deployment/alpine.Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: docker.io/${{ steps.meta.outputs.tags }}-alpine
-      -
-        # Copy multiplatform image from dockerhub to multiple registries
-        # without changing the image SHA
-        name: Copy Image to multiple registries
-        uses: akhilerm/tag-push-action@v1.0.0
-        with:
-          src: docker.io/${{ steps.meta.outputs.tags }}
-          dst: |
-            ghcr.io/${{ steps.meta.outputs.tags }}
-      -
-        # Copy multiplatform image from dockerhub to multiple registries
-        # without changing the image SHA
-        name: Copy Image to multiple registries
-        uses: akhilerm/tag-push-action@v1.0.0
-        with:
-          src: docker.io/${{ steps.meta.outputs.tags }}-alpine
-          dst: |
-            ghcr.io/${{ steps.meta.outputs.tags }}-alpine
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Encontrados GitHub &  Encontrados GitLab \\
+  \hline
+  jenkins         &                   5 &                   0 \\
+  travis          &                  68 &                  25 \\
+  circle ci       &                  40 &                   2 \\
+  github actions  &                 242 &                  11 \\
+  azure pipelines &                   5 &                   1 \\
+  bamboo          &                   0 &                   0 \\
+  concourse       &                   1 &                   1 \\
+  gitlab ci       &                   0 &                 287 \\
+  codeship        &                   0 &                   0 \\
+  teamcity        &                   1 &                   0 \\
+  bazel           &                   7 &                   1 \\
+  semaphore ci    &                   0 &                   0 \\
+  appveyor        &                   0 &                   0 \\
+  \hline
+  Totales         &                 310 &                 296 \\
+ \end{tabular}
+\end{footnotesize}
 
-\end{lstlisting}
+\end{table}
+
+\newpage
+
+\section{Experimento final}
+
+\subsection{Ejecución nº 1 (GitHub y GitLab)}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Contadores.}
+  \label{tab:tabla_f1_1}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Encontrados GitHub &  Encontrados GitLab \\
+  \hline
+  jenkins         &                   7 &                   1 \\
+  travis          &                 129 &                  37 \\
+  circle ci       &                  62 &                   4 \\
+  github actions  &                 450 &                  19 \\
+  azure pipelines &                  10 &                   1 \\
+  bamboo          &                   1 &                   0 \\
+  gitlab ci       &                   4 &                 488 \\
+  codeship        &                   0 &                   0 \\
+  teamcity        &                   1 &                   0 \\
+  bazel           &                  11 &                   1 \\
+  semaphore ci    &                   0 &                   0 \\
+  appveyor        &                   0 &                   0 \\
+  \hline
+  Totales         &                 567 &                 501 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.95\textwidth,clip=true]{\graphA}
+  \caption{Exp. final, ejecución 1. Contadores.}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.65\textwidth,clip=true]{\graphB}
+  \caption{Exp. final, ejecución 1. Contadores.}
+\end{figure}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Lenguajes.}
+  \label{tab:tabla_f1_2a}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Jenkins &  Travis &  Circle CI &  GitHub Actions &  Azure Pipelines &  Bamboo \\
+  \hline
+  javascript       &        1 &      32 &          9 &              75 &                3 &       0 \\
+  typescript       &        1 &       7 &         17 &              74 &                1 &       0 \\
+  python           &        3 &      19 &         10 &              65 &                0 &       0 \\
+  go               &        0 &      14 &          4 &              53 &                0 &       1 \\
+  java             &        0 &      19 &          4 &              31 &                0 &       0 \\
+  c++              &        1 &       6 &          4 &              27 &                5 &       0 \\
+  ...              &      ... &     ... &        ... &             ... &              ... &     ... \\
+  \hline
+  Totales          &        7 &     129 &         62 &             450 &               10 &       1 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Lenguajes (continuación).}
+  \label{tab:tabla_f1_2b}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  GitLab CI &  Codeship &  TeamCity &  Bazel &  Semaphore CI &  AppVeyor &  TOTALES \\
+  \hline
+  javascript       &        0 &         0 &         0 &      0 &             0 &         0 &    120 \\
+  typescript       &        0 &         0 &         1 &      2 &             0 &         0 &    103 \\
+  python           &        1 &         0 &         0 &      2 &             0 &         0 &    100 \\
+  go               &        0 &         0 &         0 &      2 &             0 &         0 &     74 \\
+  java             &        1 &         0 &         0 &      0 &             0 &         0 &     55 \\
+  c++              &        2 &         0 &         0 &      5 &             0 &         0 &     50 \\
+  ...              &      ... &       ... &       ... &    ... &           ... &       ... &    ... \\
+  \hline
+  Totales          &        4 &         0 &         1 &     11 &             0 &         0 &      - \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Estadísticas de CI GitHub.}
+  \label{tab:tabla_f1_3}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total repositorios &  Total trabajos &  Min &  Max &  Media &  Mediana \\
+  \hline
+  travis         &        129 &         281 &    1 &   14 &   2.18 &      2.0 \\
+  github actions &        450 &        4213 &    1 &  569 &   9.36 &      4.0 \\
+  gitlab ci      &          4 &          47 &    1 &   44 &  11.75 &      1.5 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Estadísticas por lenguaje GitHub.}
+  \label{tab:tabla_f1_4}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total repositorios &  Total trabajos &  Min &  Max &  Media &  Mediana \\
+  \hline
+  javascript       &        106 &         428 &    1 &   40 &   4.04 &      2.0 \\
+  typescript       &         84 &         608 &    1 &   52 &   7.24 &      4.5 \\
+  python           &         83 &         626 &    1 &   74 &   7.54 &      3.0 \\
+  go               &         61 &         459 &    1 &   54 &   7.52 &      5.0 \\
+  java             &         43 &         209 &    1 &   26 &   4.86 &      3.0 \\
+  c++              &         36 &        1205 &    1 &  569 &  33.47 &      4.5 \\
+  %rust             &         18 &         298 &    1 &   82 &  16.56 &     12.0 \\
+  %vue              &         18 &         127 &    1 &   43 &   7.06 &      3.0 \\
+  %none             &         15 &          35 &    1 &    7 &   2.33 &      2.0 \\
+  %jupyter notebook &         15 &          29 &    1 &    5 &   1.93 &      2.0 \\
+  %c\#               &         11 &          81 &    1 &   41 &   7.36 &      3.0 \\
+  %shell            &          9 &          31 &    1 &   11 &   3.44 &      3.0 \\
+  %swift            &          9 &          37 &    1 &    8 &   4.11 &      4.0 \\
+  %html             &          9 &          12 &    1 &    3 &   1.33 &      1.0 \\
+  %c                &          8 &          32 &    1 &   12 &   4.00 &      3.0 \\
+  %kotlin           &          6 &          21 &    1 &   13 &   3.50 &      1.5 \\
+  %ruby             &          6 &          60 &    1 &   19 &  10.00 &     10.0 \\
+  %php              &          5 &          61 &    1 &   30 &  12.20 &      8.0 \\
+  %dart             &          5 &          34 &    1 &   17 &   6.80 &      4.0 \\
+  %scss             &          3 &           3 &    1 &    2 &   1.00 &      1.0 \\
+  %objective-c      &          3 &          64 &    4 &   38 &  21.33 &     22.0 \\
+  %css              &          2 &           0 &    0 &    0 &   0.00 &      0.0 \\
+  %vim script       &          2 &           9 &    2 &    7 &   4.50 &      4.5 \\
+  %v                &          1 &          53 &   53 &   53 &  53.00 &     53.0 \\
+  %haskell          &          1 &           3 &    3 &    3 &   3.00 &      3.0 \\
+  %tex              &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %jinja            &          1 &           3 &    3 &    3 &   3.00 &      3.0 \\
+  %standard ml      &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %markdown         &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+  %scala            &          1 &           0 &    0 &    0 &   0.00 &      0.0 \\
+  %cmake            &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %blade            &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+  %jsonnet          &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+  %dockerfile       &          1 &           4 &    4 &    4 &   4.00 &      4.0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Estadísticas de escenarios CI GitHub.}
+  \label{tab:tabla_f1_5}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total proyectos &  Total escenarios \\
+  \hline
+  push                        &                 413 &          2999 \\
+  pull\_request                &                 360 &          2070 \\
+  schedule                    &                 189 &           532 \\
+  workflow\_dispatch           &                 141 &          1191 \\
+  script                      &                 111 &           117 \\
+  install                     &                  63 &            69 \\
+  release                     &                  56 &           168 \\
+  %issues                      &                  55 &            91 \\
+  %pull\_request\_target         &                  55 &            86 \\
+  %issue\_comment               &                  42 &            69 \\
+  %before\_install              &                  36 &            38 \\
+  %before\_script               &                  32 &            32 \\
+  %workflow\_run                &                  24 &            59 \\
+  %repository\_dispatch         &                  15 &            82 \\
+  %pull\_request\_review         &                   6 &             6 \\
+  %workflow\_call               &                   5 &            28 \\
+  %branch\_protection\_rule      &                   5 &             5 \\
+  %status                      &                   4 &             4 \\
+  %label                       &                   3 &             6 \\
+  %after\_script                &                   3 &             3 \\
+  %test                        &                   2 &            36 \\
+  %tests                       &                   2 &             6 \\
+  %deploy                      &                   2 &             3 \\
+  %check\_suite                 &                   2 &             2 \\
+  %page\_build                  &                   2 &             2 \\
+  %discussion                  &                   2 &             2 \\
+  %watch                       &                   2 &             2 \\
+  %build                       &                   1 &            15 \\
+  %build examples              &                   1 &             8 \\
+  %create                      &                   1 &             7 \\
+  %deployment\_status           &                   1 &             2 \\
+  %export                      &                   1 &             2 \\
+  %format                      &                   1 &             1 \\
+  %lint                        &                   1 &             1 \\
+  %pull\_request\_review\_comment &                   1 &             1 \\
+  %pod lint                    &                   1 &             1 \\
+  %danger                      &                   1 &             1 \\
+  %collect\_artifacts           &                   1 &             1 \\
+  %conditional\_build           &                   1 &             1 \\
+  %delete                      &                   1 &             1 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Lenguajes.}
+  \label{tab:tabla_f1_6a}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Jenkins &  Travis &  Circle CI &  GitHub Actions &  Azure Pipelines &  Bamboo \\
+  \hline
+  python           &        0 &       6 &          0 &               1 &                0 &       0 \\
+  c                &        0 &       7 &          0 &               7 &                0 &       0 \\
+  javascript       &        0 &       5 &          0 &               0 &                0 &       0 \\
+  c++              &        0 &       3 &          1 &               5 &                1 &       0 \\
+  ruby             &        0 &       2 &          0 &               0 &                0 &       0 \\
+  rust             &        0 &       3 &          0 &               1 &                0 &       0 \\
+  go               &        0 &       0 &          0 &               0 &                0 &       0 \\
+  java             &        0 &       1 &          0 &               0 &                0 &       0 \\
+  ...              &      ... &     ... &        ... &             ... &              ... &     ... \\
+  \hline
+  Totales          &        1 &      37 &          4 &              19 &                1 &       0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Lenguajes (continuación).}
+  \label{tab:tabla_f1_6b}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  GitLab CI &  Codeship &  TeamCity &  Bazel &  Semaphore CI &  AppVeyor &  TOTALES \\
+  \hline
+  python           &        83 &         0 &         0 &      0 &             0 &         0 &     90.0 \\
+  c                &        49 &         0 &         0 &      0 &             0 &         0 &     63.0 \\
+  javascript       &        50 &         0 &         0 &      0 &             0 &         0 &     55.0 \\
+  c++              &        41 &         0 &         0 &      0 &             0 &         0 &     51.0 \\
+  ruby             &        33 &         0 &         0 &      0 &             0 &         0 &     35.0 \\
+  rust             &        28 &         0 &         0 &      0 &             0 &         0 &     32.0 \\
+  go               &        29 &         0 &         0 &      0 &             0 &         0 &     29.0 \\
+  java             &        25 &         0 &         0 &      0 &             0 &         0 &     26.0 \\
+  ...              &       ... &       ... &       ... &    ... &           ... &       ... &      ... \\
+  \hline
+  Totales          &       488 &         0 &         0 &      1 &             0 &         0 &        - \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Estadísticas de CI GitLab.}
+  \label{tab:tabla_f1_7}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total repositorios &  Total trabajos &  Min &  Max &  Media &  Mediana \\
+  \hline
+  travis         &         37 &         103 &    1 &   10 &   2.78 &        2 \\
+  github actions &         19 &          92 &    1 &   42 &   4.84 &        1 \\
+  gitlab ci      &        488 &        4463 &    1 &  846 &   9.15 &        4 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Estadísticas por lenguaje GitLab.}
+  \label{tab:tabla_f1_8}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total repositorios &  Total trabajos &  Min &  Max &  Media &  Mediana \\
+  \hline
+  python           &         85 &        1418 &    1 &  846 &  16.68 &      5.0 \\
+  javascript       &         52 &         214 &    1 &   18 &   4.12 &      3.0 \\
+  c                &         51 &         506 &    1 &   62 &   9.92 &      6.0 \\
+  c++              &         44 &         670 &    1 &  121 &  15.23 &      7.0 \\
+  ruby             &         34 &         346 &    1 &   96 &  10.18 &      3.5 \\
+  go               &         29 &         209 &    1 &   33 &   7.21 &      4.0 \\
+  rust             &         28 &         212 &    1 &   39 &   7.57 &      5.0 \\
+  java             &         25 &         117 &    1 &   11 &   4.68 &      4.0 \\
+  %shell            &         25 &          88 &    1 &   10 &   3.52 &      3.0 \\
+  %php              &         19 &         173 &    1 &   36 &   9.11 &      6.0 \\
+  %typescript       &         15 &         150 &    2 &   26 &  10.00 &      9.0 \\
+  %none             &         13 &          31 &    1 &    6 &   2.38 &      2.0 \\
+  %kotlin           &          9 &          66 &    4 &   15 &   7.33 &      5.0 \\
+  %emacs lisp       &          7 &          23 &    1 &   11 &   3.29 &      2.0 \\
+  %c\#               &          6 &          71 &    1 &   28 &  11.83 &     10.0 \\
+  %scheme           &          6 &          35 &    1 &   15 &   5.83 &      5.0 \\
+  %makefile         &          4 &          20 &    2 &    8 &   5.00 &      5.0 \\
+  %dockerfile       &          4 &           5 &    1 &    2 &   1.25 &      1.0 \\
+  %lua              &          3 &           5 &    2 &    3 &   1.67 &      2.0 \\
+  %haskell          &          3 &          24 &    2 &   19 &   8.00 &      3.0 \\
+  %vue              &          3 &           8 &    2 &    4 &   2.67 &      2.0 \\
+  %elixir           &          3 &           8 &    2 &    4 &   2.67 &      2.0 \\
+  %perl             &          2 &          19 &    8 &   11 &   9.50 &      9.5 \\
+  %tex              &          2 &           3 &    1 &    2 &   1.50 &      1.5 \\
+  %fortran          &          2 &          36 &    8 &   28 &  18.00 &     18.0 \\
+  %ocaml            &          2 &           8 &    1 &    7 &   4.00 &      4.0 \\
+  %qml              &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %stylus           &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %erlang           &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %jsonnet          &          1 &          35 &   35 &   35 &  35.00 &     35.0 \\
+  %scala            &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %matlab           &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+  %glsl             &          1 &          32 &   32 &   32 &  32.00 &     32.0 \\
+  %common lisp      &          1 &           6 &    6 &    6 &   6.00 &      6.0 \\
+  %swift            &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %qt script        &          1 &           3 &    3 &    3 &   3.00 &      3.0 \\
+  %assembly         &          1 &           3 &    3 &    3 &   3.00 &      3.0 \\
+  %racket           &          1 &           3 &    3 &    3 &   3.00 &      3.0 \\
+  %objective-c      &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+  %vala             &          1 &           7 &    7 &    7 &   7.00 &      7.0 \\
+  %vim script       &          1 &           3 &    3 &    3 &   3.00 &      3.0 \\
+  %pug              &          1 &           3 &    3 &    3 &   3.00 &      3.0 \\
+  %nix              &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %plpgsql          &          1 &          27 &   27 &   27 &  27.00 &     27.0 \\
+  %gdscript         &          1 &           8 &    8 &    8 &   8.00 &      8.0 \\
+  %powershell       &          1 &           3 &    3 &    3 &   3.00 &      3.0 \\
+  %handlebars       &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+  %crystal          &          1 &           6 &    6 &    6 &   6.00 &      6.0 \\
+  %bluespec         &          1 &           4 &    4 &    4 &   4.00 &      4.0 \\
+  %openscad         &          1 &           9 &    9 &    9 &   9.00 &      9.0 \\
+  %jupyter notebook &          1 &          22 &   22 &   22 &  22.00 &     22.0 \\
+  %hcl              &          1 &           4 &    4 &    4 &   4.00 &      4.0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 1. Estadísticas de escenarios CI GitLab.}
+  \label{tab:tabla_f1_9}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total proyectos &  Total escenarios \\
+  \hline
+  build                      &                 202 &           715 \\
+  test                       &                 200 &          1075 \\
+  script                     &                 180 &           558 \\
+  before\_script              &                 151 &           156 \\
+  deploy                     &                 136 &           354 \\
+  release                    &                  34 &            64 \\
+  %workflow                   &                  30 &            30 \\
+  %before\_install             &                  23 &            31 \\
+  %install                    &                  23 &            26 \\
+  %prepare                    &                  15 &            42 \\
+  %lint                       &                  15 &            39 \\
+  %package                    &                  15 &            38 \\
+  %push                       &                  13 &            81 \\
+  %publish                    &                  12 &            28 \\
+  %pull\_request               &                   9 &            70 \\
+  %after\_script               &                   9 &            14 \\
+  %triage                     &                   7 &            12 \\
+  %review                     &                   7 &            12 \\
+  %docs                       &                   6 &             9 \\
+  %qa                         &                   5 &            11 \\
+  %pages                      &                   5 &             5 \\
+  %doc                        &                   5 &             5 \\
+  %build\_and\_test             &                   4 &            21 \\
+  %check                      &                   4 &             8 \\
+  %.pre                       &                   4 &             6 \\
+  %pull\_request\_target        &                   4 &             4 \\
+  %production                 &                   4 &             4 \\
+  %benchmark                  &                   3 &            49 \\
+  %compile                    &                   3 &            18 \\
+  %build-image                &                   3 &            13 \\
+  %analysis                   &                   3 &             7 \\
+  %docker                     &                   3 &             7 \\
+  %format                     &                   3 &             6 \\
+  %dependencies               &                   3 &             5 \\
+  %cleanup                    &                   3 &             4 \\
+  %trigger                    &                   3 &             4 \\
+  %post                       &                   3 &             4 \\
+  %images                     &                   3 &             3 \\
+  %staging                    &                   3 &             3 \\
+  %build\_image                &                   3 &             3 \\
+  %.post                      &                   3 &             3 \\
+  %coverage                   &                   3 &             3 \\
+  %integration                &                   3 &             3 \\
+  %schedule                   &                   3 &             3 \\
+  %unit\_test                  &                   2 &           116 \\
+  %extras                     &                   2 &            32 \\
+  %static                     &                   2 &             7 \\
+  %tests                      &                   2 &             6 \\
+  %unit-tests                 &                   2 &             6 \\
+  %installer                  &                   2 &             5 \\
+  %tarball                    &                   2 &             4 \\
+  %sanitychecks               &                   2 &             4 \\
+  %workflow\_dispatch          &                   2 &             4 \\
+  %notify                     &                   2 &             3 \\
+  %distribution               &                   2 &             3 \\
+  %analyse                    &                   2 &             3 \\
+  %deploy:staging             &                   2 &             3 \\
+  %deploy:production          &                   2 &             3 \\
+  %bootstrap                  &                   2 &             2 \\
+  %issues                     &                   2 &             2 \\
+  %build-docker               &                   2 &             2 \\
+  %image                      &                   2 &             2 \\
+  %dist                       &                   2 &             2 \\
+  %bench                      &                   2 &             2 \\
+  %version                    &                   2 &             2 \\
+  %environment                &                   2 &             2 \\
+  %internal                   &                   2 &             2 \\
+  %alpha                      &                   2 &             2 \\
+  %beta                       &                   2 &             2 \\
+  %deploy:canary              &                   2 &             2 \\
+  %pre\_build                  &                   2 &             2 \\
+  %scan                       &                   1 &           225 \\
+  %cudnn                      &                   1 &           132 \\
+  %cuda                       &                   1 &           129 \\
+  %tiki-check                 &                   1 &            21 \\
+  %testing                    &                   1 &            20 \\
+  %prebuild                   &                   1 &            19 \\
+  %stage1-testing             &                   1 &            19 \\
+  %advanced\_build             &                   1 &            18 \\
+  %deb                        &                   1 &            15 \\
+  %snowflake               &                   1 &             9 \\
+  %eval                       &                   1 &             9 \\
+  %python                   &                   1 &             8 \\
+  %manually\_triggered\_tests   &                   1 &             7 \\
+  %compatibility              &                   1 &             7 \\
+  %content-generation         &                   1 &             6 \\
+  %confidence-check           &                   1 &             6 \\
+  %linux build                &                   1 &             6 \\
+  %checks                     &                   1 &             6 \\
+  %docker\_images              &                   1 &             6 \\
+  %deploy\_production          &                   1 &             6 \\
+  %test-plugins               &                   1 &             5 \\
+  %finalization               &                   1 &             5 \\
+  %finish-publish             &                   1 &             5 \\
+  %installation               &                   1 &             5 \\
+  %quality-assurance          &                   1 &             4 \\
+  %externalbuild              &                   1 &             4 \\
+  %stage\_test                 &                   1 &             4 \\
+  %generate\_test\_data         &                   1 &             4 \\
+  %build-backend              &                   1 &             4 \\
+  %fstest                     &                   1 &             4 \\
+  %build\_unit\_test            &                   1 &             4 \\
+  %static\_analysis            &                   1 &             4 \\
+  %test and build             &                   1 &             4 \\
+  %release-note               &                   1 &             4 \\
+  %testall                    &                   1 &             3 \\
+  %container                  &                   1 &             3 \\
+  %builds                     &                   1 &             3 \\
+  %stage\_build\_docker         &                   1 &             3 \\
+  %build\_test                 &                   1 &             3 \\
+  %deploy-frontend            &                   1 &             3 \\
+  %darwin build               &                   1 &             3 \\
+  %push artifacts             &                   1 &             3 \\
+  %post-test                  &                   1 &             3 \\
+  %update                     &                   1 &             3 \\
+  %vm                         &                   1 &             3 \\
+  %deps                       &                   1 &             3 \\
+  %prod\_deploy                &                   1 &             3 \\
+  %packaging                  &                   1 &             3 \\
+  %exe                        &                   1 &             3 \\
+  %zip                        &                   1 &             3 \\
+  %ftp                        &                   1 &             3 \\
+  %repository                 &                   1 &             3 \\
+  %build:prod                 &                   1 &             3 \\
+  %deploy:prod                &                   1 &             3 \\
+  %build-and-deploy           &                   1 &             2 \\
+  %code-quality               &                   1 &             2 \\
+  %style                      &                   1 &             2 \\
+  %stage\_push\_docker          &                   1 &             2 \\
+  %stage\_deploy               &                   1 &             2 \\
+  %scheduled                  &                   1 &             2 \\
+  %deploy-backend             &                   1 &             2 \\
+  %linux shell                &                   1 &             2 \\
+  %darwin shell               &                   1 &             2 \\
+  %cleanup\_success            &                   1 &             2 \\
+  %cleanup\_failure            &                   1 &             2 \\
+  %audit                      &                   1 &             2 \\
+  %preflight                  &                   1 &             2 \\
+  %release-package            &                   1 &             2 \\
+  %int-test                   &                   1 &             2 \\
+  %release-docker             &                   1 &             2 \\
+  %flatpak                    &                   1 &             2 \\
+  %dbt docs                 &                   1 &             2 \\
+  %triage run                 &                   1 &             2 \\
+  %vendors-security           &                   1 &             2 \\
+  %post-run                   &                   1 &             2 \\
+  %deps-prepare               &                   1 &             2 \\
+  %pre-merge                  &                   1 &             2 \\
+  %setup                      &                   1 &             2 \\
+  %deploy-dev                 &                   1 &             2 \\
+  %testinstaller              &                   1 &             2 \\
+  %quality                    &                   1 &             2 \\
+  %notification\_fail          &                   1 &             1 \\
+  %notifications              &                   1 &             1 \\
+  %archive                    &                   1 &             1 \\
+  %sanity\_checks              &                   1 &             1 \\
+  %externalpostbuild          &                   1 &             1 \\
+  %stage\_build\_documentation  &                   1 &             1 \\
+  %stage\_push\_documentation   &                   1 &             1 \\
+  %stage\_build\_python         &                   1 &             1 \\
+  %stage\_push\_python          &                   1 &             1 \\
+  %snapshot                   &                   1 &             1 \\
+  %paperwork                  &                   1 &             1 \\
+  %export                     &                   1 &             1 \\
+  %automation                 &                   1 &             1 \\
+  %checkicons                 &                   1 &             1 \\
+  %outdated                   &                   1 &             1 \\
+  %clean\_up                   &                   1 &             1 \\
+  %coverage\_report            &                   1 &             1 \\
+  %upload\_report              &                   1 &             1 \\
+  %provision-backend          &                   1 &             1 \\
+  %build-frontend             &                   1 &             1 \\
+  %documentation              &                   1 &             1 \\
+  %static\_check               &                   1 &             1 \\
+  %docker-image               &                   1 &             1 \\
+  %vendors                    &                   1 &             1 \\
+  %multi-arch                 &                   1 &             1 \\
+  %validate\_deploy            &                   1 &             1 \\
+  %build-\_new                 &                   1 &             1 \\
+  %test-docker                &                   1 &             1 \\
+  %push-docker                &                   1 &             1 \\
+  %push-docker-master         &                   1 &             1 \\
+  %save-to-cubi               &                   1 &             1 \\
+  %cleanup-review             &                   1 &             1 \\
+  %cleanup-staging            &                   1 &             1 \\
+  %stage2-tarball             &                   1 &             1 \\
+  %ci-build                   &                   1 &             1 \\
+  %clickbuild                 &                   1 &             1 \\
+  %pre\_deploy                 &                   1 &             1 \\
+  %code\_standarts             &                   1 &             1 \\
+  %staging-release            &                   1 &             1 \\
+  %stable                     &                   1 &             1 \\
+  %specs                      &                   1 &             1 \\
+  %report                     &                   1 &             1 \\
+  %schema                     &                   1 &             1 \\
+  %api                        &                   1 &             1 \\
+  %sentry\_release             &                   1 &             1 \\
+  %verify                     &                   1 &             1 \\
+  %scheduled\_monitoring\_tests &                   1 &             1 \\
+  %smoke\_tests                &                   1 &             1 \\
+  %deploy\_staging             &                   1 &             1 \\
+  %build\_production           &                   1 &             1 \\
+  %build-app                  &                   1 &             1 \\
+  %snap                       &                   1 &             1 \\
+  %prepare-publish            &                   1 &             1 \\
+  %reproducible               &                   1 &             1 \\
+  %snowflake stop           &                   1 &             1 \\
+  %static-analysis            &                   1 &             1 \\
+  %shellcheck                 &                   1 &             1 \\
+  %triggers                   &                   1 &             1 \\
+  %dist-linux-amd64           &                   1 &             1 \\
+  %dev                        &                   1 &             1 \\
+  %build-src                  &                   1 &             1 \\
+  %go-test                    &                   1 &             1 \\
+  %go-fmt                     &                   1 &             1 \\
+  %docker-registry-master     &                   1 &             1 \\
+  %docker-registry-tags       &                   1 &             1 \\
+  %package-tiki               &                   1 &             1 \\
+  %vendors\_update             &                   1 &             1 \\
+  %venv-setup                 &                   1 &             1 \\
+  %buildx                     &                   1 &             1 \\
+  %build\_latest               &                   1 &             1 \\
+  %pre-commit                 &                   1 &             1 \\
+  %generate-release           &                   1 &             1 \\
+  %chore                      &                   1 &             1 \\
+  %stop                       &                   1 &             1 \\
+  %testbuild                  &                   1 &             1 \\
+  %buildrelease               &                   1 &             1 \\
+  %ade                        &                   1 &             1 \\
+  %build\_pypi                 &                   1 &             1 \\
+  %vars                       &                   1 &             1 \\
+  %build-containers           &                   1 &             1 \\
+  %eslint                     &                   1 &             1 \\
+  %bitrisebuildandroid        &                   1 &             1 \\
+  %post-merge                 &                   1 &             1 \\
+  %failed\_stage               &                   1 &             1 \\
+  %upload                     &                   1 &             1 \\
+  %admin\_test\_deploy          &                   1 &             1 \\
+  %admin\_prod\_deploy          &                   1 &             1 \\
+  %reports                    &                   1 &             1 \\
+  %build\_report\_application   &                   1 &             1 \\
+  %lint\_test\_coverage         &                   1 &             1 \\
+  %siril                      &                   1 &             1 \\
+  %uploadstore                &                   1 &             1 \\
+  %build-dev                  &                   1 &             1 \\
+  %build-staging              &                   1 &             1 \\
+  %execute-change-prod        &                   1 &             1 \\
+  %deploy-staging             &                   1 &             1 \\
+  %create-change-prod         &                   1 &             1 \\
+  %build-final                &                   1 &             1 \\
+  %page\_deploy                &                   1 &             1 \\
+  %demo                       &                   1 &             1 \\
+  %destroy                    &                   1 &             1 \\
+  %build-binary               &                   1 &             1 \\
+  %results                    &                   1 &             1 \\
+  %infrastructure             &                   1 &             1 \\
+  %restart                    &                   1 &             1 \\
+  %register                   &                   1 &             1 \\
+  %linting                    &                   1 &             1 \\
+  %generate\_documentation     &                   1 &             1 \\
+  %build-docs                 &                   1 &             1 \\
+  %zenodo                     &                   1 &             1 \\
+  %build\_docker               &                   1 &             1 \\
+  %build\_and\_deploy\_docker    &                   1 &             1 \\
+  %build\_and\_deploy\_website   &                   1 &             1 \\
+  %setup:prod                 &                   1 &             1 \\
+  %migrate:prod               &                   1 &             1 \\
+  %qual                       &                   1 &             1 \\
+  %smoke-test                 &                   1 &             1 \\
+  %build\_netbsd               &                   1 &             1 \\
+  %check\_suite                &                   1 &             1 \\
+  %multiver-test              &                   1 &             1 \\
+  %mirror                     &                   1 &             1 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+\newpage
+
+\subsection{Ejecución nº 2 (GitHub)}
+%TABLA
+\begin{table}[h]
+  \centering
+  \caption{Exp. final, ejecución 2. Contadores.}
+  \label{tab:tabla_f2_1}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Encontrados GitHub \\
+  \hline
+  jenkins         &                  14 \\
+  travis          &                 212 \\
+  circle ci       &                  78 \\
+  github actions  &                 499 \\
+  azure pipelines &                  14 \\
+  bamboo          &                   0 \\
+  gitlab ci       &                   9 \\
+  codeship        &                   0 \\
+  teamcity        &                   2 \\
+  bazel           &                  12 \\
+  semaphore ci    &                   0 \\
+  appveyor        &                   0 \\
+  \hline
+  Totales         &                 669 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.95\textwidth,clip=true]{\graphC}
+  \caption{Exp. final, ejecución 2. Contadores.}
+\end{figure}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 2. Lenguajes.}
+  \label{tab:tabla_f2_2a}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Jenkins &  Travis &  Circle CI &  GitHub Actions &  Azure Pipelines &  Bamboo \\
+  \hline
+  javascript    &        0 &      63 &         20 &             114 &                1 &       0 \\
+  python        &        0 &      18 &          9 &              55 &                5 &       0 \\
+  java          &        5 &      25 &          3 &              51 &                1 &       0 \\
+  go            &        3 &       6 &         13 &              51 &                1 &       0 \\
+  typescript    &        2 &       6 &         10 &              46 &                1 &       0 \\
+  c++           &        1 &      15 &          5 &              38 &                1 &       0 \\
+  c             &        0 &      12 &          3 &              19 &                1 &       0 \\
+  ...           &      ... &     ... &        ... &             ... &              ... &     ... \\
+  \hline
+  Totales       &       14 &     212 &         78 &             499 &               14 &       0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 2. Lenguajes (continuación).}
+  \label{tab:tabla_f2_2b}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  GitLab CI &  Codeship &  TeamCity &  Bazel &  Semaphore CI &  AppVeyor &  TOTALES \\
+  \hline
+  javascript    &        2 &         0 &         1 &      0 &             0 &         0 &    201.0 \\
+  python        &        1 &         0 &         0 &      1 &             0 &         0 &     89.0 \\
+  java          &        1 &         0 &         0 &      2 &             0 &         0 &     88.0 \\
+  go            &        1 &         0 &         1 &      2 &             0 &         0 &     78.0 \\
+  typescript    &        0 &         0 &         0 &      3 &             0 &         0 &     68.0 \\
+  c++           &        0 &         0 &         0 &      4 &             0 &         0 &     64.0 \\
+  c             &        0 &         0 &         0 &      0 &             0 &         0 &     35.0 \\
+  ...           &      ... &       ... &       ... &    ... &           ... &       ... &      ... \\
+  \hline
+  Totales       &        9 &         0 &         2 &     12 &             0 &         0 &        - \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 2. Estadísticas de CI GitHub.}
+  \label{tab:tabla_f2_3}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total repositorios &  Total trabajos &  Min &  Max &  Media &  Mediana \\
+  \hline
+  travis         &        212 &         588 &    1 &   94 &   2.77 &        2 \\
+  github actions &        499 &        3562 &    1 &  312 &   7.14 &        4 \\
+  gitlab ci      &          9 &          44 &    1 &    9 &   4.89 &        4 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 2. Estadísticas por lenguaje GitHub.}
+  \label{tab:tabla_f2_4}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total repositorios &  Total trabajos &  Min &  Max &  Media &  Mediana \\
+  \hline
+  javascript    &        176 &         774 &    1 &   42 &    4.40 &      2.0 \\
+  python        &         68 &         473 &    1 &   43 &    6.96 &      4.0 \\
+  java          &         66 &         405 &    1 &   94 &    6.14 &      3.0 \\
+  go            &         58 &         472 &    1 &  107 &    8.14 &      6.0 \\
+  typescript    &         52 &         407 &    1 &   35 &    7.83 &      4.0 \\
+  c++           &         46 &         307 &    1 &   23 &    6.67 &      5.5 \\
+  %none          &         29 &          60 &    1 &   14 &    2.07 &      2.0 \\
+  %c             &         25 &         290 &    1 &   43 &   11.60 &      4.0 \\
+  %php           &         17 &          98 &    1 &   15 &    5.76 &      4.0 \\
+  %ruby          &         16 &          78 &    1 &   16 &    4.88 &      4.0 \\
+  %swift         &         15 &          42 &    1 &   12 &    2.80 &      2.0 \\
+  %objective-c   &         15 &          36 &    1 &   10 &    2.40 &      2.0 \\
+  %shell         &         11 &          76 &    1 &   21 &    6.91 &      4.0 \\
+  %kotlin        &         11 &          39 &    1 &   17 &    3.55 &      2.0 \\
+  %html          &         10 &          17 &    1 &    4 &    1.70 &      2.0 \\
+  %c\#            &          9 &          26 &    1 &   10 &    2.89 &      2.0 \\
+  %css           &          6 &          18 &    2 &    7 &    3.00 &      2.5 \\
+  %scala         &          5 &          51 &    2 &   20 &   10.20 &     11.0 \\
+  %rust          &          3 &          19 &    4 &    8 &    6.33 &      7.0 \\
+  %vim script    &          3 &          48 &    8 &   28 &   16.00 &     12.0 \\
+  %scss          &          3 &          11 &    2 &    5 &    3.67 &      4.0 \\
+  %clojure       &          2 &          36 &    1 &   35 &   18.00 &     18.0 \\
+  %lua           &          2 &          15 &    2 &   13 &    7.50 &      7.5 \\
+  %emacs lisp    &          2 &           7 &    3 &    4 &    3.50 &      3.5 \\
+  %ocaml         &          2 &           3 &    3 &    3 &    1.50 &      1.5 \\
+  %elixir        &          2 &           9 &    3 &    6 &    4.50 &      4.5 \\
+  %dockerfile    &          2 &           6 &    1 &    5 &    3.00 &      3.0 \\
+  %dart          &          1 &           3 &    3 &    3 &    3.00 &      3.0 \\
+  %assembly      &          1 &           2 &    2 &    2 &    2.00 &      2.0 \\
+  %julia         &          1 &           2 &    2 &    2 &    2.00 &      2.0 \\
+  %markdown      &          1 &           4 &    4 &    4 &    4.00 &      4.0 \\
+  %roff          &          1 &           8 &    8 &    8 &    8.00 &      8.0 \\
+  %haskell       &          1 &          12 &   12 &   12 &   12.00 &     12.0 \\
+  %batchfile     &          1 &           2 &    2 &    2 &    2.00 &      2.0 \\
+  %asciidoc      &          1 &           3 &    3 &    3 &    3.00 &      3.0 \\
+  %coffeescript  &          1 &           0 &    0 &    0 &    0.00 &      0.0 \\
+  %tex           &          1 &           6 &    6 &    6 &    6.00 &      6.0 \\
+  %makefile      &          1 &           8 &    8 &    8 &    8.00 &      8.0 \\
+  %mustache      &          1 &         312 &  312 &  312 &  312.00 &    312.0 \\
+  %objective-c++ &          1 &           4 &    4 &    4 &    4.00 &      4.0 \\
+  %perl          &          1 &           2 &    2 &    2 &    2.00 &      2.0 \\
+  %jinja         &          1 &           3 &    3 &    3 &    3.00 &      3.0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 2. Estadísticas de escenarios CI GitHub.}
+  \label{tab:tabla_f2_5}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total proyectos &  Total escenarios \\
+  \hline
+  push                        &                 447 &          2215 \\
+  pull\_request                &                 435 &          2073 \\
+  schedule                    &                 193 &           540 \\
+  script                      &                 159 &           195 \\
+  workflow\_dispatch           &                 135 &           875 \\
+  install                     &                  81 &           103 \\
+  %before\_install              &                  70 &            80 \\
+  %before\_script               &                  66 &            72 \\
+  %pull\_request\_target         &                  65 &           110 \\
+  %release                     &                  53 &            98 \\
+  %issues                      &                  44 &            79 \\
+  %issue\_comment               &                  42 &            65 \\
+  %workflow\_run                &                  17 &            33 \\
+  %workflow\_call               &                  13 &            53 \\
+  %repository\_dispatch         &                  11 &            31 \\
+  %test                        &                   9 &            73 \\
+  %create                      &                   9 &            31 \\
+  %branch\_protection\_rule      &                   7 &             7 \\
+  %after\_script                &                   6 &             6 \\
+  %status                      &                   4 &             5 \\
+  %pull\_request\_review         &                   3 &             3 \\
+  %build                       &                   2 &            15 \\
+  %lint                        &                   2 &             3 \\
+  %deploy                      &                   2 &             2 \\
+  %tests - phase 2             &                   1 &            68 \\
+  %tests - phase 1             &                   1 &            10 \\
+  %build-all                   &                   1 &             5 \\
+  %vim74                       &                   1 &             4 \\
+  %vim8                        &                   1 &             3 \\
+  %build-one                   &                   1 &             3 \\
+  %unit tests                  &                   1 &             3 \\
+  %neovim                      &                   1 &             2 \\
+  %test shell                  &                   1 &             2 \\
+  %gollum                      &                   1 &             1 \\
+  %build process               &                   1 &             1 \\
+  %lint and unit               &                   1 &             1 \\
+  %\_npm ci                     &                   1 &             1 \\
+  %workflow                    &                   1 &             1 \\
+  %create-vars                 &                   1 &             1 \\
+  %pull\_request\_review\_comment &                   1 &             1 \\
+  %label                       &                   1 &             1 \\
+  %delete                      &                   1 &             1 \\
+  %travis                      &                   1 &             1 \\
+  %test-docs                   &                   1 &             1 \\
+  %push-tx                     &                   1 &             1 \\
+  %validations                 &                   1 &             1 \\
+  %test-sbt-1.6.x              &                   1 &             1 \\
+  %moderator                   &                   1 &             1 \\
+  %cron                        &                   1 &             1 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+\newpage
+
+\subsection{Ejecución nº 3 (GitHub)}
+%TABLA
+\begin{table}[h]
+  \centering
+  \caption{Exp. final, ejecución 3. Contadores.}
+  \label{tab:tabla_f3_1}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Encontrados GitHub \\
+  \hline
+  jenkins         &                   0 \\
+  travis          &                  82 \\
+  circle ci       &                   0 \\
+  github actions  &                   0 \\
+  azure pipelines &                   0 \\
+  bamboo          &                   0 \\
+  gitlab ci       &                   0 \\
+  codeship        &                   0 \\
+  teamcity        &                   0 \\
+  bazel           &                   0 \\
+  semaphore ci    &                   0 \\
+  appveyor        &                   0 \\
+  \hline
+  Totales         &                  82 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.95\textwidth,clip=true]{\graphD}
+  \caption{Exp. final, ejecución 3. Contadores.}
+\end{figure}
+
+\newpage
+
+%TABLA
+\begin{table}[h]
+  \centering
+  \caption{Exp. final, ejecución 3. Lenguajes.}
+  \label{tab:tabla_f3_2a}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Jenkins &  Travis &  Circle CI &  GitHub Actions &  Azure Pipelines &  Bamboo \\
+  \hline
+  javascript   &        0 &      34 &          0 &               0 &                0 &       0 \\
+  java         &        0 &      13 &          0 &               0 &                0 &       0 \\
+  objective-c  &        0 &       9 &          0 &               0 &                0 &       0 \\
+  ruby         &        0 &       6 &          0 &               0 &                0 &       0 \\
+  ...          &      ... &     ... &        ... &             ... &              ... &     ... \\
+  \hline
+  Totales      &        0 &      82 &          0 &               0 &                0 &       0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}[h]
+  \centering
+  \caption{Exp. final, ejecución 3. Lenguajes (continuación).}
+  \label{tab:tabla_f3_2b}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  GitLab CI &  Codeship &  TeamCity &  Bazel &  Semaphore CI &  AppVeyor &  TOTALES \\
+  \hline
+  javascript   &        0 &         0 &         0 &      0 &             0 &         0 &     34.0 \\
+  java         &        0 &         0 &         0 &      0 &             0 &         0 &     13.0 \\
+  objective-c  &        0 &         0 &         0 &      0 &             0 &         0 &      9.0 \\
+  ruby         &        0 &         0 &         0 &      0 &             0 &         0 &      6.0 \\
+  ...          &      ... &       ... &       ... &    ... &           ... &        ...&      ... \\
+  \hline
+  Totales      &        0 &         0 &         0 &      0 &             0 &         0 &        - \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 3. Estadísticas de CI GitHub.}
+  \label{tab:tabla_f3_3}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total repositorios &  Total trabajos &  Min &  Max &  Media &  Mediana \\
+  \hline
+  travis         &         82 &         110 &    1 &    4 &   1.34 &        1 \\
+  github actions &          0 &           0 &    0 &    0 &   0.00 &        0 \\
+  gitlab ci      &          0 &           0 &    0 &    0 &   0.00 &        0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 3. Estadísticas por lenguaje GitHub.}
+  \label{tab:tabla_f3_4}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total repositorios &  Total trabajos &  Min &  Max &  Media &  Mediana \\
+  \hline
+  javascript   &         34 &          35 &    1 &    3 &   1.03 &      1.0 \\
+  java         &         13 &          19 &    1 &    3 &   1.46 &      1.0 \\
+  objective-c  &          9 &          12 &    1 &    2 &   1.33 &      1.0 \\
+  ruby         &          6 &           9 &    2 &    3 &   1.50 &      2.0 \\
+  %go           &          3 &           4 &    2 &    2 &   1.33 &      2.0 \\
+  %css          &          3 &           2 &    2 &    2 &   0.67 &      0.0 \\
+  %python       &          2 &           6 &    3 &    3 &   3.00 &      3.0 \\
+  %c            &          2 &           4 &    1 &    3 &   2.00 &      2.0 \\
+  %php          &          2 &           3 &    1 &    2 &   1.50 &      1.5 \\
+  %r            &          2 &           6 &    3 &    3 &   3.00 &      3.0 \\
+  %scala        &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+  %groovy       &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+  %typescript   &          1 &           4 &    4 &    4 &   4.00 &      4.0 \\
+  %coffeescript &          1 &           2 &    2 &    2 &   2.00 &      2.0 \\
+  %erlang       &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+  %lex          &          1 &           1 &    1 &    1 &   1.00 &      1.0 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
+
+%TABLA
+\begin{table}
+  \centering
+  \caption{Exp. final, ejecución 3. Estadísticas de escenarios CI GitHub.}
+  \label{tab:tabla_f3_5}
+
+\begin{footnotesize}
+\renewcommand{\arraystretch}{1.5} % Para cambiar la separación entre filas (1 por defecto)
+\begin{tabular}{ccccccccccc}
+  \hline
+  {} &  Total repositorios &  Total escenarios \\
+  \hline
+  script         &                  45 &            45 \\
+  before\_install &                  28 &            28 \\
+  before\_script  &                  21 &            21 \\
+  install        &                  14 &            14 \\
+  after\_script   &                   2 &             2 \\
+ \end{tabular}
+\end{footnotesize}
+
+\end{table}
