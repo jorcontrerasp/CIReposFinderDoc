@@ -180,7 +180,114 @@ En cuanto a la parte correspondiente a la ejecución sobre proyectos GitLab, al 
 
 Finalmente, se transforman las estructuras de datos de tipo ``DataFrame'' proporcionadas por la librería ``Pandas'' en formato Excel o Csv.
 
-A modo de resumen, se expone el flujo de ejecución del programa  sobre GitHub y sobre GitLab [\ref{sec:apendice3}].
+A modo de resumen, se expone el flujo de ejecución del programa sobre GitHub y sobre GitLab [\ref{sec:apendice3}].
+
+\section{Análisis de ficheros de configuración CI}
+Para analizar los ficheros de configuración YML de cada herramienta de CI se utiliza el script ``ci\_yml\_parser.py'', encargado de transformar la información contenida en dichos ficheros de configuración en objetos Python con los que más tarde se construyen las estructuras de datos de estadísticas de ``jobs''.
+
+En primer lugar, se va a llamar a la función ``makeYMLTmpFile'' cuya finalidad es construir en un directorio ``tmp'' local los diferentes ficheros de configuración YML localizados mediante los literales definidos en la función ``getCISearchFiles'' del script ``ci\_tool.py''. Si el literal definido como criterio de búsqueda para un sistema de CI en concreto es un directorio, se generarán en local todos los ficheros YML contenidos en dicho directorio, como por ejemplo en el caso de GitHub Actions, en el que se intenta localizar el directorio ``.github/workflows''.
+
+Una vez generados los ficheros YML en local, se inicia el proceso de conversión de dichos ficheros temporales a objetos Python. Para ello se irán cargando dichos ficheros YML mediante la función ``loadData'' dando uso a la librería PyYaml que convierte etiquetas YML o YAML en diccionarios Python. 
+
+Se utilizan tres funciones diferentes en función de si el sistema de CI tratado es GitHub Actions, Gitlab CI o Travis CI, que van a ser los tres sistemas de CI de los que se van a estudiar aspectos relativos a la configuración de ``jobs'' automatizados.
+
+En GitLab CI, se contemplan varios aspectos en la disposición de las etiquetas del fichero de configuración YML. En primer lugar  se intenta localizar en el primer nivel del fichero YML una etiqueta ``stages'' en la que se definirán de forma genérica los escenarios en los que se van a ejecutar los ``jobs'' configurados y, a continuación, se inicia la enumeración de estos ``jobs'' de acuerdo con los siguientes casos:
+
+- La etiqueta ``workflow'', se considera como trabajo único cuyos pasos están definidos en la etiqueta ``rules'' (etiqueta de un nivel inferior a ``workflows'').
+
+- Las etiquetas definidas en la función ``getMainYMLStages''.
+
+- Y por último, aquellas etiquetas del nivel superior del fichero YML que contengan una etiqueta ``script'' en su interior. Estos serán los ``jobs'' propiamente dichos configurados en el fichero YML, cuyo momento de ejecución se definirá mediante las etiquetas ``stage'' y ``when''.
+
+De acuerdo con la documentación de GitLab CI \cite{stagesGitLabCI} se pueden encontrar dos tipos de escenarios o ``stages'' según el nombre que se les asigna:
+
+- ``stages'' \textbf{por defecto}:
+\begin{compactitem}
+    \item \underline{.pre}: permite que un trabajo se ejecute al inicio del ciclo.
+    \item \underline{build}.
+    \item \underline{test}.
+    \item \underline{deploy}.
+    \item \underline{.post}: permite que un trabajo se ejecute al final del ciclo.
+\end{compactitem}
+
+- ``stages'' \textbf{definidos por el usuario}.
+
+El orden de definición de estos ``stages'' indican el orden en el que se van a ejecutar los ``jobs'', ejecutándose en paralelo aquellos que pertenezcan al mismo escenario o ``stage''.
+
+En cuanto a la etiqueta ``when'' se van a poder encontrar los siguientes casos:
+\begin{compactitem}
+    \item \underline{on\_success}: ejecuta el ``job'' cuando todos los de etapas anteriores se han realizado correctamente.
+    \item \underline{manual}: ejecuta el ``job'' solamente cuando se especifica manualmente.
+    \item \underline{always}: ejecuta el ``job'' independientemente del estado de los trabajos en etapas anteriores.
+    \item \underline{on\_failure}: ejecuta el ``job'' cuando falla al menos un trabajo en una etapa anterior.
+    \item \underline{delayed}: retrasa la ejecución de un ``job'' durante un tiempo especificado.
+    \item \underline{never}: no se ejecuta el ``job'' en ningún caso.
+\end{compactitem}
+
+En GitHub Actions es más sencillo el análisis del fichero YML puesto que tiene etiquetas bien definidas para cada aspecto que queremos estudiar. En primer lugar se localiza la etiqueta ``on'' en la que se definirán los escenarios o ``stages'' en los que se van a ejecutar los trabajos configurados. A continuación se localiza la etiqueta ``jobs'', lugar en el que van a ir definidos todos los trabajos automatizados junto con la etiqueta ``steps'' en la que se enumeran los pasos que van a seguir cada uno de ellos.
+
+Se van a poder encontrar, entre otros, los siguientes ``stages'' de ejecución de trabajos \cite{stagesGitHubActions}:
+\begin{compactitem}
+    \item branch\_protection\_rule
+    \item check\_run
+    %\item check\_suite
+    \item create
+    \item delete
+    \item deployment
+    %\item deployment\_status
+    %\item discussion
+    %\item discussion\_comment
+    \item fork
+    \item gollum
+    \item issue\_comment
+    %\item issues
+    %\item label
+    %\item milestone
+    %\item page\_build
+    %\item project
+    %\item project\_card
+    %\item project\_column
+    %\item public
+    \item pull\_request
+   % \item pull\_request\_comment (use issue\_comment)
+   % \item pull\_request\_review
+   % \item pull\_request\_review\_comment
+   % \item pull\_request\_target
+    \item push
+    %\item registry\_package
+    \item release
+    %\item repository\_dispatch
+    \item schedule
+    %\item status
+    %\item watch
+    %\item workflow\_call
+    \item workflow\_dispatch
+    %\item workflow\_run
+    \item ...
+\end{compactitem} 
+
+En cuanto a Travis CI se contemplan dos casos de configuración de ``jobs'':
+
+- En el primer caso que nos podemos encontrar, en primer lugar se intenta localizar una etiqueta ``stages'' genérica con todos los escenarios en los que se van a ejecutar los trabajos. A continuación, al igual que en GitHub Actions, se busca una etiqueta ``jobs'' y en cada uno de sus etiquetas de nivel inferior se intentan localizar las de ``stage'', ``install'' y ``script'', etiquetas en las que se definirán respectivamente los escenarios de ejecución concretos del trabajo así como los pasos que sigue para llevarse a cabo.
+
+- En el segundo caso contemplado, se localizan las etiquetas definidas en en la función ``getMainYMLStages''.
+
+Por lo tanto, en Travis CI se pueden encontrar ``jobs'' definidos con la etiqueta ``stage'' en su interior con valores como ``test'', ``deploy'', etc. Pero, en general, nos vamos a encontrar etiquetas como las que se enumeran a continuación y que están definidas en la función ``getMainYMLStages'' del script ``ci\_yml\_parser.py'' de la herramienta implementada \cite{stagesTravisCI}:
+\begin{compactitem}
+    \item \underline{before\_install}: comandos que se ejecutan antes de los pasos de instalación.
+    \item \underline{install}: pasos de instalación encargados de preparar el entorno de construcción.
+    \item \underline{after\_install}: comandos que se ejecutan después de los pasos de instalación.
+    \item \underline{before\_script}: comandos que se ejecutan antes de ejecutar las instrucciones que construyen la aplicación.
+    \item \underline{script}: conjunto de instrucciones encargados de construir la aplicación.
+    \item \underline{after\_script}: comandos que se ejecutan después de ejecutar las instrucciones que construyen la aplicación.
+    \item \underline{before\_deploy}: instrucciones que se ejecutan antes de la definición del método de despliegue del código.
+    \item \underline{deploy}: etiqueta en la que se define el método de despliegue del código.
+    \item \underline{after\_deploy}: instrucciones que se ejecutan después de la definición del método de despliegue del código.
+    \item \underline{before\_cache}: instrucciones que se ejecutan antes de guardar en cache información relativa a la aplicación.
+    \item \underline{cache}: instrucciones que se ejecutan al guardar en cache información relativa a la aplicación.
+    \item \underline{after\_cache}: instrucciones que se ejecutan después de guardar en cache información relativa a la aplicación.
+    \item \underline{after\_success} y \underline{after\_failure}: conjunto de instrucciones que se ejecutan si la ejecución es exitosa o falla.
+\end{compactitem} 
 
 \section{Dificultades y problemas encontrados}
 En la realización de este trabajo se han ido encontrando diferentes errores que han supuesto un impedimento a la hora de continuar. 
@@ -211,7 +318,7 @@ def doApiRateLimitControl():
             time.sleep(sleep_time)
             g = authenticate()
     except:
-        aux.printLog("Error al aplicar el control del API rate limit exceded...", logging.ERROR)
+        aux.printLog("Control del API rate limit exceded NO aplicado...", logging.WARNING)
 \end{lstlisting}
 
 - La API de GitLab, al igual que la API de GitHub, cuenta con limitaciones a la hora de realizar llamadas sobre ella. En este caso no se limitan el número de peticiones sobre la API, sino que se limitan el número de proyectos que se pueden obtener.
