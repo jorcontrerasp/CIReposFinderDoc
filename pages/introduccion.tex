@@ -115,40 +115,50 @@ Existen cuatro componentes requeridos para llevar a cabo el proceso de integraci
 \section{Subprocesos de la integración continua}
 Mediante la integración continua y automática de bases de datos, pruebas, inspección de código, despliegue y ``feedback'' o retroalimentación, permite al sistema de CI reducir riesgos comunes del software generando una mayor confianza y comunicación sobre los diferentes cambios que se vayan a realizar y los errores que se puedan provocar con la incorporación de dichos cambios. 
 
-Una vez que se ejecuta una compilación o ``build'' automatizada con cada cambio en el sistema de control de versiones, se pueden agregar otras funciones o subprocesos al sistema de CI. Algunas funciones dependen de otras; por ejemplo, las pruebas automatizadas \cotutor{De nuevo, las pruebas automatizadas son parte fundamental del CI, no un añadido como si puede serlo, por ejemplo, el análisis estático} dependen de la compilación del código fuente. Este proceso repetitivo puede ayudar a reducir riesgos a lo largo del ciclo de vida del desarrollo.
+Una vez que se ejecuta una compilación o ``build'' automatizada con cada cambio en el sistema de control de versiones, se pueden agregar otras funciones o subprocesos al sistema de CI. Algunas funciones dependen de otras; por ejemplo, las pruebas automatizadas dependen de la compilación del código fuente. Este proceso repetitivo puede ayudar a reducir riesgos a lo largo del ciclo de vida del desarrollo.
 
-A continuación se describen más en detalle estos subprocesos.
-
-\subsection{Compilación del código fuente}
-La compilación continua de código fuente es una de las características más básicas y comunes de un sistema CI. De hecho, es tan común que casi se ha convertido en sinónimo de CI. La compilación implica la creación de un código ejecutable a partir de fuentes legibles. Sin embargo, CI es mucho más que compilación de código fuente.
-
-\subsection{Integración de base de datos}
-Hay personas que consideran la integración del código fuente y la integración de bases de datos como procesos completamente separados, siempre llevados a cabo por diferentes grupos. Esto es porque la base de datos es una parte integral de las aplicaciones software. 
-
-Utilizando un sistema de integración continua se puede garantizar la integración de una base de datos a través de una única fuente: el repositorio de control de versiones. Para habilitar la integración continua de bases de datos en el proceso de construcción de un sistema de CI, tratamos el código fuente de la base de datos, las secuencias de comandos del ``Lenguaje de Definición de Datos'' (DDL), las secuencias de comandos del ``Lenguaje de Manipulación de Datos'' (DML), las definiciones de procedimientos almacenados, las particiones, etc. de la misma manera que cualquier otro código fuente del sistema. Por ejemplo, cuando un miembro del proyecto modifica un script de base de datos y lo confirma en el sistema de control de versiones, el mismo script de compilación que integra el código fuente reconstruirá la base de datos y los datos como parte del proceso de compilación.
-
-\subsection{Ejecución de pruebas o “testing”}
-Se considera que la integración continua sin pruebas automatizadas no sería integración continua. Sin pruebas automatizadas, es difícil para los desarrolladores u otras partes interesadas del proyecto tener confianza en los cambios de software. La mayoría de los desarrolladores de proyectos que utilizan un sistema de CI usan herramientas de prueba unitaria como JUnit para ejecutar pruebas. Además, se pueden ejecutar diferentes categorías de pruebas desde un sistema de CI con el objetivo de acelerar el proceso de compilación. Estas categorías pueden incluir de unidad, componente, sistema, carga/rendimiento, seguridad y otros.
-
-\subsection{Inspección de código}
-Las inspecciones de código automatizadas se utilizan para mejorar la calidad del software al hacer cumplir ciertas reglas. Por ejemplo, un proyecto puede tener una regla de que ninguna clase puede tener más de 300 líneas de código sin comentarios. Utilizando un sistema de CI se pueden ejecutar estas reglas automáticamente contra una base de código.
-
-\subsection{Despliegue}
-El despliegue continuo permite entregar software funcional e implementable en cualquier momento. Esto significa que un propósito clave de un sistema de CI es generar los paquetes de artefactos software con los últimos cambios de código y ponerlos a disposición de un entorno de prueba. 
-
-Entre otras cosas, se deben realizar las siguientes acciones en un proceso de despliegue:
+Estos subprocesos quedarían definidos de la siguiente forma:
 \begin{compactitem}
-    \item verificar los archivos fuente del repositorio de control de versiones, 
-    \item realizar la compilación de los mismos, 
-    \item todas las pruebas e inspecciones del código se deben ejecutar con éxito,
-    \item etiquetar la versión
-    \item y preparar los archivos de implementación.
+    \item \textbf{Compilación del código fuente}. Implica la creación de un código ejecutable a partir de fuentes legibles.
+    \item \textbf{Integración de base de datos}, siendo la base de datos es una parte integral de las aplicaciones software.
+    \item \textbf{Ejecución de pruebas o “testing”}. Son una parte fundamental de la integración continua. Sin pruebas automatizadas, es difícil para los desarrolladores u otras partes interesadas del proyecto tener confianza en los cambios de software.
+    \item \textbf{Inspección de código}. Proceso utilizado para mejorar la calidad del software al hacer cumplir ciertas reglas.
+    \item \textbf{Despliegue}. Siendo una parte más enfocada en la parte de CD.
+    \item \textbf{Documentación y “feedback”}. Una característica fundamental de los buenos sistemas de CI es la velocidad, y su esencia es proporcionar retroalimentación oportuna a los desarrolladores y partes interesadas del proyecto.
 \end{compactitem}
 
-Además, una buena práctica consiste en incluir la capacidad de revertir automáticamente todos los cambios aplicados en el despliegue.
+%A continuación se describen más en detalle estos subprocesos.
 
-\subsection{Documentación y “feedback”}
-Muchos desarrolladores trabajan bajo la firme creencia de que la documentación pertenece al código fuente, de hecho, ese código claro y conciso con nombres de métodos, variables y clases bien elegidos es la mejor documentación. No obstante, un sistema CI también puede proporcionar bastantes beneficios en lo que a la documentación se refiere. Una característica fundamental de los buenos sistemas de CI es la velocidad, y su esencia es proporcionar retroalimentación oportuna a los desarrolladores y partes interesadas del proyecto. Para generar documentación se pueden utilizar herramientas como Maven, Javadoc o NDoc y, además, existen otras herramientas que pueden generar diagramas de clase y e información relevante, todo basado en el código fuente subido o “committed” al repositorio de control de versiones.
+%\subsection{Compilación del código fuente}
+%La compilación continua de código fuente es una de las características más básicas y comunes de un sistema CI. De hecho, es tan común que casi se ha convertido en sinónimo de CI. La compilación implica la creación de un código ejecutable a partir de fuentes legibles. Sin embargo, CI es mucho más que compilación de código fuente.
+
+%\subsection{Integración de base de datos}
+%Hay personas que consideran la integración del código fuente y la integración de bases de datos como procesos completamente separados, siempre llevados a cabo por diferentes grupos. Esto es porque la base de datos es una parte integral de las aplicaciones software. 
+
+%Utilizando un sistema de integración continua se puede garantizar la integración de una base de datos a través de una única fuente: el repositorio de control de versiones. Para habilitar la integración continua de bases de datos en el proceso de construcción de un sistema de CI, tratamos el código fuente de la base de datos, las secuencias de comandos del ``Lenguaje de Definición de Datos'' (DDL), las secuencias de comandos del ``Lenguaje de Manipulación de Datos'' (DML), las definiciones de procedimientos almacenados, las particiones, etc. de la misma manera que cualquier otro código fuente del sistema. Por ejemplo, cuando un miembro del proyecto modifica un script de base de datos y lo confirma en el sistema de control de versiones, el mismo script de compilación que integra el código fuente reconstruirá la base de datos y los datos como parte del proceso de compilación.
+
+%\subsection{Ejecución de pruebas o “testing”}
+%Se considera que la integración continua sin pruebas automatizadas no sería integración continua. Sin pruebas automatizadas, es difícil para los desarrolladores u otras partes interesadas del proyecto tener confianza en los cambios de software. La mayoría de los desarrolladores de proyectos que utilizan un sistema de CI usan herramientas de prueba unitaria como JUnit para ejecutar pruebas. Además, se pueden ejecutar diferentes categorías de pruebas desde un sistema de CI con el objetivo de acelerar el proceso de compilación. Estas categorías pueden incluir de unidad, componente, sistema, carga/rendimiento, seguridad y otros.
+
+%\subsection{Inspección de código}
+%Las inspecciones de código automatizadas se utilizan para mejorar la calidad del software al hacer cumplir ciertas reglas. Por ejemplo, un proyecto puede tener una regla de que ninguna clase puede tener más de 300 líneas de código sin comentarios. Utilizando un sistema de CI se pueden ejecutar estas reglas automáticamente contra una base de código.
+
+%\subsection{Despliegue}
+%El despliegue continuo permite entregar software funcional e implementable en cualquier momento. Esto significa que un propósito clave de un sistema de CI es generar los paquetes de artefactos software con los últimos cambios de código y ponerlos a disposición de un entorno de prueba. 
+
+%Entre otras cosas, se deben realizar las siguientes acciones en un proceso de despliegue:
+%\begin{compactitem}
+    %\item verificar los archivos fuente del repositorio de control de versiones, 
+    %\item realizar la compilación de los mismos, 
+    %\item todas las pruebas e inspecciones del código se deben ejecutar con éxito,
+    %\item etiquetar la versión
+    %\item y preparar los archivos de implementación.
+%\end{compactitem}
+
+%Además, una buena práctica consiste en incluir la capacidad de revertir automáticamente todos los cambios aplicados en el despliegue.
+
+%\subsection{Documentación y “feedback”}
+%Muchos desarrolladores trabajan bajo la firme creencia de que la documentación pertenece al código fuente, de hecho, ese código claro y conciso con nombres de métodos, variables y clases bien elegidos es la mejor documentación. No obstante, un sistema CI también puede proporcionar bastantes beneficios en lo que a la documentación se refiere. Una característica fundamental de los buenos sistemas de CI es la velocidad, y su esencia es proporcionar retroalimentación oportuna a los desarrolladores y partes interesadas del proyecto. Para generar documentación se pueden utilizar herramientas como Maven, Javadoc o NDoc y, además, existen otras herramientas que pueden generar diagramas de clase y e información relevante, todo basado en el código fuente subido o “committed” al repositorio de control de versiones.
 
 \section{Valor de la integración continua}
 A alto nivel, el valor u objetivos de la integración continua serían:
@@ -206,8 +216,6 @@ Puede instalarse a través de paquetes del sistema nativo, Docker o incluso ejec
     \caption{Logo de Jenkins.}
 \end{figure}
 
-\newpage
-
 - \textbf{\underline{Travis CI}}: escrito en Ruby, es un servicio de integración continua que se utiliza para crear y probar proyectos de software alojados en GitHub, Bitbucket, GitLab y Assembla. Fue el primer servicio de CI que permitió realizar el proceso de integración continua a proyectos de código abierto de forma gratuita.
 
 Las principales funciones de Travis CI son:
@@ -244,7 +252,12 @@ Además, cuenta con dos opciones de hospedaje: en la nube o en servidor y con tr
     \caption{Logo de Circle CI.}
 \end{figure}
 
-\newpage
+- \textbf{\underline{GitLab CI}}: es la parte de GitLab que se utiliza para todos los métodos continuos (integración continua, entrega e implementación). Con GitLab CI/CD se puede probar, crear y publicar software sin necesidad de una aplicación o integración de terceros.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.15\textwidth,clip=true]{\logoGitLabCI}
+    \caption{Logo de GitLab CI.}
+\end{figure}
 
 - \textbf{\underline{GitHub Actions}}: las acciones de GitHub ayudan a automatizar tareas dentro del ciclo de vida de un desarrollo de software. Están controladas por eventos, lo que significa que pueden ejecutar una serie de comandos después de que se haya producido un evento específico.
 
@@ -291,13 +304,6 @@ El siguiente diagrama muestra cómo se pueden usar las acciones de GitHub para e
     %\includegraphics[width=0.3\textwidth,clip=true]{\logoBamboo}
     %\caption{Logo de Bamboo.}
 %\end{figure}
-
-    - \textbf{\underline{GitLab CI}}: es la parte de GitLab que se utiliza para todos los métodos continuos (integración continua, entrega e implementación). Con GitLab CI/CD se puede probar, crear y publicar software sin necesidad de una aplicación o integración de terceros.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.15\textwidth,clip=true]{\logoGitLabCI}
-    \caption{Logo de GitLab CI.}
-\end{figure}
 
 %- \textbf{\underline{Codeship}}: CloudBees CodeShip es una solución de software como servicio (SaaS) que permite a los equipos de ingeniería implementar y optimizar CI y CD en la nube. Ayuda a los equipos pequeños y en crecimiento a desarrollar cualquier tipo de software, desde aplicaciones web simples hasta arquitecturas de microservicios modernas para lograr una entrega de código rápida, segura y frecuente.
 
