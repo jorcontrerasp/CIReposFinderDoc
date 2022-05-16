@@ -201,16 +201,19 @@ En GitLab CI, se contemplan varios aspectos en la disposición de las etiquetas 
 
 De acuerdo con la documentación de GitLab CI \cite{stagesGitLabCI} se pueden encontrar dos tipos de escenarios o ``stages'' según el nombre que se les asigna:
 
-- ``stages'' \textbf{por defecto}:
 \begin{compactitem}
-    \item \underline{.pre}: permite que un trabajo se ejecute al inicio del ciclo.
-    \item \underline{build}.
-    \item \underline{test}.
-    \item \underline{deploy}.
-    \item \underline{.post}: permite que un trabajo se ejecute al final del ciclo.
+    \item ``stages'' \textbf{por defecto}:
+    
+    \begin{compactitem}
+        \item \underline{.pre}: permite que un trabajo se ejecute al inicio del ciclo.
+        \item \underline{build}.
+        \item \underline{test}.
+        \item \underline{deploy}.
+        \item \underline{.post}: permite que un trabajo se ejecute al final del ciclo.
+    \end{compactitem}
+    
+    \item ``stages'' \textbf{definidos por el usuario}.
 \end{compactitem}
-
-- ``stages'' \textbf{definidos por el usuario}.
 
 El orden de definición de estos ``stages'' indican el orden en el que se van a ejecutar los ``jobs'', ejecutándose en paralelo aquellos que pertenezcan al mismo escenario o ``stage''.
 
