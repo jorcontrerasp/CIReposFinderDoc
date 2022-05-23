@@ -30,7 +30,7 @@ A simple vista se puede observar que predomina el uso de los sistemas de integra
 
 A parte de estos dos sistemas de CI ya mencionados se localizan repositorios que utilizan el sistema de integración continua proporcionado por Travis CI, obteniendo 68 casos en repositorios almacenados en GitHub y otros 25 en repositorios almacenados en GitLab, dando un total de 93 repositorios en ambas plataformas, es decir, en 9'3\% del total de repositorios.
 
-También encontramos repositorios positivos en herramientas como Jenkins, que, a priori, se consideró como uno de los sistemas que iban a tener un mayor número de positivos junto con GitHub Actions.
+También encontramos repositorios positivos\cotutor{cambiaria la nomenclatura aquí, "repositorios positivos" suena extraño sin más contexto: "También encontramos repositorios que utilizan Jenkins ... Esto pasa también en párrafos posteriores} en herramientas como Jenkins, que, a priori, se consideró como uno de los sistemas que iban a tener un mayor número de positivos junto con GitHub Actions.
 
 Otros sistemas a tener en cuenta son Circle CI, Azure Pipelines y Bazel, obteniendo un total de 42, 6 y 8 repositorios positivos, resultados considerados insuficientes como para profundizar en ellos en el experimento final a realizar.
 
@@ -51,9 +51,10 @@ Este script va a permitir añadir las siguientes columnas al excel principal de 
     \item \textbf{TASK\_AVERAGE\_PER\_JOB}: columna en la que se almacena la media de tareas por trabajo.
 \end{compactitem}
 
-Con las que, posteriormente y de forma automática, se generan otros ficheros excel de estadísticas relacionadas con estos ficheros de configuración de trabajos. Estas columnas van contener información en formato json y a modo de diccionario con la intención de diferenciar los datos obtenidos en de cada sistema de CI en particular, ya que puede darse el caso de que algún repositorio en concreto haya dado positivo en más de una herramienta de integración continua, que, como se puede ver en los resultados obtenidos, es algo más común de lo que en un principio se podía esperar.
+\add{Con esta información y de manera automática}
+\remove{Con las que, posteriormente y de forma automática}, se generan otros ficheros excel de estadísticas relacionadas con estos ficheros de configuración de trabajos. Estas columnas van contener información en formato json y a modo de diccionario con la intención de diferenciar los datos obtenidos en de cada sistema de CI en particular, ya que puede darse el caso de que algún repositorio en concreto haya dado positivo en más de una herramienta de integración continua, que, como se puede ver en los resultados obtenidos, es algo más común de lo que en un principio se podía esperar.
 
-Este segundo experimento consiste en ejecutar el programa tres veces para repositorios GitHub y una vez para repositorios GitLab, encontrando en cada una de estas ejecuciones exclusivamente repositorios positivos en algún sistema de CI. 
+Este segundo experimento consiste en ejecutar el programa tres veces para repositorios GitHub y una vez para repositorios GitLab, encontrando en cada una de estas ejecuciones exclusivamente repositorios positivos\cotutor{repositorios positivos -> repositorios con un resultado positivo en la búsqueda} en algún sistema de CI. 
 
 Para ello se emplean las siguientes consultas de búsqueda:
 \begin{compactitem}
@@ -111,7 +112,7 @@ Sobre el número de trabajos encontrados y la media de tareas por trabajo calcul
 
 También se puede observar un comportamiento análogo sobre los datos calculados sobre repositorios de GitHub que utilizan GitHub Actions y repositorios de GitLab que utilizan GitLab CI, ya que se obtienen un número similar de repositorios en cada caso, así como el número de trabajos automatizados junto con su media y mediana.
 
-En cuanto a los lenguajes de programación utilizados para implementar los diferentes repositorios a los que se les ha aplicado el proceso, aparecen varios en común situados en la cúspide de los más utilizados, a tener en cuenta, ordenados de mayor a menos uso, los siguientes: python, javascript, go, c++ y java \ref{tab:tabla_f1_2a} - \ref{tab:tabla_f1_2b} y \ref{tab:tabla_f1_6a} - \ref{tab:tabla_f1_6b}.
+En cuanto a los lenguajes de programación utilizados para implementar los diferentes repositorios a los que se les ha aplicado el proceso, aparecen varios en común situados en la cúspide de los más utilizados, a tener en cuenta, ordenados de mayor a menos uso, los siguientes: Python, Javascript, Go, C++ y Java \ref{tab:tabla_f1_2a} - \ref{tab:tabla_f1_2b} y \ref{tab:tabla_f1_6a} - \ref{tab:tabla_f1_6b}.
 
 Se observa que Python y JavaScript son los dos lenguajes de programación más utilizados en la implementación de repositorios qur utilizan herramientas de integración continua tanto en GitHub como en GitLab. Estos resultados tendrían explicación en que estos lenguajes de programación son muy utilizados para el desarrollo de aplicaciones web (en el caso de python utilizando el framework Django), que son un tipo de implementación muy propenso a utilizar herramientas de este tipo, sobre todo para la automatización de pruebas. No obstante, el lenguaje de programación Python también se utiliza bastante para el desarrollo del lado del servidor en aplicaciones cliente-servidor. 
 
