@@ -7,13 +7,19 @@
 
 %\cotutor{Introduces el despliegue del software, pero esto vá un poco más allá del CI y pasa a ser CI/CD. Es cierto que lo que denominamos sistemas o herramientas de CI se ocupan también de estos procesos. Te dejo a continuación una imagen que ilustra bastante bien esto. En Integración Continua buscamos integrar el código constantemente, para lo cual nos ayudamos de scripts automáticos para compilar y ejecutar los test de la nueva versión. En ciertos casos, nos interesa hacer entrega continua, es decir, entregar un software, que podría ser una libreria o una aplicación final en forma de artefactos. En este caso, nos interesa que el software se entregue en una forma continua, es decir, que se entregue una vez que se haya compilado y se haya probado, siendo la continuación directa de los pasos seguidos en CI. Por último, se podría automatizar también el proceso de despliegue (típico de aplicaciones web).}
 
-La integración, entrega y despliegue continuo, o CI/CD, como se conoce a menudo por su abreviatura en inglés, es un método para distribuir las aplicaciones a los clientes con frecuencia mediante el uso de la automatización en las etapas del desarrollo de aplicaciones. Se trata de una solución para los problemas que puede generar la integración del código nuevo para los equipos de desarrollo y de operaciones.
+La integración, entrega y despliegue continuo, o CI/CD, como se conoce a menudo por su abreviatura en inglés, es un método que va a permitir distribuir aplicaciones a clientes de forma frecuente gracias a la automatización en las etapas del desarrollo. Para los equipos de desarrollo y de operaciones es soluciona los diferentes problemas que pueda generar la integración del código nuevo.
 
-En concreto, el proceso de integración y distribución continuas incorpora la automatización y la supervisión permanentes en todo el ciclo de vida de las aplicaciones, desde las etapas de integración y prueba hasta las de distribución e implementación. Este conjunto de prácticas se conoce como ``canales de CI/CD'' y cuenta con el respaldo de los equipos de desarrollo y de operaciones que trabajan en conjunto de manera ágil, con un enfoque de DevOps o de ingeniería de confiabilidad del sitio (SRE) \cite{redHatCICD}.
+En concreto, en el proceso de integración y distribución continua existen un conjunto de prácticas conocidas con el nombre de ``canales de CI/CD'' encargadas de la automatización y la supervisión permanente en todo el ciclo de vida de las aplicaciones, teniendo en cuenta etapas como la implementación, pruebas, integración y/o distribución. Estas prácticas cuentan con el respaldo de los equipos de desarrollo y de operaciones, los cuales trabajan en conjunto de manera ágil con un enfoque SRE (ingeniería de confiabilidad del sitio) o de DevOps \cite{redHatCICD}.
 
-La integración continua, o ``CI'', siempre se refiere a la integración continua, que es un proceso de automatización para los desarrolladores. El éxito de la CI implica que se diseñen, prueben y combinen los cambios nuevos en el código de una aplicación con regularidad en un repositorio compartido.
+La integración continua, o ``CI'', se trata de un proceso de automatización para los desarrolladores y su éxito supone que se diseñen, prueben y combinen los cambios nuevos en el código de una aplicación con regularidad en un repositorio compartido.
 
-La entrega y/o despliegue continuo, o ``CD'', se refiere a la distribución o la implementación continuas. Ambos conceptos referidos a la automatización de las etapas posteriores del proceso. Por lo general, la distribución continua se refiere a que los cambios que implementa un desarrollador en una aplicación se someten a pruebas automáticas de errores y se cargan en un repositorio (como GitHub o un registro de contenedores) y la implementación continua hace referencia al lanzamiento automático de los cambios que implementa el desarrollador desde el repositorio hasta el entorno de producción, para ponerlos a disposición de los clientes.
+La entrega y/o despliegue continuo, o ``CD'', son conceptos referidos a la automatización de las etapas posteriores del proceso. Por lo general, la entrega continua se refiere a que los cambios que implementan los desarrolladores en una aplicación se someten a pruebas automáticas de errores y se cargan en un repositorio de almacenamiento de código como por ejemplo GitHub y el despliegue continuo hace referencia al lanzamiento automático de los cambios que implementan dichos desarrolladores desde el repositorio de código hasta el entorno de producción, en el que estarán a disposición del usuario final.
+
+%Anteriormente, era común que los desarrolladores de un equipo trabajasen aislados durante un largo periodo de tiempo y solo intentasen combinar los cambios en la versión final una vez completado el trabajo. Como consecuencia, la combinación de los cambios en el código resultaba ser una ardua tarea, dando lugar a que fuese más difícil proporcionar las actualizaciones a los clientes con rapidez.
+
+%Con la integración continua, los desarrolladores pueden enviar estos cambios de código de forma periódica a un repositorio compartido con un sistema de control de versiones como Git, y antes de cada envío, los desarrolladores pueden elegir ejecutar una serie de pruebas unitarias sobre el código como medida de verificación adicional antes de la integración.
+
+Por lo tanto, los objetivos principales de la integración continua consisten en detectar y arreglar errores con mayor rapidez, mejorar la calidad del software y reducir el tiempo que se tarda en validar y publicar nuevas actualizaciones del código fuente.
 
 \begin{figure}[h]
     \centering
@@ -21,7 +27,7 @@ La entrega y/o despliegue continuo, o ``CD'', se refiere a la distribución o la
     \caption{Diagrama de CI/CD}
 \end{figure}
 
-Esta trabajo pondrá más énfasis en la parte de CI y en an aras de comprender lo que engloba cabría definir también conceptos como ``build'' o escenario CI: un ``build'' es mucho más que una compilación, también engloba el proceso de pruebas, inspección de código y despliegue del mismo, a parte de otras cosas. Actúa como el proceso para juntar el código fuente y verificar que el software funcione como una unidad cohesiva. Un escenario de CI comienza cuando el desarrollador envía el código fuente al repositorio. En un proyecto típico, {personas} con diferentes roles pueden realizar cambios que desencadenan un ciclo de CI: los desarrolladores cambian el código fuente, los administradores de bases de datos (DBA) cambian las definiciones de las tablas, los equipos de desarrollo e implementación cambian los archivos de configuración, los equipos de interfaz cambian las especificaciones DTD/XSD y más.
+Esta trabajo pondrá más énfasis en lo que a la parte de ``CI'' se refiere y en an aras de comprender lo que engloba cabría definir también conceptos como ``build'' o escenario CI: un ``build'' es mucho más que una compilación, también engloba el proceso de pruebas, inspección de código y despliegue del mismo, a parte de otras cosas. Actúa como el proceso para juntar el código fuente y verificar que el software funcione como una unidad cohesiva. Un escenario de CI comienza cuando el desarrollador envía el código fuente al repositorio. En un proyecto típico, {personas} con diferentes roles pueden realizar cambios que desencadenan un ciclo de CI: los desarrolladores cambian el código fuente, los administradores de bases de datos (DBA) cambian las definiciones de las tablas, los equipos de desarrollo e implementación cambian los archivos de configuración, los equipos de interfaz cambian las especificaciones DTD/XSD y más.
 
 Los pasos en un escenario de CI típicamente serán más o menos de la siguiente forma \cite{CI_Paul_Duvall}:
 \begin{enumerate}
@@ -37,33 +43,26 @@ Los pasos en un escenario de CI típicamente serán más o menos de la siguiente
     \caption{Diagrama de CI}
 \end{figure}
 
-Anteriormente, era común que los desarrolladores de un equipo trabajasen aislados durante un largo periodo de tiempo y solo intentasen combinar los cambios en la versión final una vez completado el trabajo. Como consecuencia, la combinación de los cambios en el código resultaba ser una ardua tarea, dando lugar a que fuese más difícil proporcionar las actualizaciones a los clientes con rapidez.
-
-Con la integración continua, los desarrolladores pueden enviar estos cambios de código de forma periódica a un repositorio compartido con un sistema de control de versiones como Git, y antes de cada envío, los desarrolladores pueden elegir ejecutar una serie de pruebas unitarias sobre el código como medida de verificación adicional antes de la integración.
-
-Por lo tanto, los objetivos principales de la integración continua consisten en detectar y arreglar errores con mayor rapidez, mejorar la calidad del software y reducir el tiempo que se tarda en validar y publicar nuevas actualizaciones del código fuente.
-
 \section{Enfoque DevOps}
-DevOps es un marco de trabajo y una filosofía en constante evolución que promueve un mejor desarrollo de aplicaciones en menos tiempo y la rápida publicación de nuevas o revisadas funciones de software o productos para los clientes, es decir, describe los enfoques para agilizar los procesos con los que una idea (como una nueva función de software, una solicitud de mejora o una corrección de errores) pasa del desarrollo a la implementación, en un entorno de producción.
+DevOps es un marco de trabajo que describe los enfoques para agilizar los procesos con los que una idea, como pudiera ser una nueva funcionalidad de software por ejemplo, pasa del desarrollo a la implementación, en un entorno de producción. Es decir, el enfoque DevOps va impulsar un mejor desarrollo de aplicaciones en menos tiempo con el objetivo de lograr la satisfacción del cliente prestando sus servicios eficazmente.
 
-Con DevOps se promueve una comunicación continua más fluida, la colaboración, la integración, la visibilidad y la transparencia entre equipos de desarrollo de aplicaciones (Dev) y sus homólogos en operaciones tecnológicas (Ops). Requiere que los equipos de desarrollo y operaciones se comuniquen con frecuencia y aborden su trabajo con empatía hacia sus compañeros de equipo.
+Para el correcto funcionamiento de la filosofía DevOps, se requiere que los equipos de desarrollo y operaciones se comuniquen con frecuencia y aborden su trabajo con empatía hacia sus compañeros de equipo. Por ello con DevOps se fomenta una comunicación continua más fluida, la colaboración y la transparencia entre equipos de desarrollo de aplicaciones y sus equivalentes en operaciones tecnológicas.
 
-\subsection{La importancia del enfoque DevOps}
-Uno de los principales valores de DevOps es lograr la satisfacción del cliente y prestar sus servicios en menos tiempo. DevOps también se ha creado para impulsar la innovación empresarial y ser el motor de continuas mejoras en los procesos.
-
-La práctica de DevOps propicia que cada empresa se ponga como objetivo ofrecer un mejor servicio cada vez, en menos tiempo, de mejor calidad y con mayor seguridad a sus clientes finales; por ejemplo, con actualizaciones, funciones o versiones de producto más frecuentes.
+DevOps también se ha creado para impulsar la innovación empresarial ya que propicia que cada empresa se ponga como objetivo ofrecer un mejor servicio cada vez, en menos tiempo, de mejor calidad y con mayor seguridad a sus clientes finales; por ejemplo, incrementando la frecuencia de versiones de producto.
 
 \subsection{Proceso de DevOps}
-Muchos equipos utilizan enfoques ágiles para desarrollar sistemas de software. Para ellos, DevOps no es algo secundario. De hecho, el primero de los 12 principios del Manifiesto Ágil es el siguiente: ``Satisfacer a los clientes mediante la distribución de software continua y oportuna''. Este es el motivo por el que la metodología de integración e implementación continuas (CI/CD) es tan importante para los equipos de DevOps.
+Para muchos de los equipos que utilizan metodologías ágiles para el desarrollo de software, el enfoque DevOps no es algo secundario. De hecho, el primero de los 12 principios del Manifiesto Ágil es el siguiente: ``Satisfacer a los clientes mediante la distribución de software continua y oportuna'' y es por ello por lo que la metodología de integración, entrega y despliegue continuo (CI/CD) es tan importante para los equipos de DevOps.
 
-Según un estudio de IDC, el 85 \% de los líderes de TI afirma que la automatización es clave para su estrategia de DevOps. Esto se debe a que la automatización permite que las infraestructuras admitan los cambios de código constantes que acompañan a DevOps. Además, permite que los entornos se expandan constantemente y con facilidad. Gracias a que la automatización se ocupa de las tareas tediosas y repetitivas, el personal más capacitado puede dedicarse a las actividades más importantes \cite{redHatDevOps}.
+Según un estudio de ``International Data Corporation'' (IDC), el 85 \% de los líderes de TI afirman que la automatización es primordial para su estrategia de DevOps, debido a que la automatización permite que las infraestructuras admitan cambios de código constantes acompañando al enfoque DevOps. Además, permite que los entornos se expandan con facilidad y de manera constante \cite{redHatDevOps}.
+
+Gracias a que la automatización se ocupa de tareas tediosas y repetitivas, el personal más capacitado puede dedicarse a actividades de mayor importancia.
 
 \subsection{Métodos de DevOps}
-Existen varios métodos de DevOps comunes que las organizaciones usan para acelerar y mejorar el desarrollo y las publicaciones de productos, a destacar los siguientes:
+A continuación se definen varios métodos de DevOps que las organizaciones utilizan habitualmente para acelerar y mejorar el desarrollo de su producto:
 \begin{compactitem}
-    \item \textbf{\underline{Scrum}}: define la forma en la que los miembros de un equipo deben colaborar para conseguir entre todos acelerar los proyectos de desarrollo y control de calidad.
-    \item \textbf{\underline{Kanban}}: prescribe que el estado «en curso» (WIP, del inglés «work in progress») de un proyecto de software debe controlarse en un tablero Kanban.
-    \item \textbf{\underline{Agile}}.
+    \item \textbf{\underline{Scrum}}: define cómo los miembros de un equipo deben cooperar para conseguir acelerar los proyectos de desarrollo y control de calidad.
+    \item \textbf{\underline{Kanban}}: mediante un tablero compuesto, generalmente, por tres columnas: “Por hacer”, “En proceso” y “Hecho” se demuestra dónde están los cuellos de botella en el proceso y qué es lo que impide que el flujo de trabajo sea ininterrumpido.
+    \item \textbf{\underline{Agile}}: se refiere a un grupo de metodologías de desarrollo de software basadas en el desarrollo iterativo, donde los requisitos y las soluciones evolucionan a través de la colaboración entre equipos multifuncionales y autoorganizados.
 \end{compactitem}
 
 %\subsection{Cadena de herramientas}
@@ -83,9 +82,8 @@ Las prácticas de DevOps son un reflejo de la idea de automatización y mejora c
 \begin{compactitem}
     \item Desarrollo continuo.
     \item Realización de pruebas continuas.
-    \item \textbf{\underline{Integración continua (CI)}}: se combinan herramientas de gestión de configuración (CM) con otras herramientas de pruebas y desarrollo para saber qué cantidad del código que se está creando está listo para pasar a producción. Para ello, debe existir un intercambio fluido de información entre las fases de prueba y de desarrollo que permita identificar y resolver con rapidez problemas en el código.
-    \item Entrega continua.
-    \item Puesta en marcha continua (CD).
+    \item \textbf{\underline{Integración continua (CI)}}.%: se combinan herramientas de gestión de configuración (CM) con otras herramientas de pruebas y desarrollo para saber qué cantidad del código que se está creando está listo para pasar a producción. Para ello, debe existir un intercambio fluido de información entre las fases de prueba y de desarrollo que permita identificar y resolver con rapidez problemas en el código.
+    \item Entrega y despliegue continuo (CD).
     \item Supervisión continua.
     \item Infraestructura como código.
 \end{compactitem}

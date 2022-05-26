@@ -139,3 +139,22 @@ Como se ve reflejado en la tabla \ref{tab:tabla_f3_4}, Javascript y Java son los
 En cuanto a los escenarios de ejecución se observa que el programa solamente ha encontrado trabajos sin escenarios definidos en etiquetas dedicadas exclusivamente para ello, como por ejemplo las etiquetas ``stage'', ``stages'', la etiqueta ``when'' en el caso de GitLab CI o la etiqueta ``on'' en el caso de GitHub Actions. Al no encontrar escenarios propiamente dichos, la tabla \ref{tab:tabla_f3_5} se ha rellenado con etiquetas del tipo ``script'', ``before\_install'', ``before\_script'' o ``install''.
 
 Además se puede observar como el número total de repositorios y el total de escenarios de cada registro ``stage'' localizado coinciden, dando a entender como, por lo general, la estructura de los ficheros de configuración de Travis CI en años pasados contenían una etiqueta de cada tipo, pudiendo ser estas etiquetas las siguientes: ``before\_install'', ``install'', ``after\_install'', ``before\_script'', ``script'', ``after\_script'', ``before\_deploy'', ``deploy'', ``after\_deploy'', ``before\_cache'', ``cache'', ``after\_cache'', ``after\_success'' y/o ``after\_failure''.
+
+\section{Resumen de resultados}
+En esta sección, a modo de resumen del análisis llevado a cabo en los dos experimentos ejecutados, se va a proceder a contestar aquellas preguntas que se expusieron al inicio de este estudio:
+
+- \textbf{¿Cuáles son los sistemas de CI más utilizados en cada plataforma?}
+
+Se observa como en cada plataforma predominan sus propios servicios de integración continua. En el caso de GitHub el sistema GitHub Actions y en el caso de GitLab el sistema GitLab CI.
+
+- \textbf{¿Se suelen combinar más de un sistema de CI en un mismo repositorio?}
+
+Sí, se suelen combinar más de un sistema de CI, para que cada uno de ellos lleve a cabo tareas diferentes o por que se esté migrando de un sistema de CI a otro y estén conviviendo juntos en algún determinado momento.
+
+- \textbf{¿Con qué lenguajes se suelen utilizar más sistemas de CI?}
+
+- \textbf{¿Cuántos ``jobs'' suelen haber en repositorios ``open source''?}
+
+- \textbf{¿Cuántas tareas suelen ejecutar dichos trabajos?}
+
+- \textbf{¿Cuáles son los principales escenarios o ``stages'' en los que se suelen ejecutar trabajos automatizados?}
