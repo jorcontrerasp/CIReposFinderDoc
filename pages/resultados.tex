@@ -1,5 +1,5 @@
 \section{Experimento preliminar}
-Se realiza un primer experimento ejecutando el programa implementado sobre 500 repositorios de la plataforma GitHub y 500 repositorios de la plataforma GitLab, todos ellos repositorios de código abierto u ``open source'', sin discriminar entre positivos o negativos, es decir, entre esos 1000 repositorios se pretende encontrar tanto repositorios que utilizan alguna de las herramientas de integración continua contempladas como repositorios que no las utilizan.
+Se realiza un primer experimento ejecutando el programa implementado sobre 500 repositorios de la plataforma GitHub y 500 repositorios de la plataforma GitLab, todos ellos repositorios de código abierto u ``open source'', sin discriminar entre resultados positivos o negativos en la búsqueda, es decir, entre esos 1000 repositorios se pretende encontrar tanto repositorios que utilizan alguna de las herramientas de integración continua contempladas como repositorios que no las utilizan.
 
 El objetivo de este experimento es conocer cuáles son los sistemas de integración continua más utilizados en repositorios de este tipo para posteriormente analizarlas más en profundidad en un segundo experimento.
 
@@ -30,11 +30,11 @@ A simple vista se puede observar que predomina el uso de los sistemas de integra
 
 A parte de estos dos sistemas de CI ya mencionados se localizan repositorios que utilizan el sistema de integración continua proporcionado por Travis CI, obteniendo 68 casos en repositorios almacenados en GitHub y otros 25 en repositorios almacenados en GitLab, dando un total de 93 repositorios en ambas plataformas, es decir, en 9'3\% del total de repositorios.
 
-También encontramos repositorios positivos\cotutor{cambiaria la nomenclatura aquí, "repositorios positivos" suena extraño sin más contexto: "También encontramos repositorios que utilizan Jenkins ... Esto pasa también en párrafos posteriores} en herramientas como Jenkins, que, a priori, se consideró como uno de los sistemas que iban a tener un mayor número de positivos junto con GitHub Actions.
+También encontramos repositorios que utilizan Jenkins, que en un principio, se consideró como uno de los sistemas que se iban a utilizar en un mayor número de repositorios junto con GitHub Actions y Travis CI.
 
-Otros sistemas a tener en cuenta son Circle CI, Azure Pipelines y Bazel, obteniendo un total de 42, 6 y 8 repositorios positivos, resultados considerados insuficientes como para profundizar en ellos en el experimento final a realizar.
+Otros sistemas a tener en cuenta son Circle CI, Azure Pipelines y Bazel, obteniendo un total de 42, 6 y 8 repositorios que utilizan dichos sistemas; resultados considerados insuficientes como para profundizar en ellos en el experimento final a realizar.
 
-Finalmente, mencionar también los 2 repositorios positivos encontrados para la herramienta de integración continua Concourse, uno para GitHub y otro para GitLab, considerados como falsos positivos ya que a pesar de haber cumplido el criterio de búsqueda establecido no se utiliza esta herramienta de integración en ninguno de los dos casos. Esto se debe a que el criterio establecido para la búsqueda de este sistema de CI, ``tasks'', directorio propuesto por la documentación de Concourse para almacenar los ficheros de configuración de trabajos, es demasiado genérico como para encontrar repositorios que, teniendo ese directorio en su árbol de directorios, usen Concourse.
+Finalmente, mencionar también los 2 repositorios encontrados que utilizan la herramienta de integración continua Concourse, uno para GitHub y otro para GitLab, considerados como falsos positivos ya que a pesar de haber cumplido el criterio de búsqueda establecido no se utiliza esta herramienta de integración en ninguno de los dos casos. Esto se debe a que el criterio establecido para la búsqueda de este sistema de CI, ``tasks'', directorio propuesto por la documentación de Concourse para almacenar los ficheros de configuración de trabajos, es demasiado genérico como para encontrar repositorios que, teniendo ese directorio en su árbol de directorios, usen Concourse.
 
 \section{Experimento final}
 Con las conclusiones obtenidas tras la ejecución del primer experimento de este trabajo, se realiza un segundo experimento estudiando más en profundidad los sistemas de CI ofrecidos por Travis CI, GitHub Actions y GitLab CI, ya que son los sistemas de los que se han obtenido más información.
@@ -51,10 +51,9 @@ Este script va a permitir añadir las siguientes columnas al excel principal de 
     \item \textbf{TASK\_AVERAGE\_PER\_JOB}: columna en la que se almacena la media de tareas por trabajo.
 \end{compactitem}
 
-\add{Con esta información y de manera automática}
-\remove{Con las que, posteriormente y de forma automática}, se generan otros ficheros excel de estadísticas relacionadas con estos ficheros de configuración de trabajos. Estas columnas van contener información en formato json y a modo de diccionario con la intención de diferenciar los datos obtenidos en de cada sistema de CI en particular, ya que puede darse el caso de que algún repositorio en concreto haya dado positivo en más de una herramienta de integración continua, que, como se puede ver en los resultados obtenidos, es algo más común de lo que en un principio se podía esperar.
+Con esta información y de manera automática, se generan otros ficheros excel de estadísticas relacionadas con estos ficheros de configuración de trabajos. Estas columnas van contener información en formato json y a modo de diccionario con la intención de diferenciar los datos obtenidos en de cada sistema de CI en particular, ya que puede darse el caso de que se encuentren repositorios que utilicen más de una herramienta de integración continua, que, como se puede ver en los resultados obtenidos, es algo más común de lo que en un principio se podía esperar.
 
-Este segundo experimento consiste en ejecutar el programa tres veces para repositorios GitHub y una vez para repositorios GitLab, encontrando en cada una de estas ejecuciones exclusivamente repositorios positivos\cotutor{repositorios positivos -> repositorios con un resultado positivo en la búsqueda} en algún sistema de CI. 
+Este segundo experimento consiste en ejecutar el programa tres veces para repositorios GitHub y una vez para repositorios GitLab, encontrando en cada una de estas ejecuciones exclusivamente repositorios con un resultado positivo en la búsqueda, es decir, repositorios que utilizan algún sistema de CI. 
 
 Para ello se emplean las siguientes consultas de búsqueda:
 \begin{compactitem}

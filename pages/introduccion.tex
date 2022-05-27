@@ -53,9 +53,7 @@ DevOps también se ha creado para impulsar la innovación empresarial ya que pro
 \subsection{Proceso de DevOps}
 Para muchos de los equipos que utilizan metodologías ágiles para el desarrollo de software, el enfoque DevOps no es algo secundario. De hecho, el primero de los 12 principios del Manifiesto Ágil es el siguiente: ``Satisfacer a los clientes mediante la distribución de software continua y oportuna'' y es por ello por lo que la metodología de integración, entrega y despliegue continuo (CI/CD) es tan importante para los equipos de DevOps.
 
-Según un estudio de ``International Data Corporation'' (IDC), el 85 \% de los líderes de TI afirman que la automatización es primordial para su estrategia de DevOps, debido a que la automatización permite que las infraestructuras admitan cambios de código constantes acompañando al enfoque DevOps. Además, permite que los entornos se expandan con facilidad y de manera constante \cite{redHatDevOps}.
-
-Gracias a que la automatización se ocupa de tareas tediosas y repetitivas, el personal más capacitado puede dedicarse a actividades de mayor importancia.
+Según un estudio de ``International Data Corporation'' (IDC), el 85 \% de los líderes de TI afirman que la automatización es primordial para su estrategia de DevOps, debido a que la automatización permite que las infraestructuras admitan cambios de código constantes acompañando al enfoque DevOps. Además, permite que los entornos se expandan con facilidad y de manera constante \cite{redHatDevOps}. Gracias a que la automatización se ocupa de tareas tediosas y repetitivas, el personal más capacitado puede dedicarse a actividades de mayor importancia.
 
 \subsection{Métodos de DevOps}
 A continuación se definen varios métodos de DevOps que las organizaciones utilizan habitualmente para acelerar y mejorar el desarrollo de su producto:
@@ -206,66 +204,65 @@ En general, la aplicación eficaz de las prácticas de CI puede proporcionar una
 \section{Herramientas de integración continua}
 Actualmente existen una gran cantidad de herramientas de integración continua, a comentar, por su grado de relevancia y uso, las siguientes:
 
-- \textbf{\underline{Jenkins}}: es un servidor de automatización de código abierto autónomo que se puede utilizar para automatizar todo tipo de tareas relacionadas con la creación, prueba y entrega o implementación de software.\\
-Puede instalarse a través de paquetes del sistema nativo, Docker o incluso ejecutarse de forma independiente en cualquier máquina que tenga instalado Java Runtime Environment (JRE).
+- \textbf{\underline{Jenkins}}: es un sistema de integración continua de código abierto y autónomo que se utiliza para mecanizar todo tipo de trabajos asociados a la creación, prueba y entrega o despliegue de productos software.\\
+Se puede instalar de tres formas distintas: con paquetes del sistema nativo, a través de la plataforma de gestión de contenedores Docker o incluso de forma independiente en cualquier máquina que tenga instalado un JRE (Java Runtime Environment).
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.325\textwidth,clip=true]{\logoJenkins}
+    \includegraphics[width=0.25\textwidth,clip=true]{\logoJenkins}
     \caption{Logo de Jenkins.}
 \end{figure}
 
-- \textbf{\underline{Travis CI}}: escrito en Ruby, es un servicio de integración continua que se utiliza para crear y probar proyectos de software alojados en GitHub, Bitbucket, GitLab y Assembla. Fue el primer servicio de CI que permitió realizar el proceso de integración continua a proyectos de código abierto de forma gratuita.
+- \textbf{\underline{Travis CI}}: escrito en Ruby, es un servicio de integración continua utilizado para crear y probar proyectos de software alojados en las siguientes plataformas de hospedaje de código fuente: GitHub, GitLab, Bitbucket o Assembla. Fue el primer servicio de CI que permitió realizar el proceso de integración continua a proyectos de código abierto de forma gratuita.
 
-Las principales funciones de Travis CI son:
+Algunas de las características y funciones que proporciona Travis CI son:
 \begin{compactitem}
     \item Configuración rápida.
-    \item Vistas de construcción en vivo.
-    \item Servicios de base de datos preinstalados.
-    \item Implementaciones automáticas en compilaciones pasadas.
-    \item Limpieza de máquinas virtuales para cada compilación.
-    \item Compatibilidad con Mac, Linux e iOS.
+    \item Vistas de construcción en tiempo real.
+    \item Sistemas de base de datos preinstalados.
+    \item Limpieza de máquinas virtuales en cada compilación.
+    \item Compatibilidad con Linux, Mac e iOS.
 \end{compactitem}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.3\textwidth,clip=true]{\logoTravis}
+    \includegraphics[width=0.25\textwidth,clip=true]{\logoTravis}
     \caption{Logo de Travis.}
 \end{figure}
 
 - \textbf{\underline{Circle CI}}: es un servicio de integración caracterizado por los aspectos comentados a continuación:
 \begin{compactitem}
-    \item Flujos de trabajo para la orquestación de tareas.
-    \item Soporte con Docker.
-    \item Selección de CPU y RAM para adaptar las canalizaciones al equipo.
-    \item Soporte independiente del idioma: se admite cualquier idioma que se desarrolle en Linux, Windows o macOS.
-    \item Potente almacenamiento en caché.
-    \item SSH o ejecución de compilaciones locales para una depuración sencilla.
-    \item Seguridad: LDAP para administración de usuarios, aislamiento de máquinas virtuales a nivel completo y más.
-    \item Panel de información: seguimiento del estado y optimización de canalizaciones con facilidad.
+    \item Flujos de trabajo para la mecanización de tareas.
+    \item Compatible con Docker.
+    \item CPU y RAM configurables con el objetivo de adaptar dichos flujos de trabajo al equipo.
+    \item Soporte independiente del lenguaje de programación: acepta cualquier lenguaje de programación desarrollado en Windows, Linux o macOS.
+    \item Información almacenable en memoria caché.
+    \item Ejecución de compilaciones locales mediante SSH para una depuración trivial.
+    \item Seguridad: LDAP para gestión de usuarios, aislamiento de máquinas virtuales de forma completa, etc.
+    \item Monitorización del estado y optimización de flujos de trabajo de forma sencilla.
 \end{compactitem}
 Además, cuenta con dos opciones de hospedaje: en la nube o en servidor y con tres opciones de precios: ``Free'' 0 dólares al mes, ``Performance'' 30 dólares al mes y ``Scale'' con un precio a medida.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.3\textwidth,clip=true]{\logoCircleCI}
+    \includegraphics[width=0.25\textwidth,clip=true]{\logoCircleCI}
     \caption{Logo de Circle CI.}
 \end{figure}
 
-- \textbf{\underline{GitLab CI}}: es la parte de GitLab que se utiliza para todos los métodos continuos (integración continua, entrega e implementación). Con GitLab CI/CD se puede probar, crear y publicar software sin necesidad de una aplicación o integración de terceros.
+- \textbf{\underline{GitLab CI}}: es la parte de GitLab que se encarga de la integración continua, entrega y/o despliegue continuo. Con GitLab CI/CD se puede probar, crear y publicar software sin necesidad de tener que utilizar una aplicación de terceros.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.15\textwidth,clip=true]{\logoGitLabCI}
+    \includegraphics[width=0.125\textwidth,clip=true]{\logoGitLabCI}
     \caption{Logo de GitLab CI.}
 \end{figure}
 
-- \textbf{\underline{GitHub Actions}}: las acciones de GitHub ayudan a automatizar tareas dentro del ciclo de vida de un desarrollo de software. Están controladas por eventos, lo que significa que pueden ejecutar una serie de comandos después de que se haya producido un evento específico.
+- \textbf{\underline{GitHub Actions}}: las acciones de GitHub automatizan tareas dentro del ciclo de vida de un desarrollo software. Ejecutan comandos después de que se haya producido algún evento específico.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.45\textwidth,clip=true]{\logoGitHubActions}
+    \includegraphics[width=0.375\textwidth,clip=true]{\logoGitHubActions}
     \caption{Logo de GitHub Actions.}
 \end{figure}
 
-El siguiente diagrama muestra cómo se pueden usar las acciones de GitHub para ejecutar automáticamente scripts de prueba de software: un evento activa automáticamente un “flujo de trabajo”, que contiene un trabajo. Luego, el trabajo usa pasos para controlar el orden en el que se ejecutan las acciones. Estas acciones son los comandos que automatizan las pruebas de software. Además, hay múltiples componentes de GitHub Actions que trabajan juntos para ejecutar trabajos.
+El siguiente diagrama muestra cómo se pueden usar las acciones de GitHub para ejecutar automáticamente scripts de prueba de software: un evento activa automáticamente un “flujo de trabajo”, que contiene un trabajo. Luego, dicho trabajo usa pasos para controlar el orden en el que se ejecutan las acciones. %Estas acciones son los comandos que automatizan las pruebas de software. Además, hay múltiples componentes de GitHub Actions que trabajan juntos para ejecutar trabajos.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth,clip=true]{\githubActionsDiagram}
@@ -362,4 +359,4 @@ Además de los sistemas de integración continua descritos en este apartado, en 
 
 Como se ha visto, a pesar de existir una infinidad de herramientas de integración continua, todas ellas nos van a ofrecer en definitiva recursos muy parecidos para poder integrar nuestros proyectos.
 
-Otras herramientas a mencionar que nos ofrecen características similares de integración continua son: GoCD, Shippable, Buildkite, Codefresh, Buddy, Buildbot, Wercker, Integrity, WeaveFlux, NeverCode, AutoRABIT, Bitrise, Drone CI, UrbanCode, Strider CD y FinalBuilder.
+%Otras herramientas a mencionar que nos ofrecen características similares de integración continua son: GoCD, Shippable, Buildkite, Codefresh, Buddy, Buildbot, Wercker, Integrity, WeaveFlux, NeverCode, AutoRABIT, Bitrise, Drone CI, UrbanCode, Strider CD y FinalBuilder.
