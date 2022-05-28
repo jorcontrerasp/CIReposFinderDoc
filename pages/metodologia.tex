@@ -61,16 +61,16 @@ A continuación, se especifican los sistemas de CI identificados y que serán ut
 \begin{compactitem}
     \item \underline{Jenkins}: búsqueda del fichero ``Jenkinsfile'' ubicado en la raíz del proyecto \cite{jenkins}.
     \item \underline{Travis}: búsqueda de los ficheros ``.travis-ci.yml'' o ``.travis.yml'' ubicados en la raíz del proyecto \cite{travisCI}.
-    \item \underline{Circle CI}: búsqueda del fichero ``.circle-ci'' situado en el directorio ``circleci'' \cite{circleCI}.
+    \item \underline{Circle CI}: búsqueda del fichero ``.circle-ci'' situado en la raíz del proyecto o el fichero ``config.yml'' situado en el directorio ``circleci'' \cite{circleCI}.
     \item \underline{GitHub Actions}: búsqueda de ficheros YML o YAML situados en el directorio ``.github/workflows'' \cite{githubActions}.
     \item \underline{Azure Pipelines}: búsqueda del fichero ``azure-pipelines.yml'' en la raíz del proyecto o el directorio ``.azure-pipelines'' \cite{azurePipelines}.
     \item \underline{Bamboo}: búsqueda del fichero YML o YAML ``bamboo'' en el directorio ``bamboo-specs'' \cite{bamboo}.
-    \item \underline{Concourse}: búsqueda de la carpeta ``tasks'' o de algún fichero YML en algún directorio ``concourse'' \cite{concourse}.
+    \item \underline{Concourse}: búsqueda del directorio ``tasks''\cite{concourse}.
     \item \underline{GitLab CI}: búsqueda del fichero ``.gitlab-ci.yml'' en la raíz del proyecto \cite{gitlabCI}.
     \item \underline{Codeship}: búsqueda, en la raíz del proyecto, de alguno de estos ficheros ``codeship-services.yml'', ``codeship-steps.yml'' o ``codeship-steps.json'' \cite{codeship}.
     \item \underline{TeamCity}: búsqueda del fichero ``settings.kts'' en el directorio ``.teamcity'' \cite{teamcity}.
-    \item \underline{Bazel}: búsqueda de alguno de los ficheros ``presubmit.yml'' o ``build\_bazel\_binaries.yml'' en el directorio ``.bazelci'' o el fichero ``.bazelrc'' en la raíz del proyecto \cite{bazel}.
-    \item \underline{Semaphore CI}: búsqueda del fichero ``semaphore.yml'' en los directorios ``.semaphore'' o ``.semaphoreci'' \cite{semaphoreCI}.
+    \item \underline{Bazel}: búsqueda de alguno de los ficheros ``presubmit.yml'' en el directorio ``.bazelci'', del fichero ``build\_bazel\_binaries.yml'' en ese mismo directorio o del fichero ``.bazelrc'' en la raíz del proyecto \cite{bazel}.
+    \item \underline{Semaphore CI}: búsqueda del directorio ``.semaphoreci'' o del fichero ``semaphore.yml'' en el directorio ``.semaphore'' \cite{semaphoreCI}.
     \item \underline{AppVeyor}: búsqueda del fichero ``Appveyor.yml'' en la raíz del proyecto.
 \end{compactitem}
 	
