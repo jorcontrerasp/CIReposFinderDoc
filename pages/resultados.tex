@@ -150,10 +150,24 @@ Se observa como en cada plataforma predominan sus propios servicios de integraci
 
 Sí, se suelen combinar más de un sistema de CI, para que cada uno de ellos lleve a cabo tareas diferentes o por que se esté migrando de un sistema de CI a otro y estén conviviendo juntos en algún determinado momento.
 
+En el experimento preliminar, en el caso de GitHub encontramos 55 repositorios que utilizan más de un sistemas de CI, siendo un 11 \% de los 500 repositorios totales y un 17'74 \% de los 310 repositorios con al menos un sistema de CI en uso. En el caso de GitLab, encontramos 31 repositorios con más de un sistema de CI, siendo el 6'2 \% de los 500 repositorios totales y el 10'4 \% de los que utilizan sistemas de CI exclusivamente.
+
+En cuanto al experimento final, en la primera ejecución encontramos 92 y 45 repositorios, en GitHub y GitLab respectivamente, que utilizan más de un sistema de CI, siendo el 16'2 \% de los 568 totales en GitLab y el 8'96 \% de los 502 totales en GitLab. En la segunda ejecución, ejecutada exclusivamente para repositorios almacenados en GitHub, encontramos 146 repositorios que utilizan más de un sistema de CI, siendo el 21'66 \% de los 674 repositorios totales. En la tercera y última ejecución, ejecutada también solamente para repositorios alojados en GitHub, se obtienen exclusivamente 79 repositorios que utilizan el servicio proporcionado por Travis CI, dando lugar a que sea el 0 \% los repositorios que utilizan más de un sistema de CI.
+
 - \textbf{¿Con qué lenguajes se suelen utilizar más sistemas de CI?}
+
+Los lenguajes que más aparecen en cuanto al uso de sistemas de integración continua en proyectos software son Python y JavaScript, independientemente de la plataforma en la que estén alojados los repositorios (GitHub o GitLab).
 
 - \textbf{¿Cuántos ``jobs'' suelen haber en repositorios ``open source''?}
 
-- \textbf{¿Cuántas tareas suelen ejecutar dichos trabajos?}
+El número de trabajos que suele haber en proyectos ``open source'', viendo los resultados obtenidos se observa que depende del sistema de CI que los configura. En el experimento final, primera ejecución, se obtiene ejecutando el proceso para repositorios almacenados en GitHub un número medio de 2'75, 9'57 y 12'25 trabajos en Travis CI, GitHub Actions y GitLab CI respectivamente. Estos datos se corresponden con una media total de 8'19 trabajos en proyectos de código abierto. Para esta misma ejecución pero sobre repositorios almacenados en GitLab, se obtiene una media de 3'41, 4'70 y 9'03 trabajos en Travis CI, GitHub Actions y GitLab CI, siendo la media total de 5'71 trabajos por repositorio.
+
+En la segunda ejecución, que solamente se ejecuta el proceso sobre repositorios almacenados en GitHub, se obtiene una media de trabajos por repositorio de 3'41 en Travis CI, 7'46 en GitHub Actions y 4'89 en GitLab CI, dando lugar a una media total de 5'25 trabajos por repositorios.
+
+Por último, la tercera ejecución, en la que solamente se obtienen repositorios que utilizan Travis CI con una media de trabajos por repositorio de 1'65.
 
 - \textbf{¿Cuáles son los principales escenarios o ``stages'' en los que se suelen ejecutar trabajos automatizados?}
+
+En cuanto a los principales escenarios de ejecución de trabajos en proyectos ``open source'' se podrían destacar ``push'' y ''pull\_request'' en el caso de GitHub Actions, ``build'' y ''test'' en el caso de GitLab CI y la etiqueta ``script'' en el caso de Travis CI.
+
+%En cuanto a los principales escenarios de ejecución de trabajos en proyectos ``open source'' se podrían destacar, en el caso de GitHub Actions, ``push'' y ''pull\_request'' con un total de 3037 y 2119 encontrados en 421 y 370 repositorios diferentes respectivamente en la primera ejecución del experimento final. En el caso de GitLab CI, ``build'' y ''test'' con un total de 696 y 1003 encontrados en 200 y 197 repositorios distintos en la primera ejecución del experimento final. Y por último, en el caso de Travis CI, la etiqueta ``script'' en el caso de Travis CI con un total de 43 encontrados en la tercera ejecución del experimento final.
