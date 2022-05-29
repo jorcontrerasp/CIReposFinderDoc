@@ -271,7 +271,7 @@ Se van a poder encontrar, entre otros, los siguientes ``stages'' de ejecución d
 
 En cuanto a Travis CI se contemplan dos casos de configuración de ``jobs'':
 
-- En el primer caso que nos podemos encontrar, en primer lugar se intenta localizar una etiqueta ``stages'' genérica con todos los escenarios en los que se van a ejecutar los trabajos. A continuación, al igual que en GitHub Actions, se busca una etiqueta ``jobs'' y en cada uno de sus etiquetas de nivel inferior se intentan localizar las de ``stage'', ``install'' y ``script'', etiquetas en las que se definirán respectivamente los escenarios de ejecución concretos del trabajo así como los pasos que sigue para llevarse a cabo.
+- En el primer caso que nos podemos encontrar, en primer lugar se intenta localizar una etiqueta ``stages'' genérica con todos los escenarios en los que se van a ejecutar los trabajos. A continuación, al igual que en GitHub Actions, se busca una etiqueta ``jobs'' y en cada una de sus etiquetas de nivel inferior se intentan localizar las de ``stage'', ``install'' y ``script'', etiquetas en las que se definirán respectivamente los escenarios de ejecución concretos del trabajo así como los pasos que sigue para llevarse a cabo.
 
 - En el segundo caso contemplado, se localizan las etiquetas definidas en en la función ``getMainYMLStages''.
 
@@ -281,7 +281,7 @@ Por lo tanto, en Travis CI se pueden encontrar ``jobs'' definidos con la etiquet
     \item \underline{install}: pasos de instalación encargados de preparar el entorno de construcción.
     \item \underline{after\_install}: comandos que se ejecutan después de los pasos de instalación.
     \item \underline{before\_script}: comandos que se ejecutan antes de ejecutar las instrucciones que construyen la aplicación.
-    \item \underline{script}: conjunto de instrucciones encargados de construir la aplicación.
+    \item \underline{script}: conjunto de instrucciones encargadas de construir la aplicación.
     \item \underline{after\_script}: comandos que se ejecutan después de ejecutar las instrucciones que construyen la aplicación.
     \item \underline{before\_deploy}: instrucciones que se ejecutan antes de la definición del método de despliegue del código.
     \item \underline{deploy}: etiqueta en la que se define el método de despliegue del código.
